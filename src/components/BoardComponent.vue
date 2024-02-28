@@ -38,11 +38,7 @@
             <div class="mod" @click="switchReynie()" :class="board.reynieActivated ? 'activated':''">
                 La Reynie
             </div>
-        </div>
-        <div class="row" v-for="(row, rowIndex) in board.getTableau()" >
-            <TileComponent v-for="(tile, colIndex) in row"  
-            :tile="tile" :board="board"/>
-        </div>        
+        </div>       
     </div>
 
 
