@@ -1,0 +1,41 @@
+[{
+        "id": 1,
+        "name": "Normal 6",
+        "value" : 6,
+        "ifTopValue" : 0,
+        "ifOtherCard": -1,
+        "ifOtherCardValue": 0,
+        "isErudit": false, 
+        "isNoble": true
+    },
+    {
+        "id": 2,
+        "name": "Top -1 +5",
+        "value": -1,
+        "ifTopValue": 5,
+        "ifOtherCard": -1,
+        "ifOtherCardValue": 1,
+        "isErudit": true, 
+        "isNoble": true
+    },
+    {
+        "id": 3,
+        "name": "Si machin +3",
+        "value": 0,
+        "ifTopValue": 0,
+        "ifOtherCard": 1,
+        "ifOtherCardValue": 3,
+        "isErudit": false, 
+        "isNoble": false
+    },
+    {
+        "id": 25,
+        "name": "Carte 25",
+        "value": 3,
+        "ifTopValue": 0,
+        "ifOtherCard": -1,
+        "ifOtherCardValue": 3,
+        "isErudit": false, 
+        "isNoble": false
+    }
+]
