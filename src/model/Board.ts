@@ -1,3 +1,4 @@
+import type Card from "./Card";
 import Tile from "./Tile";
 
 export default class Board {
@@ -32,123 +33,58 @@ export default class Board {
         return this.tableau;
     }
 
-    getErudits() {
-        let numberErudits = 0 ;
+    private countCardsByType(cardType: string): number {
+        let count = 0;
         this.tableau.forEach(row => {
             row.forEach(element => {
-                if(element.card && !element.card.hidden && element.card.isErudit) {
-                    numberErudits ++;
+                if (element.card && !element.card.hidden && element.card[cardType  as keyof Card]) {
+                    count++;
                 }
             });
         });
-        return numberErudits;
+        return count;
     }
 
-    getJardiniers() {
-        let numberJardiniers = 0 ;
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                if(element.card && !element.card.hidden && element.card.isJardinier) {
-                    numberJardiniers ++;
-                }
-            });
-        });
-        return numberJardiniers;
+    getErudits(): number {
+        return this.countCardsByType("isErudit");
     }
 
-    getPeintres() {
-        let numberPeintres = 0 ;
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                if(element.card && !element.card.hidden && element.card.isPeintre) {
-                    numberPeintres ++;
-                }
-            });
-        });
-        return numberPeintres;
+    getJardiniers(): number {
+        return this.countCardsByType("isJardinier");
     }
 
-    getArchitectes() {
-        let numberArchitectes = 0 ;
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                if(element.card && !element.card.hidden && element.card.isArchitecte) {
-                    numberArchitectes ++;
-                }
-            });
-        });
-        return numberArchitectes;
+    getPeintres(): number {
+        return this.countCardsByType("isPeintre");
     }
 
-    getEcrivains() {
-        let numberEcrivains = 0 ;
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                if(element.card && !element.card.hidden && element.card.isEcrivain) {
-                    numberEcrivains ++;
-                }
-            });
-        });
-        return numberEcrivains;
+    getArchitectes(): number {
+        return this.countCardsByType("isArchitecte");
     }
 
-    getMusiciens() {
-        let numberMusiciens = 0 ;
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                if(element.card && !element.card.hidden && element.card.isMusicien) {
-                    numberMusiciens ++;
-                }
-            });
-        });
-        return numberMusiciens;
+    getEcrivains(): number {
+        return this.countCardsByType("isEcrivain");
+    }
+
+    getMusiciens(): number {
+        return this.countCardsByType("isMusicien");
+    }
+
+    getNobles(): number {
+        return this.countCardsByType("isNoble");
+    }
+
+    getPoison(): number {
+        return this.countCardsByType("isPoison");
+    }
+
+    getFavorite(): number {
+        return this.countCardsByType("isFavorite");
+    }
+
+    getMillitaire(): number {
+        return this.countCardsByType("isMillitaire");
     }
     
-
-    getNobles() {
-        let numberNobles = 0 ;
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                if(element.card && !element.card.hidden && element.card.isNoble) {
-                    numberNobles ++;
-                }
-            });
-        });
-        return numberNobles;
-    }
-    getPoison() {
-        let numberPoison = 0 ;
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                if(element.card && !element.card.hidden && element.card.isPoison) {
-                    numberPoison ++;
-                }
-            });
-        });
-        return numberPoison;
-    }
-    getFavorite() {
-        let numberFavorite = 0 ;
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                if(element.card && !element.card.hidden && element.card.isFavorite) {
-                    numberFavorite ++;
-                }
-            });
-        });
-        return numberFavorite;
-    }
-    getMillitaire() {
-        let numberMillitaire = 0 ;
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                if(element.card && !element.card.hidden && element.card.isMillitaire) {
-                    numberMillitaire ++;
-                }
-            });
-        });
-        return numberMillitaire;
-    }
 
     computeAdjacentNobles() {
         let sumAdjacentNobles = 0 ;
@@ -253,7 +189,6 @@ export default class Board {
                 }
             });
         });
-        console.log(sum)
         return sum;
     }
 
@@ -269,28 +204,25 @@ export default class Board {
         return sumTop;
     }
 
-  
-    computeCardIfOtherCards() : number {
-        let sumCardsIfOtherCards = 0 ;
+    computeCardIfOtherCards(): number {
+        let sumCardsIfOtherCards = 0;
+    
         this.tableau.forEach(row => {
             row.forEach(element => {
-                if(element.card && !element.card.hidden && element.card.ifOtherCards?.length) {
-                    let othercardFound = [];
-                    element.card.ifOtherCards.forEach(otherCard => {
-                        this.tableau.forEach(row2 => {
-                            row2.forEach(element2 => {
-                                if(element2.card && !element2.card.hidden && element2.card.id === otherCard) {
-                                        othercardFound.push(element2.card.id);
-                                }
-                            })
-                        })
+                const card = element?.card;
+    
+                if (card && !card.hidden && card.ifOtherCards?.length) {
+                    const othercardFound = card.ifOtherCards.every(otherCard => {
+                        return this.tableau.some(row2 => row2.some(element2 => element2.card?.id === otherCard && !element2.card?.hidden));
                     });
-                    if(element?.card?.ifOtherCards && othercardFound.length >= element?.card?.ifOtherCards?.length){
-                        sumCardsIfOtherCards += element?.card?.ifOtherCardsValue || 0;
-                    }  
+    
+                    if (othercardFound) {
+                        sumCardsIfOtherCards += card.ifOtherCardsValue || 0;
+                    }
                 }
             });
         });
+    
         return sumCardsIfOtherCards;
     }
 

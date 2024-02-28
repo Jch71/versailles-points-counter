@@ -24,21 +24,23 @@
         </div>
 
         <div class="main-board">
-            <div class="score">
+            <h2 class="score">
                 Score : {{ board.getScore() }}
-            </div>
+            </h2>
 
             <div class="row" v-for="(row, rowIndex) in board.getTableau()">
                 <TileComponent v-for="(tile, colIndex) in row" :tile="tile" :board="(board as Board)" />
             </div>
-        </div>
 
-
-        <div class="boards-mod">
+            <div class="boards-mod">
             <div class="mod" @click="switchReynie()" :class="board.reynieActivated ? 'activated':''">
                 La Reynie
             </div>
-        </div>       
+        </div>   
+        </div>
+
+
+           
     </div>
 
 
@@ -62,7 +64,8 @@
 <style scoped>
 
     .cour-summary{
-        width: 500px;
+        justify-content: center;
+        align-self: center;
     }
     .board {
         display: flex;
@@ -70,13 +73,16 @@
         border-radius: 5px;
         text-align: center;
         flex-wrap: wrap;
+        justify-content: space-around;
 
         @media screen and (min-width: 1200px) {
             width: 1200px;
         }
 
         .main-board{
-            width: 500px;
+            justify-content: center;
+            width: 100%;
+            max-width: 500px;
         }
 
         .row {
@@ -84,9 +90,11 @@
             overflow: auto;
             position: relative;
             grid-template-columns: repeat(3, 1fr);
-            margin: 10px;
             gap: 10px;
             height: 200px;
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
         }
 
         .types {
@@ -113,8 +121,10 @@
     }
 
     .boards-mod {
+        width: 100%;
         display: flex;
-        align-items: center;
+        align-items: center;    
+        justify-content: center;
         padding: 10px;
         .mod {
             width: 50px;
