@@ -35,7 +35,7 @@ export default class Board {
         let numberErudits = 0 ;
         this.tableau.forEach(row => {
             row.forEach(element => {
-                if(element.card && element.card.isErudit) {
+                if(element.card && !element.card.hidden && element.card.isErudit) {
                     numberErudits ++;
                 }
             });
@@ -47,7 +47,7 @@ export default class Board {
         let numberNobles = 0 ;
         this.tableau.forEach(row => {
             row.forEach(element => {
-                if(element.card && element.card.isNoble) {
+                if(element.card && !element.card.hidden && element.card.isNoble) {
                     numberNobles ++;
                 }
             });
@@ -55,12 +55,32 @@ export default class Board {
         return numberNobles;
     }
 
+    computeAdjacentNobles() {
+        let sumAdjacentNobles = 0 ;
+        this.tableau.forEach((row, rowIndex) => {
+            row.forEach((element, colIndex) => {
+                if(element.card && !element.card.hidden && element.card.ifAdjacentNobleBonus) {
+                   if(!this.getElementAbove(rowIndex, colIndex)?.card?.hidden && this.getElementAbove(rowIndex, colIndex)?.card?.isNoble) {
+                        sumAdjacentNobles+=element.card.ifAdjacentNobleBonus;}
+                   if(!this.getElementBelow(rowIndex, colIndex)?.card?.hidden && this.getElementBelow(rowIndex, colIndex)?.card?.isNoble) {
+                        sumAdjacentNobles+=element.card.ifAdjacentNobleBonus;}
+                   if(!this.getElementLeft(rowIndex, colIndex)?.card?.hidden && this.getElementLeft(rowIndex, colIndex)?.card?.isNoble) {
+                        sumAdjacentNobles+=element.card.ifAdjacentNobleBonus;}
+                   if(!this.getElementRight(rowIndex, colIndex)?.card?.hidden && this.getElementRight(rowIndex, colIndex)?.card?.isNoble) 
+                        sumAdjacentNobles+=element.card.ifAdjacentNobleBonus;
+                }
+            });
+        });
+        return sumAdjacentNobles;
+    }
+
     getScore() : number {
         
        let cardsValue:number = 0;
        cardsValue += this.computeCardsSum();
        cardsValue += this.computeCardsIfTop();
-       cardsValue += this.computeCardIfOtherCard();
+       cardsValue += this.computeCardIfOtherCards();
+       cardsValue += this.computeAdjacentNobles();
        return cardsValue;
     }
 
@@ -68,7 +88,7 @@ export default class Board {
         let sum = 0 ;
         this.tableau.forEach(row => {
             row.forEach(element => {
-                if(element.card) {
+                if(element.card && !element.card.hidden) {
                     sum += element.card.value || 0;
                 }
             });
@@ -80,7 +100,7 @@ export default class Board {
         let sumTop = 0 ;
         this.tableau.forEach(row => {
             row.forEach(element => {
-                if(element.card && element.isTop) {
+                if(element.card && !element.card.hidden && element.isTop) {
                     sumTop += element.card.ifTopValue || 0;
                 }
             });
@@ -88,18 +108,25 @@ export default class Board {
         return sumTop;
     }
 
-    computeCardIfOtherCard() : number {
+  
+    computeCardIfOtherCards() : number {
         let sumCardsIfOtherCards = 0 ;
         this.tableau.forEach(row => {
             row.forEach(element => {
-                if(element.card && element.card.ifOtherCard != -1) {
-                    this.tableau.forEach(row2 => {
-                        row2.forEach(element2 => {
-                            if(element2.card && element2.card.id === element?.card?.ifOtherCard) {
-                                sumCardsIfOtherCards += element?.card?.ifOtherCardValue || 0;
-                            }
+                if(element.card && !element.card.hidden && element.card.ifOtherCards?.length) {
+                    let othercardFound = [];
+                    element.card.ifOtherCards.forEach(otherCard => {
+                        this.tableau.forEach(row2 => {
+                            row2.forEach(element2 => {
+                                if(element2.card && !element2.card.hidden && element2.card.id === otherCard) {
+                                        othercardFound.push(element2.card.id);
+                                }
+                            })
                         })
-                    })
+                    });
+                    if(element?.card?.ifOtherCards && othercardFound.length >= element?.card?.ifOtherCards?.length){
+                        sumCardsIfOtherCards += element?.card?.ifOtherCardsValue || 0;
+                    }  
                 }
             });
         });

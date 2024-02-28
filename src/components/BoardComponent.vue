@@ -11,8 +11,7 @@
         </div>
         <div class="row" v-for="(row, rowIndex) in board.getTableau()" >
             <TileComponent v-for="(tile, colIndex) in row"  
-            :tile="tile" 
-            @tileChanged="updateTableau(rowIndex, colIndex, $event)"/>
+            :tile="tile" :board="board"/>
         </div>        
     </div>
     
@@ -24,10 +23,7 @@ import Board from '../model/Board';
 import TileComponent from './TileComponent.vue';
 
 const board = ref<Board>(new Board());
-  
-function updateTableau(rowIndex: number, colIndex: number, event: any) {
-    board.value.setElement(rowIndex, colIndex, event);
-}
+
 
 </script>
 
