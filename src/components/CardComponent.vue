@@ -32,11 +32,13 @@ const props = defineProps({
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 5px;
+    border-radius: 5px;  
+    
 }
 
 .card-container {
-   
+   background: rgb(255 177 0 / 80%);
+
     border: solid 1px lightgreen;
     .id{
         position: absolute;
@@ -58,6 +60,7 @@ const props = defineProps({
 
 .hidden-card-container { 
     border: solid 1px deepskyblue;
+    background-color: deepskyblue;
     .id{
         position: absolute;
         bottom: 0;
@@ -75,6 +78,5 @@ const props = defineProps({
     width: 100%;
     height: 100%;
     position: absolute;
-    z-index: -1;
 }
 </style>

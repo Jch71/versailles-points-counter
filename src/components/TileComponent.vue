@@ -1,5 +1,5 @@
 <template>
-    <div class="tile-container" @click="focusInput()">
+    <div class="tile-container" @click="focusInput()" :class="tile?.card && tile?.card.id ? 'has-card':''">
       <button @click="resetCard()" class="reset-button" v-if="tile?.card && tile?.card.id">
             Reset
         </button>
@@ -78,8 +78,8 @@ function resetCard() {
 
 <style type="scss">
 .tile-container{
+
   padding : 3px;
-  background: rgba(169,169,169,0.1);
   border: solid 1px grey;
   cursor: pointer;
   display: flex;
@@ -90,6 +90,7 @@ function resetCard() {
   position: relative;
 
   input {
+    z-index: 2;
     border-radius: 5px;
     border: none;
     width: 50px;
@@ -112,6 +113,7 @@ function resetCard() {
     color: white;
     border-radius: 5px;
     border: none;
+    z-index: 2;
   }
 
   .hide-button{

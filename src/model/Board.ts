@@ -3,6 +3,7 @@ import Tile from "./Tile";
 export default class Board {
 
     private tableau: Tile[][];
+    public reynieActivated: boolean = false;
   
     constructor() {
 
@@ -43,6 +44,67 @@ export default class Board {
         return numberErudits;
     }
 
+    getJardiniers() {
+        let numberJardiniers = 0 ;
+        this.tableau.forEach(row => {
+            row.forEach(element => {
+                if(element.card && !element.card.hidden && element.card.isJardinier) {
+                    numberJardiniers ++;
+                }
+            });
+        });
+        return numberJardiniers;
+    }
+
+    getPeintres() {
+        let numberPeintres = 0 ;
+        this.tableau.forEach(row => {
+            row.forEach(element => {
+                if(element.card && !element.card.hidden && element.card.isPeintre) {
+                    numberPeintres ++;
+                }
+            });
+        });
+        return numberPeintres;
+    }
+
+    getArchitectes() {
+        let numberArchitectes = 0 ;
+        this.tableau.forEach(row => {
+            row.forEach(element => {
+                if(element.card && !element.card.hidden && element.card.isArchitecte) {
+                    numberArchitectes ++;
+                }
+            });
+        });
+        return numberArchitectes;
+    }
+
+    getEcrivains() {
+        let numberEcrivains = 0 ;
+        this.tableau.forEach(row => {
+            row.forEach(element => {
+                if(element.card && !element.card.hidden && element.card.isEcrivain) {
+                    numberEcrivains ++;
+                }
+            });
+        });
+        return numberEcrivains;
+    }
+
+    getMusiciens() {
+        let numberMusiciens = 0 ;
+        this.tableau.forEach(row => {
+            row.forEach(element => {
+                if(element.card && !element.card.hidden && element.card.isMusicien) {
+                    numberMusiciens ++;
+                }
+            });
+        });
+        return numberMusiciens;
+    }
+    
+
     getNobles() {
         let numberNobles = 0 ;
         this.tableau.forEach(row => {
@@ -53,6 +115,39 @@ export default class Board {
             });
         });
         return numberNobles;
+    }
+    getPoison() {
+        let numberPoison = 0 ;
+        this.tableau.forEach(row => {
+            row.forEach(element => {
+                if(element.card && !element.card.hidden && element.card.isPoison) {
+                    numberPoison ++;
+                }
+            });
+        });
+        return numberPoison;
+    }
+    getFavorite() {
+        let numberFavorite = 0 ;
+        this.tableau.forEach(row => {
+            row.forEach(element => {
+                if(element.card && !element.card.hidden && element.card.isFavorite) {
+                    numberFavorite ++;
+                }
+            });
+        });
+        return numberFavorite;
+    }
+    getMillitaire() {
+        let numberMillitaire = 0 ;
+        this.tableau.forEach(row => {
+            row.forEach(element => {
+                if(element.card && !element.card.hidden && element.card.isMillitaire) {
+                    numberMillitaire ++;
+                }
+            });
+        });
+        return numberMillitaire;
     }
 
     computeAdjacentNobles() {
@@ -74,6 +169,26 @@ export default class Board {
         return sumAdjacentNobles;
     }
 
+
+    computeAdjacentErudits() {
+        let sumAdjacentErudits = 0 ;
+        this.tableau.forEach((row, rowIndex) => {
+            row.forEach((element, colIndex) => {
+                if(element.card && !element.card.hidden && element.card.ifAdjacentEruditBonus) {
+                   if(!this.getElementAbove(rowIndex, colIndex)?.card?.hidden && this.getElementAbove(rowIndex, colIndex)?.card?.isErudit) {
+                        sumAdjacentErudits+=element.card.ifAdjacentEruditBonus;}
+                   if(!this.getElementBelow(rowIndex, colIndex)?.card?.hidden && this.getElementBelow(rowIndex, colIndex)?.card?.isErudit) {
+                        sumAdjacentErudits+=element.card.ifAdjacentEruditBonus;}
+                   if(!this.getElementLeft(rowIndex, colIndex)?.card?.hidden && this.getElementLeft(rowIndex, colIndex)?.card?.isErudit) {
+                        sumAdjacentErudits+=element.card.ifAdjacentEruditBonus;}
+                   if(!this.getElementRight(rowIndex, colIndex)?.card?.hidden && this.getElementRight(rowIndex, colIndex)?.card?.isErudit) 
+                        sumAdjacentErudits+=element.card.ifAdjacentEruditBonus;
+                }
+            });
+        });
+        return sumAdjacentErudits;
+    }
+
     getScore() : number {
         
        let cardsValue:number = 0;
@@ -81,10 +196,13 @@ export default class Board {
        cardsValue += this.computeCardsIfTop();
        cardsValue += this.computeCardIfOtherCards();
        cardsValue += this.computeAdjacentNobles();
+       cardsValue += this.computeAdjacentErudits();
+       cardsValue += this.computeByDifferentMetiers();
+       cardsValue += this.computeReynie();
        return cardsValue;
     }
 
-    computeCardsSum(): number {
+    computeByDifferentMetiers() : number {
         let sum = 0 ;
         this.tableau.forEach(row => {
             row.forEach(element => {
@@ -93,6 +211,49 @@ export default class Board {
                 }
             });
         });
+        return sum;
+    }
+
+    // +1 + Erudit si n°
+    // 
+
+    computeReynie(): number {
+        return this.reynieActivated ? this.getPoison() * -2 : 0;
+    }
+
+    computeCardsSum(): number {
+        let sum = 0 ;
+        this.tableau.forEach(row => {
+            row.forEach(element => {
+                if(element.card && !element.card.hidden && element.card.countByMetiers) {
+                    let metiersTable = [];
+                    metiersTable.push(this.getJardiniers());
+                    metiersTable.push(this.getArchitectes());
+                    metiersTable.push(this.getEcrivains());
+                    metiersTable.push(this.getMusiciens());
+                    metiersTable.push(this.getPeintres());
+                    metiersTable = metiersTable.filter((val )=> val !=0);
+                    switch (metiersTable.length) {
+                        case 2:
+                            sum += 1;
+                        break;
+                        case 3:
+                            sum += 3;
+                        break;
+                        case 4:
+                            sum += 5;
+                        break;
+                        case 5:
+                            sum += 8;
+                        break;
+                
+                        default:
+                            break;
+                    }
+                }
+            });
+        });
+        console.log(sum)
         return sum;
     }
 

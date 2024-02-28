@@ -9,7 +9,19 @@ export default class Card {
     public ifOtherCardsValue?: number = 0;
     public isErudit: boolean = false;
     public isNoble: boolean = false;
+    public isFavorite: boolean = false;
+    public isPoison: boolean = false;
+    public isMillitaire: boolean = false;
     public ifAdjacentNobleBonus: number= 0;
+    public ifAdjacentEruditBonus: number= 0;
+    public isPeintre: boolean=false;
+    public isArchitecte: boolean=false;
+    public isJardinier: boolean=false;
+    public isEcrivain: boolean=false;
+    public isMusicien: boolean=false;
+    public countByMetiers: boolean=false;
+
+
 
     constructor(cardObject: any) {
         if(cardObject) {
@@ -21,7 +33,17 @@ export default class Card {
             this.ifOtherCardsValue = cardObject.ifOtherCardsValue;
             this.isErudit = cardObject.isErudit;
             this.isNoble = cardObject.isNoble;
-            this.ifAdjacentNobleBonus = cardObject.ifAdjacentNobleBonus;
+            this.ifAdjacentNobleBonus = cardObject.ifAdjacentNobleBonus; 
+            this.ifAdjacentEruditBonus = cardObject.ifAdjacentEruditBonus; 
+            this.isPeintre =cardObject.isPeintre;
+            this.isArchitecte =cardObject.isArchitecte;
+            this.isJardinier =cardObject.isJardinier;
+            this.isEcrivain =cardObject.isEcrivain;
+            this.isPoison =cardObject.isPoison;
+            this.isMillitaire =cardObject.isMillitaire;
+            this.isFavorite =cardObject.isFavorite;
+            this.isMusicien =cardObject.isMusicien;
+            this.countByMetiers =cardObject.countByMetiers;
         }    
     } 
 
