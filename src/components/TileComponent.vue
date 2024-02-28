@@ -18,7 +18,6 @@ import CardComponent from './CardComponent.vue';
 import Card from '@/model/Card';
 import cardsList from '@/assets/cardsList.json';
 import Board from '@/model/Board';
-import { off } from 'process';
 
 
 const props = defineProps({
