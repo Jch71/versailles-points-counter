@@ -1,6 +1,6 @@
 <template>
     <div class="card-container" v-if="card && !card.hidden">
-        <img :src="'src/assets/images/'+card.id+'.png'" alt="" class="card-image">
+        <img :src="'public/images/'+card.id+'.png'" alt="" class="card-image">
         <div class="id">
             {{ card!.id }}
         </div>
