@@ -83,6 +83,7 @@ function resetCard() {
   border: solid 1px grey;
   cursor: pointer;
   display: flex;
+  background-color: beige;
   flex-direction: column; /* Pour empiler les éléments verticalement */
   align-items: center; /* Pour aligner les éléments au centre horizontalement */
   justify-content: center; /* Pour aligner les éléments au centre verticalement */

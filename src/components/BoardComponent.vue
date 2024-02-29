@@ -94,7 +94,7 @@
             height: 200px;
             width: 100%;
             max-width: 500px;
-            margin: auto;
+            margin: 5px auto;
         }
 
         .types {
