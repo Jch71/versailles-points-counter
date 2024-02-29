@@ -8,8 +8,9 @@
                 <span class="nobles-count">{{ board.getNobles() }} Noble(s)</span>,
                 <span class="poison-count">{{ board.getPoison() }} Poison(s)</span>,
                 <span class="favorite-count">{{ board.getFavorite() }} Favorite(s)</span>,
-                <span class="millitaire-count">{{ board.getMillitaire() }} Millitaire(s)</span>
-
+                <span class="millitaire-count">{{ board.getMillitaire() }} Millitaire(s)</span>, 
+                <span class="hommes-detat-count">{{ board.getHommedEtat() }} Homme(s) d'état</span>, 
+                <span class="clerge-count">{{ board.getClerge() }} Clergé(s)</span>
             </div>
 
                         
@@ -113,6 +114,12 @@
 
             .poison-count {
                 color: saddlebrown;
+            }
+            .hommes-detat-count {
+                color: gray;
+            }
+            .clerge-count {
+                color: darkgreen;
             }
         }
     }

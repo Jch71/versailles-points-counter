@@ -5,6 +5,7 @@ export default class Card {
     public name?: string;
     public value?: number = 0;
     public ifTopValue?: number = 0;
+    public ifMiddleValue?: number = 0;
     public ifOtherCards?: number[] = [];
     public ifOtherCardsValue?: number = 0;
     public isErudit: boolean = false;
@@ -20,6 +21,9 @@ export default class Card {
     public isEcrivain: boolean=false;
     public isMusicien: boolean=false;
     public countByMetiers: boolean=false;
+    public isHommedEtat: boolean = false;
+    public isClerge: boolean = false;
+    public pointsByFavorite: number = 0;
 
 
 
@@ -44,6 +48,10 @@ export default class Card {
             this.isFavorite =cardObject.isFavorite;
             this.isMusicien =cardObject.isMusicien;
             this.countByMetiers =cardObject.countByMetiers;
+            this.isHommedEtat =cardObject.isHommedEtat;
+            this.isClerge =cardObject.isClerge;
+            this.ifMiddleValue =cardObject.ifMiddleValue;
+            this.pointsByFavorite =cardObject.pointsByFavorite;
         }    
     } 
 

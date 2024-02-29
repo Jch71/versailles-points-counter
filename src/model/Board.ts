@@ -85,6 +85,13 @@ export default class Board {
         return this.countCardsByType("isMillitaire");
     }
     
+    getHommedEtat(): number {
+        return this.countCardsByType("isHommedEtat");
+    }    
+    
+    getClerge(): number {
+        return this.countCardsByType("isClerge");
+    }
 
     computeAdjacentNobles() {
         let sumAdjacentNobles = 0 ;
@@ -135,7 +142,22 @@ export default class Board {
        cardsValue += this.computeAdjacentErudits();
        cardsValue += this.computeByDifferentMetiers();
        cardsValue += this.computeReynie();
+       cardsValue += this.computeCardsIfMiddle();
+       cardsValue += this.computeCardsByFavorite();
+       cardsValue += this.computeReynie();
        return cardsValue;
+    }
+
+    computeCardsByFavorite() : number {
+        let sumFavorite = 0 ;
+        this.tableau.forEach(row => {
+            row.forEach(element => {
+                if(element.card && !element.card.hidden && element.card.pointsByFavorite) {
+                    sumFavorite += this.getFavorite()*element.card.pointsByFavorite;
+                }
+            });
+        });
+        return sumFavorite;
     }
 
     computeByDifferentMetiers() : number {
@@ -190,6 +212,20 @@ export default class Board {
             });
         });
         return sum;
+    }
+
+    
+
+    computeCardsIfMiddle() : number {
+        let sumMiddle = 0 ;
+        this.tableau.forEach((row, rowIndex) => {
+            row.forEach((element, colIndex) => {
+                if(element.card && !element.card.hidden && (rowIndex==1 && colIndex ==1)) {
+                    sumMiddle += element.card.ifMiddleValue || 0;
+                }
+            });
+        });
+        return sumMiddle;
     }
 
     computeCardsIfTop() : number {

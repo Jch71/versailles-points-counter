@@ -1,11 +1,82 @@
 [
     {
-        "id": 24,
-        "name": "Marie de la Ferté",
-        "value": 0,
-        "ifTopValue": 5,
+        "id": 1,
+        "name": "Louis XIV",
+        "value": 5,
         "isNoble": true,
-        "sex" : ["F"]
+        "ifMiddleValue" : 7,
+        "pointsByFavorite": 1
+    },
+    {
+        "id": 4,
+        "name": "Madame de Montespan",
+        "value": 6,
+        "isNoble": true,
+        "isFavorite" : true,
+        "isPoison" : true,
+        "hasSpecificRule" : true
+    },
+    {
+        "id": 7,
+        "name": "Le Tellier de Louvois",
+        "value": 2,
+        "isNoble": true,
+        "isMillitaire" : true,
+        "isHommedEtat" : true
+    },
+    {
+        "id": 9,
+        "name": "Jacques-Bénigne Bossuet",
+        "value": 1,
+        "isErudit": true,
+        "isClerge" : true
+    },
+    {
+        "id": 11,
+        "name": "Toussaint rose",
+        "value": 1,
+        "isNoble" : true,
+        "isEcrivain" : true,
+        "isLouis14" : true,
+        "isHommedEtat" : true
+    },
+    {
+        "id": 12,
+        "name": "Chevalier de Lorraine",
+        "value": 2,
+        "isNoble" : true
+    },
+    {
+        "id": 13,
+        "name": "Charles de Sainte-Maure",
+        "value": 3,
+        "isNoble" : true,
+        "isMillitaire":true,
+        "ifOtherCards": [9,10],
+        "ifOtherCardsValue" : 6
+    },
+    {
+        "id": 15,
+        "name": "Bernardin Gigault",
+        "value": 2,
+        "isNoble" : true,
+        "isMillitaire":true
+    },
+    {
+        "id": 16,
+        "name": "Charles le brun",
+        "value": 0,
+        "isErudit" : true,
+        "countByMetiers" : true,
+        "isPeintre" : true
+    },
+    {
+        "id": 17,
+        "name": "Jean-Baptiste Lully",
+        "value": 0,
+        "isErudit" : true,
+        "isMusicien" : true,
+        "countByMetiers" : true
     },
     {
         "id": 18,
@@ -15,6 +86,33 @@
         "isJardinier" : true,
         "countByMetiers" : true
     },
+    {
+        "id": 19,
+        "name": "Jules Hardouin Mansart",
+        "value": 0,
+        "isArchitecte" : true,
+        "isNoble": true,
+        "isErudit": true,
+        "countByMetiers" : true
+    },
+    {
+        "id": 22,
+        "name": "Jean de la fontaine",
+        "value": -1,
+        "isErudit" : true,
+        "isEcrivain" : true,
+        "ifOtherCards": [4],
+        "ifOtherCardsValue": 6
+    },
+    {
+        "id": 24,
+        "name": "Marie de la Ferté",
+        "value": 0,
+        "ifTopValue": 5,
+        "isNoble": true,
+        "sex" : ["F"]
+    },
+    
     {
         "id": 33,
         "name": "Anne de la grange trianon",
@@ -27,15 +125,6 @@
         
     },
     {
-        "id": 19,
-        "name": "Jules Hardouin Mansart",
-        "value": 0,
-        "isArchitecte" : true,
-        "isNoble": true,
-        "isErudit": true,
-        "countByMetiers" : true
-    },
-    {
         "id": 31,
         "name": "La grande mademoiselle",
         "value": -3,
@@ -44,37 +133,21 @@
         "ifAdjacentEruditBonus": 4
     },
     {
-        "id": 16,
-        "name": "Charles le brun",
-        "value": 0,
-        "isErudit" : true,
-        "countByMetiers" : true,
-        "isPeintre" : true
-    },
-    {
-        "id": 4,
-        "name": "Madame de Montespan",
-        "value": 6,
-        "isNoble": true,
-        "isFavorite" : true,
-        "isPoison" : true,
-        "hasSpecificRule" : true
-    },
-    {
-        "id": 22,
-        "name": "Jean de la fontaine",
-        "value": -1,
-        "isErudit" : true,
-        "isEcrivain" : true,
-        "ifOtherCards": [4],
-        "ifOtherCardsValue": 6
-    },
-    {
-        "id": 11,
-        "name": "Toussaint rose",
-        "value": 1,
+        "id": 32,
+        "name": "Monsieur de Lauzun",
+        "value": 3,
         "isNoble" : true,
-        "isEcrivain" : true,
-        "isLouis14" : true
+        "isMillitaire": true
+    },
+    {
+        "id": 37,
+        "name": "Sébastien Le Prestre",
+        "value": 0,
+        "isNoble" : true,
+        "isMillitaire": true,
+        "isErudit":true,
+        "isArchitecte":true,
+        "isEcrivain":true
     }
+    
 ]
