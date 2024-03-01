@@ -32,6 +32,30 @@
         "isClerge" : true
     },
     {
+        "id": 10,
+        "name": "Louis de France",
+        "value": 0,
+        "isNoble": true,
+        "otherCardsRules" : [
+            {
+                "ifOtherCards": [2],
+                "ifOtherCardsValue" : 9
+            },
+            {
+                "ifOtherCards": [1],
+                "ifOtherCardsValue" : 5
+            },
+            {
+                "ifOtherCards": [11],
+                "ifOtherCardsValue" : 1
+            },
+            {
+                "ifOtherCards": [23],
+                "ifOtherCardsValue" : 4
+            },
+        ]
+    },
+    {
         "id": 11,
         "name": "Toussaint rose",
         "value": 1,
