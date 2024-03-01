@@ -246,16 +246,22 @@ export default class Board {
         this.tableau.forEach(row => {
             row.forEach(element => {
                 const card = element?.card;
-    
-                if (card && !card.hidden && card.ifOtherCards?.length) {
-                    const othercardFound = card.ifOtherCards.every(otherCard => {
-                        return this.tableau.some(row2 => row2.some(element2 => element2.card?.id === otherCard && !element2.card?.hidden));
+
+                if(card && !card.hidden && card.otherCardsRules && card.otherCardsRules.length) {
+                    card.otherCardsRules.forEach(rule => {
+                        if (card && !card.hidden && rule.ifOtherCards?.length) {
+                            const othercardFound = rule.ifOtherCards.every((otherCard: number) => {
+                                return this.tableau.some(row2 => row2.some(element2 => element2.card?.id === otherCard && !element2.card?.hidden));
+                            });
+            
+                            if (othercardFound) {
+                                sumCardsIfOtherCards += rule.ifOtherCardsValue || 0;
+                            }
+                        }
                     });
-    
-                    if (othercardFound) {
-                        sumCardsIfOtherCards += card.ifOtherCardsValue || 0;
-                    }
                 }
+    
+                
             });
         });
     

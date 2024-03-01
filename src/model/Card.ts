@@ -6,6 +6,7 @@ export default class Card {
     public value?: number = 0;
     public ifTopValue?: number = 0;
     public ifMiddleValue?: number = 0;
+    public otherCardsRules: any[] = [];
     public ifOtherCards?: number[] = [];
     public ifOtherCardsValue?: number = 0;
     public isErudit: boolean = false;
@@ -52,6 +53,7 @@ export default class Card {
             this.isClerge =cardObject.isClerge;
             this.ifMiddleValue =cardObject.ifMiddleValue;
             this.pointsByFavorite =cardObject.pointsByFavorite;
+            this.otherCardsRules =cardObject.otherCardsRules;
         }    
     } 
 
