@@ -3,7 +3,7 @@
       <button @click="resetCard()" class="reset-button" v-if="tile?.card && tile?.card.id">
             Reset
         </button>
-        <input ref="inputCard" type="number" @change="updateTileCard()" v-model="cardId" :class="tile?.card && tile?.card.id ? 'top' : 'center'">
+        <input ref="inputCard" type="number" @change="updateTileCard()" v-model="cardId" :class="tile?.card && tile?.card.id ? 'bottom' : 'center'">
         <button @click="switchCard()" class="hide-button" v-if="tile?.card && tile?.card.id">
           {{tile.card.hidden? 'Show': 'Hide'}}
         </button>
@@ -95,13 +95,15 @@ function resetCard() {
     z-index: 2;
     border-radius: 5px;
     border: none;
-    width: 50px;
+    width: 25px;
+    width: 20px;
     &:focus{
       outline: none;
     }
-    &.top {
+    &.bottom {
       position: absolute;
-    top: 10px;
+      bottom: 6%;
+      right:6%;
     }
   }
 

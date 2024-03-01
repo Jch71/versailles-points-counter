@@ -1,17 +1,6 @@
 <template>
-    <div class="card-container" v-if="card && !card.hidden">
-        <img :src="`images/${card.id}.png`" alt="" class="card-image">
-        <div class="id">
-            {{ card!.id }}
-        </div>
-        <div class="name">
-            {{ card!.name }}
-        </div>
-    </div>
-    <div class="hidden-card-container" v-if="card && card.hidden">
-        <div class="id">
-            {{ card!.id }}
-        </div>
+    <div v-if="card" :class="card && !card.hidden ? 'card-container': 'hidden-card-container'">
+        <img :src="`images/${card.id}.png`" alt="" class="card-image" v-if="!card.hidden">
     </div>
     
 </template>
@@ -40,44 +29,17 @@ const props = defineProps({
    background: #E5CD9C;
 
     border: solid 1px black;
-    .id{
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        font-size: 0.8em;
-        padding: 2px 5px;
-        background: lightgreen;
-        border-radius: 2px;
-        color: black;
-        z-index: 10;
-    } 
-    .name{
-        z-index: 10;
-        color: black;
-        font-weight: 600;
-    }
 }
 
 .hidden-card-container { 
     border: solid 1px deepskyblue;
     background-color: deepskyblue;
-    .id{
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        font-size: 0.8em;
-        padding: 2px 5px;
-        background: deepskyblue;
-        border-radius: 2px;
-        color: black;
-        z-index: 10;
-    } 
 }
 
 .card-image{
     width: 100%;
     position: absolute;
-        transform: rotateZ(15deg);
+    transform: rotateZ(15deg);
     scale: 1.34;
     translate: 1px 3px;
 }
