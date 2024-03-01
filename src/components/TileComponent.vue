@@ -89,6 +89,7 @@ function resetCard() {
   justify-content: center; /* Pour aligner les éléments au centre verticalement */
   border-radius: 8px;
   position: relative;
+  aspect-ratio: 63/86;
 
   input {
     z-index: 2;

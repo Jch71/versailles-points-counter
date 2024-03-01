@@ -32,14 +32,14 @@ const props = defineProps({
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 5px;  
+    border-radius: 10px;  
     
 }
 
 .card-container {
-   background: rgb(255 177 0 / 80%);
+   background: #E5CD9C;
 
-    border: solid 1px lightgreen;
+    border: solid 1px black;
     .id{
         position: absolute;
         bottom: 0;
@@ -76,7 +76,9 @@ const props = defineProps({
 
 .card-image{
     width: 100%;
-    height: 100%;
     position: absolute;
+        transform: rotateZ(15deg);
+    scale: 1.34;
+    translate: 1px 3px;
 }
 </style>

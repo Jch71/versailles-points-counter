@@ -26,7 +26,7 @@
 
         <div class="main-board">
             <h2 class="score">
-                Score : {{ board.getScore() }}
+                Score : <b>{{ board.getScore() }}</b>
             </h2>
 
             <div class="row" v-for="(row, rowIndex) in board.getTableau()">
@@ -61,13 +61,17 @@
 
 <style scoped>
 
+    b {
+        font-weight :bold;
+    }
+
     .cour-summary{
         justify-content: center;
         align-self: center;
     }
     .board {
         display: flex;
-        border: solid tomato;
+        border: solid darkgreen;
         border-radius: 5px;
         text-align: center;
         flex-wrap: wrap;
@@ -85,11 +89,9 @@
 
         .row {
             display: grid;
-            overflow: auto;
             position: relative;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
-            height: 200px;
             width: 100%;
             max-width: 500px;
             margin: 5px auto;
@@ -131,11 +133,12 @@
         justify-content: center;
         padding: 10px;
         .mod {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border: solid 1px lightsalmon;
             cursor: pointer;
             border-radius: 5px;
+            padding: 5px;
 
             &.activated {
                 background-color: lightsalmon;
