@@ -144,7 +144,6 @@ export default class Board {
        cardsValue += this.computeReynie();
        cardsValue += this.computeCardsIfMiddle();
        cardsValue += this.computeCardsByFavorite();
-       cardsValue += this.computeReynie();
        return cardsValue;
     }
 
