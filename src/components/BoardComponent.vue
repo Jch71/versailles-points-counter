@@ -87,6 +87,8 @@
     .cour-summary {
         justify-content: center;
         align-self: center;
+        flex-grow: 1;
+        min-width: 300px;
     }
 
     .board {
@@ -118,10 +120,12 @@
 
         .types {
             display: flex;
+             justify-content: center;
 
             .type {
                 height: 100px;
-                width: 65px;
+                width: 15%;
+                max-width: 65px;
                 background-repeat: no-repeat;
                 background-position: bottom;
                 background-size: 80%;
@@ -162,12 +166,14 @@
 
         .metiers {
             margin-top: 2em;
+            margin-bottom: 1em;
             display: flex;
             justify-content: center;
 
             .metier {
                 height: 100px;
-                width: 65px;
+                width: 15%;
+                max-width: 65px;
                 background-repeat: no-repeat;
                 background-position: bottom;
                 background-size: 80%;
@@ -224,7 +230,7 @@
     .title {
         width: 100%;
         background-image: url('../assets/bandeau-ma-cour.png');
-        background-size: 100% auto;
+        background-size: contain;
         min-height: 125px;
         background-repeat: no-repeat;
         background-position: center;
