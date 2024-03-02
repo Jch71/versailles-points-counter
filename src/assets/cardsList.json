@@ -8,13 +8,64 @@
         "pointsByFavorite": 1
     },
     {
+        "id": 2,
+        "name": "Marie-Thèrese d'Autriche",
+        "value": 9,
+        "isNoble": true,
+        "pointsByFavorite": -1
+    },
+    {
+        "id": 3,
+        "name": "Philippe d'Orléans",
+        "value": 5,
+        "isNoble": true,
+        "otherCardsRules" : [
+            {
+                "ifOtherCards": [12],
+                "ifOtherCardsValue" : 4
+            },
+            {
+                "ifOtherCards": [8],
+                "ifOtherCardsValue" : 4
+            }
+        ]
+    },       
+    {
         "id": 4,
         "name": "Madame de Montespan",
         "value": 6,
         "isNoble": true,
         "isFavorite" : true,
         "isPoison" : true,
-        "hasSpecificRule" : true
+        "hasSpecificRule" : true,
+        "otherCardsRules" : [
+            {
+                "ifOtherCards": [1],
+                "ifOtherCardsValue" : 9
+            },
+            {
+                "ifOtherCards": [5],
+                "ifOtherCardsValue" : -3
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "Madame de Maintenon",
+        "value": 4,
+        "isNoble": true,
+        "isFavorite": true,
+        "pointsByClerge": 1,
+        "otherCardsRules" : [
+            {
+                "ifOtherCards": [4],
+                "ifOtherCardsValue" : -7
+            },
+            {
+                "ifOtherCards": [1],
+                "ifOtherCardsValue" : 5
+            }
+        ]
     },
     {
         "id": 7,
@@ -25,11 +76,28 @@
         "isHommedEtat" : true
     },
     {
+        "id": 8,
+        "name": "Princesse Palatine",
+        "value": 3,
+        "isNoble": true,
+        "otherCardsRules" : [
+            {
+                "ifOtherCards": ["3"],
+                "ifOtherCardsValue" : 4
+            },
+            {
+                "ifOtherCards": [12],
+                "ifOtherCardsValue" : 3
+            }
+        ]
+    },
+    {
         "id": 9,
         "name": "Jacques-Bénigne Bossuet",
         "value": 1,
         "isErudit": true,
-        "isClerge" : true
+        "isClerge" : true,
+        "isEcrivain": true
     },
     {
         "id": 10,
@@ -82,6 +150,13 @@
         }]
     },
     {
+        "id": 14,
+        "name": "François de Créquy",
+        "value": 0,
+        "isNoble" : true,
+        "isMillitaire":true
+    },
+    {
         "id": 15,
         "name": "Bernardin Gigault",
         "value": 2,
@@ -122,6 +197,13 @@
         "countByMetiers" : true
     },
     {
+        "id": 20,
+        "name": "Jean Racine",
+        "value": 0,
+        "isErudit": true,
+        "pointsByEcrivain": 1
+    },
+    {
         "id": 22,
         "name": "Jean de la fontaine",
         "value": -1,
@@ -133,6 +215,14 @@
         }]
     },
     {
+        "id": 23,
+        "name": "Marie-Anne de Bavière",
+        "value": 4,
+        "isNoble" : true,
+        "isEcrivain" : true,
+        "ifExtValue" : 1
+    },
+    {
         "id": 24,
         "name": "Marie de la Ferté",
         "value": 0,
@@ -140,7 +230,81 @@
         "isNoble": true,
         "sex" : ["F"]
     },
-    
+    {
+        "id": 25,
+        "name": "Mademoiselle de Roquelaure",
+        "value": 0,
+        "ifLeftValue": 5,
+        "isNoble": true,
+        "isFavorite": true,
+        "sex" : ["F"]
+    },
+    {
+        "id": 26,
+        "name": "Marie Charlotte de Castelnau",
+        "value": 0,
+        "ifBottomValue": 5,
+        "isNoble": true,
+        "isFavorite": true,
+        "sex" : ["F"]
+    },
+    {
+        "id": 27,
+        "name": "Elisabeth Hamilton",
+        "value": 1,
+        "ifRightValue": 4,
+        "isNoble": true,
+        "isFavorite": true,
+        "sex" : ["F"],
+        "otherCardsRules" : [{
+            "ifOtherCards": [5],
+            "ifOtherCardsValue": -1
+        }]
+    },
+    {
+        "id": 28,
+        "name": "Anne de Rohan-Chabot",
+        "value": 2,
+        "isNoble": true,
+        "isFavorite": true,
+        "sex" : ["F"],
+        "otherCardsRules" : [{
+            "ifOtherCards": [2],
+            "ifOtherCardsValue": 4
+        },{
+            "ifOtherCards": [4],
+            "ifOtherCardsValue": -6
+        }]
+    },
+    {
+        "id": 29,
+        "name": "Mademoiselle de Grancey",
+        "value": -1,
+        "isFavorite": true,
+        "sex" : ["F"],
+        "otherCardsRules" : [{
+            "ifOtherCards": [3],
+            "ifOtherCardsValue": 3
+        },{
+            "ifOtherCards": [8, 12],
+            "ifOtherCardsValue": 4
+        }]
+    },
+    {
+        "id": 30,
+        "name": "Claude de Vin des Oeillets",
+        "value": -2,
+        "isFavorite": true,
+        "isPoison": true,
+        "sex" : ["F"],
+        "otherCardsRules" : [{
+            "ifOtherCards": [4],
+            "ifOtherCardsValue": 4
+        },{
+            "ifOtherCards": [1],
+            "ifOtherCardsValue": 4
+        }]
+    },
     {
         "id": 33,
         "name": "Anne de la grange trianon",

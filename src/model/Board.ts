@@ -82,7 +82,15 @@ export default class Board {
     }
 
     getMillitaire(): number {
-        return this.countCardsByType("isMillitaire");
+        let sumMillitaire = this.countCardsByType("isMillitaire") ;
+        this.tableau.forEach(row => {
+            row.forEach(element => {
+                if(element.card && !element.card.hidden && element.card.id == 14) {
+                    sumMillitaire += 2;
+                }
+            });
+        });
+        return sumMillitaire;
     }
     
     getHommedEtat(): number {
@@ -137,26 +145,45 @@ export default class Board {
        let cardsValue:number = 0;
        cardsValue += this.computeCardsSum();
        cardsValue += this.computeCardsIfTop();
+       cardsValue += this.computeCardsIfLeft();
+       cardsValue += this.computeCardsIfRight();
+       cardsValue += this.computeCardsIfBottom();
+       cardsValue += this.computeCardsIfMiddle();
+       cardsValue += this.computeCardsIfExt();
        cardsValue += this.computeCardIfOtherCards();
        cardsValue += this.computeAdjacentNobles();
        cardsValue += this.computeAdjacentErudits();
        cardsValue += this.computeByDifferentMetiers();
-       cardsValue += this.computeReynie();
-       cardsValue += this.computeCardsIfMiddle();
        cardsValue += this.computeCardsByFavorite();
+       cardsValue += this.computeCardsByClerge();
+       cardsValue += this.computeCardsByEcrivain();
+       cardsValue += this.computeReynie();
        return cardsValue;
     }
 
-    computeCardsByFavorite() : number {
-        let sumFavorite = 0 ;
+    computeCardsByCriterion(property: string, getMultiplier: () => number): number {
+        let sum = 0;
         this.tableau.forEach(row => {
             row.forEach(element => {
-                if(element.card && !element.card.hidden && element.card.pointsByFavorite) {
-                    sumFavorite += this.getFavorite()*element.card.pointsByFavorite;
+                if (element.card && !element.card.hidden && element.card[property as keyof Card]) {
+                    let number: number = element.card[property as keyof Card] as number || 0
+                    sum += getMultiplier() * number;
                 }
             });
         });
-        return sumFavorite;
+        return sum;
+    }
+    
+    computeCardsByFavorite(): number {
+        return this.computeCardsByCriterion('pointsByFavorite', () => this.getFavorite());
+    }
+    
+    computeCardsByClerge(): number {
+        return this.computeCardsByCriterion('pointsByClerge', () => this.getClerge());
+    }
+    
+    computeCardsByEcrivain(): number {
+        return this.computeCardsByCriterion('pointsByEcrivain', () => this.getEcrivains()); 
     }
 
     computeByDifferentMetiers() : number {
@@ -237,6 +264,56 @@ export default class Board {
             });
         });
         return sumTop;
+    }
+
+    computeCardsIfLeft() : number {
+        let sumLeft = 0 ;
+        this.tableau.forEach(row => {
+            row.forEach(element => {
+                if(element.card && !element.card.hidden && element.isLeft) {
+                    sumLeft += element.card.ifLeftValue || 0;
+                }
+            });
+        });
+        return sumLeft;
+    }
+
+    
+    computeCardsIfRight() : number {
+        let sumRight = 0 ;
+        this.tableau.forEach(row => {
+            row.forEach(element => {
+                if(element.card && !element.card.hidden && element.isRight) {
+                    sumRight += element.card.ifRightValue || 0;
+                }
+            });
+        });
+        return sumRight;
+    }
+
+    computeCardsIfBottom() : number {
+        let sumBottom = 0 ;
+        this.tableau.forEach(row => {
+            row.forEach(element => {
+                if(element.card && !element.card.hidden && element.isBottom) {
+                    sumBottom += element.card.ifBottomValue || 0;
+                }
+            });
+        });
+        return sumBottom;
+    }
+
+
+    computeCardsIfExt() : number {
+        let sumExt = 0 ;
+        this.tableau.forEach(row => {
+            row.forEach(element => {
+                if(element.card && !element.card.hidden && element.card.ifExtValue && (element.isTop ||  element.isBottom || element.isRight || element.isLeft)) {
+                    sumExt += element.card.ifExtValue || 0;
+                }
+            });
+        });
+        return sumExt;
     }
 
     computeCardIfOtherCards(): number {

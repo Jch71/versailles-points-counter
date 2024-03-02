@@ -4,7 +4,11 @@ export default class Card {
     public hidden : boolean = false;
     public name?: string;
     public value?: number = 0;
+    public ifLeftValue?: number = 0;
+    public ifRightValue?: number = 0;
+    public ifBottomValue?: number = 0;
     public ifTopValue?: number = 0;
+    public ifExtValue?: number = 0;
     public ifMiddleValue?: number = 0;
     public otherCardsRules: any[] = [];
     public ifOtherCards?: number[] = [];
@@ -25,6 +29,8 @@ export default class Card {
     public isHommedEtat: boolean = false;
     public isClerge: boolean = false;
     public pointsByFavorite: number = 0;
+    public pointsByClerge: number = 0;
+    public pointsByEcrivain: number = 0;
 
 
 
@@ -34,6 +40,10 @@ export default class Card {
             this.name=cardObject.name;
             this.value = cardObject.value;
             this.ifTopValue = cardObject.ifTopValue;
+            this.ifLeftValue = cardObject.ifLeftValue;
+            this.ifRightValue = cardObject.ifRightValue;
+            this.ifBottomValue = cardObject.ifBottomValue;
+            this.ifExtValue = cardObject.ifExtValue;
             this.ifOtherCards = cardObject.ifOtherCards;
             this.ifOtherCardsValue = cardObject.ifOtherCardsValue;
             this.isErudit = cardObject.isErudit;
@@ -53,6 +63,8 @@ export default class Card {
             this.isClerge =cardObject.isClerge;
             this.ifMiddleValue =cardObject.ifMiddleValue;
             this.pointsByFavorite =cardObject.pointsByFavorite;
+            this.pointsByClerge =cardObject.pointsByClerge;
+            this.pointsByEcrivain =cardObject.pointsByEcrivain;
             this.otherCardsRules =cardObject.otherCardsRules;
         }    
     } 
