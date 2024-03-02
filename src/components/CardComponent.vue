@@ -32,15 +32,13 @@ const props = defineProps({
 }
 
 .hidden-card-container { 
-    border: solid 1px deepskyblue;
-    background-color: deepskyblue;
+    background:  url('images/00.png');
+    background-size: cover;
 }
 
 .card-image{
     width: 100%;
     position: absolute;
-    transform: rotateZ(15deg);
-    scale: 1.34;
-    translate: 1px 3px;
+    border-radius: 5px;
 }
 </style>
