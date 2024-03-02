@@ -13,6 +13,7 @@ export default class Card {
     public otherCardsRules: any[] = [];
     public ifOtherCards?: number[] = [];
     public ifOtherCardsValue?: number = 0;
+    public isFemme: boolean = false;
     public isErudit: boolean = false;
     public isNoble: boolean = false;
     public isFavorite: boolean = false;
@@ -31,6 +32,9 @@ export default class Card {
     public pointsByFavorite: number = 0;
     public pointsByClerge: number = 0;
     public pointsByEcrivain: number = 0;
+    public pointsByPoison: number = 0 ;
+    public pointsByHidden: number = 8;
+    public pointsByFemme: number = 8;
 
 
 
@@ -65,7 +69,11 @@ export default class Card {
             this.pointsByFavorite =cardObject.pointsByFavorite;
             this.pointsByClerge =cardObject.pointsByClerge;
             this.pointsByEcrivain =cardObject.pointsByEcrivain;
+            this.pointsByPoison =cardObject.pointsByPoison;
+            this.pointsByHidden =cardObject.pointsByHidden;
+            this.pointsByFemme =cardObject.pointsByFemme;
             this.otherCardsRules =cardObject.otherCardsRules;
+            this.isFemme =cardObject.isFemme;
         }    
     } 
 

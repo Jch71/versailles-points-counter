@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "FogtwoNo5";
+  src: url('FogtwoNo5.ttf')  format('truetype')
+}
+
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
   --vt-c-white: #ffffff;

@@ -12,6 +12,7 @@
         "name": "Marie-Thèrese d'Autriche",
         "value": 9,
         "isNoble": true,
+        "isFemme" : true,
         "pointsByFavorite": -1
     },
     {
@@ -19,6 +20,7 @@
         "name": "Philippe d'Orléans",
         "value": 5,
         "isNoble": true,
+        "isFemme": true,
         "otherCardsRules" : [
             {
                 "ifOtherCards": [12],
@@ -32,6 +34,7 @@
     },       
     {
         "id": 4,
+        "isFemme" : true,
         "name": "Madame de Montespan",
         "value": 6,
         "isNoble": true,
@@ -51,6 +54,7 @@
     },
     {
         "id": 5,
+        "isFemme" : true,
         "name": "Madame de Maintenon",
         "value": 4,
         "isNoble": true,
@@ -77,6 +81,7 @@
     },
     {
         "id": 8,
+        "isFemme" : true,
         "name": "Princesse Palatine",
         "value": 3,
         "isNoble": true,
@@ -201,7 +206,15 @@
         "name": "Jean Racine",
         "value": 0,
         "isErudit": true,
+        "isEcrivain": true,
         "pointsByEcrivain": 1
+    },
+    {
+        "id": 21,
+        "name": "Nicolas Boileau",
+        "value": 2,
+        "isErudit": true,
+        "isEcrivain": true
     },
     {
         "id": 22,
@@ -216,6 +229,7 @@
     },
     {
         "id": 23,
+        "isFemme" : true,
         "name": "Marie-Anne de Bavière",
         "value": 4,
         "isNoble" : true,
@@ -228,7 +242,7 @@
         "value": 0,
         "ifTopValue": 5,
         "isNoble": true,
-        "sex" : ["F"]
+        "isFemme": true
     },
     {
         "id": 25,
@@ -237,7 +251,7 @@
         "ifLeftValue": 5,
         "isNoble": true,
         "isFavorite": true,
-        "sex" : ["F"]
+        "isFemme": true
     },
     {
         "id": 26,
@@ -246,7 +260,7 @@
         "ifBottomValue": 5,
         "isNoble": true,
         "isFavorite": true,
-        "sex" : ["F"]
+        "isFemme": true
     },
     {
         "id": 27,
@@ -255,7 +269,7 @@
         "ifRightValue": 4,
         "isNoble": true,
         "isFavorite": true,
-        "sex" : ["F"],
+        "isFemme" : true,
         "otherCardsRules" : [{
             "ifOtherCards": [5],
             "ifOtherCardsValue": -1
@@ -267,7 +281,7 @@
         "value": 2,
         "isNoble": true,
         "isFavorite": true,
-        "sex" : ["F"],
+        "isFemme" : true,
         "otherCardsRules" : [{
             "ifOtherCards": [2],
             "ifOtherCardsValue": 4
@@ -281,7 +295,7 @@
         "name": "Mademoiselle de Grancey",
         "value": -1,
         "isFavorite": true,
-        "sex" : ["F"],
+        "isFemme" : true,
         "otherCardsRules" : [{
             "ifOtherCards": [3],
             "ifOtherCardsValue": 3
@@ -296,7 +310,7 @@
         "value": -2,
         "isFavorite": true,
         "isPoison": true,
-        "sex" : ["F"],
+        "isFemme" : true,
         "otherCardsRules" : [{
             "ifOtherCards": [4],
             "ifOtherCardsValue": 4
@@ -306,22 +320,10 @@
         }]
     },
     {
-        "id": 33,
-        "name": "Anne de la grange trianon",
-        "value": 2,
-        "otherCardsRules" : [{
-            "ifOtherCards": [31],
-            "ifOtherCardsValue": 3
-        }],
-        "isErudit" : true,
-        "isNoble" : true,
-        "isMillitaire" : true
-        
-    },
-    {
         "id": 31,
         "name": "La grande mademoiselle",
         "value": -3,
+        "isFemme" : true,
         "isNoble" : true,
         "ifAdjacentNobleBonus": -1,
         "ifAdjacentEruditBonus": 4
@@ -334,6 +336,20 @@
         "isMillitaire": true
     },
     {
+        "id": 33,
+        "name": "Anne de la grange trianon",
+        "value": 2,
+        "isFemme": true,
+        "otherCardsRules" : [{
+            "ifOtherCards": [31],
+            "ifOtherCardsValue": 3
+        }],
+        "isErudit" : true,
+        "isNoble" : true,
+        "isMillitaire" : true
+        
+    },
+    {
         "id": 37,
         "name": "Sébastien Le Prestre",
         "value": 0,
@@ -342,6 +358,140 @@
         "isErudit":true,
         "isArchitecte":true,
         "isEcrivain":true
+    },
+    {
+        "id": 38,
+        "name": "Philippe de Courcillon",
+        "value": 2,
+        "isNoble" : true,
+        "isMillitaire": true,
+        "isErudit":true,
+        "isEcrivain": true,
+        "ifAdjacentEruditBonus": 3
+    },
+    {
+        "id": 39,
+        "name": "Diane et Blonde",
+        "value": 0,
+        "ifAdjacentNobleBonus": 1
+    },
+    {
+        "id": 40,
+        "name": "Fénélon",
+        "value": 0,
+        "isClerge": true,
+        "isErudit": true,
+        "isEcrivain": true
+    },
+    {
+        "id": 41,
+        "name": "Marie-Madeleine de Rochechouart",
+        "value": 0,
+        "isClerge": true,
+        "isErudit": true
+    },
+    {
+        "id": 42,
+        "name": "Louis II de Bourbon-Condé",
+        "value": 6,
+        "isNoble": true,
+        "isMillitaire": true
+    },
+    {
+        "id": 45,
+        "name": "Duchesse de Fontanges",
+        "value": -2,
+        "isNoble": true,
+        "isFavorite": true,
+        "isFemme": true,
+        "isPoison": true
+    },
+    {
+        "id": 46,
+        "name": "Madelaine de Scudéry",
+        "value": -2,
+        "isFemme": true,
+        "isErudit": true,
+        "pointsByFemme": 2
+    },
+    {
+        "id": 49,
+        "name": "Antoine Arnauld",
+        "value": 3,
+        "isClerge": true,
+        "isErudit": true
+    },
+    {
+        "id": 50,
+        "name": "Michel Le Tellier",
+        "value": 4,
+        "isHommedEtat": true
+    },
+    {
+        "id": 51,
+        "name": "La Reynie",
+        "value": 4,
+        "isHommedEtat": true
+    },
+
+    
+    {
+        "id": 54,
+        "name": "Jean de La Bruyère",
+        "value": 0,
+        "isErudit": true,
+        "isEcrivain": true
+    },  
+    {
+        "id": 55,
+        "name": "Louis Phélypeaux de Pontchartrain",
+        "value": 2,
+        "isNoble": true,
+        "isHommedEtat": true
+    },    
+    {
+        "id": 56,
+        "name": "Nicolas Fouquet",
+        "value": -5,
+        "isNoble": true,
+        "isHommedEtat": true,
+        "pointsByHidden" : 8
+    },
+    {
+        "id": 57,
+        "isFemme": true,
+        "name": "Marie Mancini",
+        "value": 4,
+        "isNoble": true,
+        "isFavorite": true
+    },
+    {
+        "id": 58,
+        "isFemme": true,
+        "name": "Olympe Mancini",
+        "value": -2,
+        "isNoble": true,
+        "isFavorite": true,
+        "isPoison": true
+    }, 
+    {
+        "id": 59,
+        "name": "Etienne Guibourg",
+        "value": -4,
+        "isPoison": true,
+        "isClerge": true,
+        "pointsByPoison" : 2
+    },   
+    {
+        "id": 60,
+        "isFemme": true,
+        "name": "La Voisin",
+        "value": -9,
+        "isPoison": true
     }
+
+    
+
+    
     
 ]

@@ -62,6 +62,10 @@
 
 <style scoped>
 
+* {
+font-family: FogtwoNo5;
+}
+
     b {
         font-weight :bold;
     }
@@ -70,13 +74,13 @@
         background: url('../assets/icons/cercle-point-de-victroire.png');
         background-size: 60px;
         width: 100%;
-        padding: 7px;
+        padding: 0.2em;
         text-align: center;
         background-repeat: no-repeat;
         height: 60px;
         background-position: center;
-        color: white;
-        font-size: 25px;
+        color: #e1ca98;
+        font-size: 2em;
         font-weight: bold;
     }
 

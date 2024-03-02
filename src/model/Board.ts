@@ -61,8 +61,30 @@ export default class Board {
         return this.countCardsByType("isArchitecte");
     }
 
+    getFemmes(): number {
+        return this.countCardsByType("isFemme");
+    }
+
     getEcrivains(): number {
-        return this.countCardsByType("isEcrivain");
+        let sumEcrivain = this.countCardsByType("isEcrivain") ;
+        let found21: boolean= false;
+        let found20: boolean= false;
+
+        this.tableau.forEach(row => {
+            row.forEach(element => {
+                if(element.card && !element.card.hidden && element.card.id == 21) {
+                    found21=true;
+                }
+                if(element.card && !element.card.hidden && element.card.id == 20) {
+                    found20=true;
+                }
+            });
+        });
+
+        if(found20 && found21) {
+            sumEcrivain+=2;
+        }
+        return sumEcrivain;
     }
 
     getMusiciens(): number {
@@ -73,8 +95,28 @@ export default class Board {
         return this.countCardsByType("isNoble");
     }
 
+    getHidden(): number {
+        let count = 0;
+        this.tableau.forEach(row => {
+            row.forEach(element => {
+                if (element.card && element.card.hidden) {
+                    count++;
+                }
+            });
+        });
+        return count;
+    }
+
     getPoison(): number {
-        return this.countCardsByType("isPoison");
+        let sumPoison = this.countCardsByType("isPoison") ;
+        this.tableau.forEach(row => {
+            row.forEach(element => {
+                if(element.card && !element.card.hidden && element.card.id == 58) {
+                    sumPoison += 2;
+                }
+            });
+        });
+        return sumPoison;
     }
 
     getFavorite(): number {
@@ -87,7 +129,12 @@ export default class Board {
             row.forEach(element => {
                 if(element.card && !element.card.hidden && element.card.id == 14) {
                     sumMillitaire += 2;
-                }
+                }                 
+                if(element.card && !element.card.hidden && element.card.id == 37) {
+                    sumMillitaire += 1;
+                } 
+
+                
             });
         });
         return sumMillitaire;
@@ -155,10 +202,26 @@ export default class Board {
        cardsValue += this.computeAdjacentErudits();
        cardsValue += this.computeByDifferentMetiers();
        cardsValue += this.computeCardsByFavorite();
+       cardsValue += this.computeCardsByFemme();
        cardsValue += this.computeCardsByClerge();
        cardsValue += this.computeCardsByEcrivain();
+       cardsValue += this.computeCardsByPoison();
+       cardsValue += this.computeCardsByHidden();
        cardsValue += this.computeReynie();
        return cardsValue;
+    }
+
+    
+    computeCardsByHidden(): number {
+        let sum = 0;
+        this.tableau.forEach(row => {
+            row.forEach(element => {
+                if (element.card && !element.card.hidden && element.card.pointsByHidden) {
+                    sum += this.getHidden() *  element.card.pointsByHidden;
+                }
+            });
+        });
+        return sum;
     }
 
     computeCardsByCriterion(property: string, getMultiplier: () => number): number {
@@ -181,12 +244,20 @@ export default class Board {
     computeCardsByClerge(): number {
         return this.computeCardsByCriterion('pointsByClerge', () => this.getClerge());
     }
+
+    computeCardsByFemme(): number {
+        return this.computeCardsByCriterion('pointsByFemme', () => this.getFemmes());
+    }
     
     computeCardsByEcrivain(): number {
         return this.computeCardsByCriterion('pointsByEcrivain', () => this.getEcrivains()); 
     }
 
-    computeByDifferentMetiers() : number {
+    computeCardsByPoison(): number {
+        return this.computeCardsByCriterion('pointsByPoison', () => this.getPoison()); 
+    }
+
+    computeCardsSum() : number {
         let sum = 0 ;
         this.tableau.forEach(row => {
             row.forEach(element => {
@@ -198,14 +269,11 @@ export default class Board {
         return sum;
     }
 
-    // +1 + Erudit si n°
-    // 
-
     computeReynie(): number {
-        return this.reynieActivated ? this.getPoison() * -2 : 0;
+        return this.reynieActivated ? this.getPoison() * -3 : 0;
     }
 
-    computeCardsSum(): number {
+    computeByDifferentMetiers(): number {
         let sum = 0 ;
         this.tableau.forEach(row => {
             row.forEach(element => {
