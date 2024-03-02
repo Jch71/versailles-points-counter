@@ -32,7 +32,7 @@ const props = defineProps({
 }
 
 .hidden-card-container { 
-    background:  url('images/00.png');
+    background:  url('/images/00.png');
     background-size: cover;
 }
 

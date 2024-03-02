@@ -25,9 +25,10 @@
         </div>
 
         <div class="main-board">
-            <h2 class="score">
-                Score : <b>{{ board.getScore() }}</b>
-            </h2>
+
+        <div class="score">
+            {{ board.getScore() }}
+        </div>
 
             <div class="row" v-for="(row, rowIndex) in board.getTableau()">
                 <TileComponent v-for="(tile, colIndex) in row" :tile="tile" :board="(board as Board)" />
@@ -63,6 +64,20 @@
 
     b {
         font-weight :bold;
+    }
+
+    .score {
+        background: url('../assets/icons/cercle-point-de-victroire.png');
+        background-size: 60px;
+        width: 100%;
+        padding: 7px;
+        text-align: center;
+        background-repeat: no-repeat;
+        height: 60px;
+        background-position: center;
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
     }
 
     .cour-summary{
