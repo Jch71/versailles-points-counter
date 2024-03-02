@@ -2,43 +2,45 @@
     <div class="board">
 
         <div class="cour-summary">
-            <h2>Ma cour</h2>
+            <div class="title">
+
+            </div>
             <div class="types">
-                <span class="erudits-count">{{ board.getErudits() }} Erudit(s)</span>,
-                <span class="nobles-count">{{ board.getNobles() }} Noble(s)</span>,
-                <span class="poison-count">{{ board.getPoison() }} Poison(s)</span>,
-                <span class="favorite-count">{{ board.getFavorite() }} Favorite(s)</span>,
-                <span class="millitaire-count">{{ board.getMillitaire() }} Millitaire(s)</span>, 
-                <span class="hommes-detat-count">{{ board.getHommedEtat() }} Homme(s) d'état</span>, 
-                <span class="clerge-count">{{ board.getClerge() }} Clergé(s)</span>
+                <div class="type erudits-count">{{ board.getErudits() }}</div>
+                <div class="type nobles-count">{{ board.getNobles() }} </div>
+                <div class="type poison-count">{{ board.getPoison() }} </div>
+                <div class="type favorite-count">{{ board.getFavorite() }} </div>
+                <div class="type millitaire-count">{{ board.getMillitaire() }} </div>
+                <div class="type hommes-detat-count">{{ board.getHommedEtat() }}</div>
+                <div class="type clerge-count">{{ board.getClerge() }} </div>
             </div>
 
-                        
+
             <div class="metiers">
-                <span class="jardiniers-count">{{ board.getJardiniers() }} Jardinier(s)</span>,
-                <span class="peintres-count">{{ board.getPeintres() }} Peintre(s)</span>,
-                <span class="architectes-count">{{ board.getArchitectes() }} Architecte(s)</span>,
-                <span class="ecrivains-count">{{ board.getEcrivains() }} Ecrivain(s)</span>,
-                <span class="musiciens-count">{{ board.getMusiciens() }} Musiciens(s)</span>
+                <span class="metier jardiniers-count">{{ board.getJardiniers() }} </span>
+                <span class="metier peintres-count">{{ board.getPeintres() }} </span>
+                <span class="metier architectes-count">{{ board.getArchitectes() }} </span>
+                <span class="metier ecrivains-count">{{ board.getEcrivains() }} </span>
+                <span class="metier musiciens-count">{{ board.getMusiciens() }} </span>
 
             </div>
         </div>
 
         <div class="main-board">
 
-        <div class="score">
-            {{ board.getScore() }}
-        </div>
+            <div class="score">
+                {{ board.getScore() }}
+            </div>
 
             <div class="row" v-for="(row, rowIndex) in board.getTableau()">
                 <TileComponent v-for="(tile, colIndex) in row" :tile="tile" :board="(board as Board)" />
             </div>
 
             <div class="boards-mod">
-            <div class="mod" @click="switchReynie()" :class="board.reynieActivated ? 'activated':''">
-                La Reynie
+                <div class="mod" @click="switchReynie()" :class="board.reynieActivated ? 'activated':''">
+                    La Reynie
+                </div>
             </div>
-        </div>   
         </div>
     </div>
 
@@ -54,20 +56,18 @@
 
     const board = ref < Board > (new Board());
 
-   function switchReynie() {
-    board.value.reynieActivated = !board.value.reynieActivated;
-   }
-
+    function switchReynie() {
+        board.value.reynieActivated = !board.value.reynieActivated;
+    }
 </script>
 
 <style scoped>
-
-* {
-font-family: FogtwoNo5;
-}
+    * {
+        font-family: FogtwoNo5;
+    }
 
     b {
-        font-weight :bold;
+        font-weight: bold;
     }
 
     .score {
@@ -84,13 +84,13 @@ font-family: FogtwoNo5;
         font-weight: bold;
     }
 
-    .cour-summary{
+    .cour-summary {
         justify-content: center;
         align-self: center;
     }
+
     .board {
         display: flex;
-        border: solid darkgreen;
         border-radius: 5px;
         text-align: center;
         flex-wrap: wrap;
@@ -100,7 +100,7 @@ font-family: FogtwoNo5;
             width: 1200px;
         }
 
-        .main-board{
+        .main-board {
             justify-content: center;
             width: 100%;
             max-width: 500px;
@@ -117,40 +117,95 @@ font-family: FogtwoNo5;
         }
 
         .types {
+            display: flex;
+
+            .type {
+                height: 100px;
+                width: 65px;
+                background-repeat: no-repeat;
+                background-position: bottom;
+                background-size: 80%;
+                font-family: FogtwoNo5;
+                font-size: 2em;
+            }
+
             .erudits-count {
-                color: aqua;
+                background-image: url('../assets/icons/erudit.png');
+
             }
 
             .nobles-count {
-                color: blueviolet;
+                background-image: url('../assets/icons/noblesse.png');
             }
 
             .favorite-count {
-                color: coral;
+                background-image: url('../assets/icons/favorite.png');
             }
 
             .millitaire-count {
-                color: brown;
+                background-image: url('../assets/icons/militaire.png');
             }
 
             .poison-count {
-                color: saddlebrown;
+                background-image: url('../assets/icons/poison.png');
             }
+
             .hommes-detat-count {
-                color: gray;
+                background-image: url('../assets/icons/homme-detat.png');
             }
+
             .clerge-count {
-                color: darkgreen;
+                background-image: url('../assets/icons/clerge.png');
             }
+        }
+
+
+        .metiers {
+            margin-top: 2em;
+            display: flex;
+            justify-content: center;
+
+            .metier {
+                height: 100px;
+                width: 65px;
+                background-repeat: no-repeat;
+                background-position: bottom;
+                background-size: 80%;
+                font-family: FogtwoNo5;
+                font-size: 2em;
+            }
+
+            .jardiniers-count {
+                background-image: url('../assets/icons/jardinier.png');
+
+            }
+
+            .peintres-count {
+                background-image: url('../assets/icons/peintre.png');
+            }
+
+            .architectes-count {
+                background-image: url('../assets/icons/architecte.png');
+            }
+
+            .ecrivains-count {
+                background-image: url('../assets/icons/ecrivains.png');
+            }
+
+            .musiciens-count {
+                background-image: url('../assets/icons/compositeur.png');
+            }
+
         }
     }
 
     .boards-mod {
         width: 100%;
         display: flex;
-        align-items: center;    
+        align-items: center;
         justify-content: center;
         padding: 10px;
+
         .mod {
             width: 60px;
             height: 60px;
@@ -164,5 +219,14 @@ font-family: FogtwoNo5;
                 color: black;
             }
         }
+    }
+
+    .title {
+        width: 100%;
+        background-image: url('../assets/bandeau-ma-cour.png');
+        background-size: 100% auto;
+        min-height: 125px;
+        background-repeat: no-repeat;
+        background-position: center;
     }
 </style>

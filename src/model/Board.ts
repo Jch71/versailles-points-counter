@@ -285,9 +285,8 @@ export default class Board {
     
         this.tableau.forEach((row, rowIndex) => {
             row.forEach((element, colIndex) => {
-                const currentCard: Card = element.card;
-    
-                if (currentCard && !currentCard.hidden && currentCard.adjacentCardsRules) {
+   
+                if (element.card && !element.card.hidden && element.card.adjacentCardsRules) {
                    
                     const adjacentCardIds = [
                         !this.getElementAbove(rowIndex, colIndex)?.card?.hidden && this.getElementAbove(rowIndex, colIndex)?.card?.id,
@@ -295,8 +294,8 @@ export default class Board {
                         !this.getElementLeft(rowIndex, colIndex)?.card?.hidden && this.getElementLeft(rowIndex, colIndex)?.card?.id,
                         !this.getElementRight(rowIndex, colIndex)?.card?.hidden && this.getElementRight(rowIndex, colIndex)?.card?.id,
                     ];
-                    currentCard.adjacentCardsRules.forEach(rule => {
-                        rule.adjacentCard.forEach(cardToFind => {
+                    element.card.adjacentCardsRules.forEach(rule => {
+                        rule.adjacentCard.forEach((cardToFind: number) => {
                             if (adjacentCardIds.includes(cardToFind)) {
                                 sum += rule.adjacentCardValue
                              }
@@ -309,6 +308,7 @@ export default class Board {
     
         return sum;
     }
+
 
     computeCardsSum() : number {
         let sum = 0 ;
