@@ -11,6 +11,7 @@ export default class Card {
     public ifExtValue?: number = 0;
     public ifMiddleValue?: number = 0;
     public otherCardsRules: any[] = [];
+    public adjacentCardsRules: any[] = [];
     public ifOtherCards?: number[] = [];
     public ifOtherCardsValue?: number = 0;
     public isFemme: boolean = false;
@@ -21,12 +22,14 @@ export default class Card {
     public isMillitaire: boolean = false;
     public ifAdjacentNobleBonus: number= 0;
     public ifAdjacentEruditBonus: number= 0;
+    public ifAdjacentHommedEtatBonus: number= 0;
     public isPeintre: boolean=false;
     public isArchitecte: boolean=false;
     public isJardinier: boolean=false;
     public isEcrivain: boolean=false;
     public isMusicien: boolean=false;
     public countByMetiers: boolean=false;
+    public countByAllTypes: boolean=false;
     public isHommedEtat: boolean = false;
     public isClerge: boolean = false;
     public pointsByFavorite: number = 0;
@@ -54,6 +57,7 @@ export default class Card {
             this.isNoble = cardObject.isNoble;
             this.ifAdjacentNobleBonus = cardObject.ifAdjacentNobleBonus; 
             this.ifAdjacentEruditBonus = cardObject.ifAdjacentEruditBonus; 
+            this.ifAdjacentHommedEtatBonus = cardObject.ifAdjacentHommedEtatBonus; 
             this.isPeintre =cardObject.isPeintre;
             this.isArchitecte =cardObject.isArchitecte;
             this.isJardinier =cardObject.isJardinier;
@@ -73,7 +77,11 @@ export default class Card {
             this.pointsByHidden =cardObject.pointsByHidden;
             this.pointsByFemme =cardObject.pointsByFemme;
             this.otherCardsRules =cardObject.otherCardsRules;
+            this.adjacentCardsRules =cardObject.adjacentCardsRules;
             this.isFemme =cardObject.isFemme;
+            this.countByAllTypes =cardObject.countByAllTypes;
+
+            
         }    
     } 
 

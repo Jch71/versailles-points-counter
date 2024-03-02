@@ -148,6 +148,26 @@ export default class Board {
         return this.countCardsByType("isClerge");
     }
 
+    
+    computeAdjacentHommedEtat() {
+        let sumAdjacentHommedEtat = 0 ;
+        this.tableau.forEach((row, rowIndex) => {
+            row.forEach((element, colIndex) => {
+                if(element.card && !element.card.hidden && element.card.ifAdjacentHommedEtatBonus) {
+                   if(!this.getElementAbove(rowIndex, colIndex)?.card?.hidden && this.getElementAbove(rowIndex, colIndex)?.card?.isHommedEtat) {
+                        sumAdjacentHommedEtat+=element.card.ifAdjacentHommedEtatBonus;}
+                   if(!this.getElementBelow(rowIndex, colIndex)?.card?.hidden && this.getElementBelow(rowIndex, colIndex)?.card?.isHommedEtat) {
+                        sumAdjacentHommedEtat+=element.card.ifAdjacentHommedEtatBonus;}
+                   if(!this.getElementLeft(rowIndex, colIndex)?.card?.hidden && this.getElementLeft(rowIndex, colIndex)?.card?.isHommedEtat) {
+                        sumAdjacentHommedEtat+=element.card.ifAdjacentHommedEtatBonus;}
+                   if(!this.getElementRight(rowIndex, colIndex)?.card?.hidden && this.getElementRight(rowIndex, colIndex)?.card?.isHommedEtat) 
+                        sumAdjacentHommedEtat+=element.card.ifAdjacentHommedEtatBonus;
+                }
+            });
+        });
+        return sumAdjacentHommedEtat;
+    }
+
     computeAdjacentNobles() {
         let sumAdjacentNobles = 0 ;
         this.tableau.forEach((row, rowIndex) => {
@@ -199,14 +219,17 @@ export default class Board {
        cardsValue += this.computeCardsIfExt();
        cardsValue += this.computeCardIfOtherCards();
        cardsValue += this.computeAdjacentNobles();
+       cardsValue += this.computeAdjacentHommedEtat();
        cardsValue += this.computeAdjacentErudits();
        cardsValue += this.computeByDifferentMetiers();
        cardsValue += this.computeCardsByFavorite();
        cardsValue += this.computeCardsByFemme();
+       cardsValue += this.computeAdjacentCards();
        cardsValue += this.computeCardsByClerge();
        cardsValue += this.computeCardsByEcrivain();
        cardsValue += this.computeCardsByPoison();
        cardsValue += this.computeCardsByHidden();
+       cardsValue += this.computeByDifferentTypes();
        cardsValue += this.computeReynie();
        return cardsValue;
     }
@@ -257,6 +280,36 @@ export default class Board {
         return this.computeCardsByCriterion('pointsByPoison', () => this.getPoison()); 
     }
 
+    computeAdjacentCards(): number {
+        let sum = 0;
+    
+        this.tableau.forEach((row, rowIndex) => {
+            row.forEach((element, colIndex) => {
+                const currentCard: Card = element.card;
+    
+                if (currentCard && !currentCard.hidden && currentCard.adjacentCardsRules) {
+                   
+                    const adjacentCardIds = [
+                        !this.getElementAbove(rowIndex, colIndex)?.card?.hidden && this.getElementAbove(rowIndex, colIndex)?.card?.id,
+                        !this.getElementBelow(rowIndex, colIndex)?.card?.hidden && this.getElementBelow(rowIndex, colIndex)?.card?.id,
+                        !this.getElementLeft(rowIndex, colIndex)?.card?.hidden && this.getElementLeft(rowIndex, colIndex)?.card?.id,
+                        !this.getElementRight(rowIndex, colIndex)?.card?.hidden && this.getElementRight(rowIndex, colIndex)?.card?.id,
+                    ];
+                    currentCard.adjacentCardsRules.forEach(rule => {
+                        rule.adjacentCard.forEach(cardToFind => {
+                            if (adjacentCardIds.includes(cardToFind)) {
+                                sum += rule.adjacentCardValue
+                             }
+                        });
+                        
+                    });
+                }
+            });
+        });
+    
+        return sum;
+    }
+
     computeCardsSum() : number {
         let sum = 0 ;
         this.tableau.forEach(row => {
@@ -301,6 +354,30 @@ export default class Board {
                 
                         default:
                             break;
+                    }
+                }
+            });
+        });
+        return sum;
+    }
+
+    
+    computeByDifferentTypes(): number {
+        let sum = 0 ;
+        this.tableau.forEach(row => {
+            row.forEach(element => {
+                if(element.card && !element.card.hidden && element.card.countByAllTypes) {
+                    let typesTable = [];
+                    typesTable.push(this.getNobles());
+                    typesTable.push(this.getErudits());
+                    typesTable.push(this.getClerge());
+                    typesTable.push(this.getFavorite());
+                    typesTable.push(this.getPoison());
+                    typesTable.push(this.getMillitaire());
+                    typesTable.push(this.getHommedEtat());
+                    typesTable = typesTable.filter((val )=> val !=0);
+                    if(typesTable.length == 7) {
+                       sum += element.card.countByAllTypes; 
                     }
                 }
             });
@@ -399,7 +476,11 @@ export default class Board {
                             });
             
                             if (othercardFound) {
-                                sumCardsIfOtherCards += rule.ifOtherCardsValue || 0;
+                                if(card.id == 4 && this.getFavorite() > 1) {
+                                    sumCardsIfOtherCards += 0;
+                                } else {
+                                    sumCardsIfOtherCards += rule.ifOtherCardsValue || 0;
+                                }
                             }
                         }
                     });

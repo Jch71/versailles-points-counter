@@ -40,7 +40,6 @@
         "isNoble": true,
         "isFavorite" : true,
         "isPoison" : true,
-        "hasSpecificRule" : true,
         "otherCardsRules" : [
             {
                 "ifOtherCards": [1],
@@ -72,6 +71,19 @@
         ]
     },
     {
+        "id": 6,
+        "name": "Jean-Baptiste Colbert",
+        "value": 2,
+        "isHommedEtat": true,
+        "ifAdjacentHommedEtatBonus": 2,
+        "adjacentCardsRules" : [
+            {
+                "adjacentCard": [1],
+                "adjacentCardValue" : 4
+            }
+        ]
+    },
+    {
         "id": 7,
         "name": "Le Tellier de Louvois",
         "value": 2,
@@ -87,7 +99,7 @@
         "isNoble": true,
         "otherCardsRules" : [
             {
-                "ifOtherCards": ["3"],
+                "ifOtherCards": [3],
                 "ifOtherCardsValue" : 4
             },
             {
@@ -343,10 +355,53 @@
         "otherCardsRules" : [{
             "ifOtherCards": [31],
             "ifOtherCardsValue": 3
+        },{
+            "ifOtherCards": [5],
+            "ifOtherCardsValue": 1
         }],
         "isErudit" : true,
         "isNoble" : true,
         "isMillitaire" : true
+        
+    },
+    {
+        "id": 34,
+        "name": "Simon Arnauld de Pomponne",
+        "value": -2,
+        "isHommedEtat" : true,
+        "isNoble" : true,
+        "isMillitaire" : true
+        
+    },
+    {
+        "id": 35,
+        "name": "François de La Rochefoucauld",
+        "value": 2,
+        "adjacentCardsRules" : [
+            {
+                "adjacentCard": [34],
+                "adjacentCardValue" : 4
+            }
+        ],
+        "isErudit" : true,
+        "isNoble" : true,
+        "isMillitaire" : true,
+        "isEcrivain":true
+        
+    },
+    {
+        "id": 36,
+        "name": "Marquise de Sévigné",
+        "value": 1,
+        "otherCardsRules" : [
+            {
+                "ifOtherCards": [35],
+                "ifOtherCardsValue" : 2
+            }
+        ],
+        "isErudit" : true,
+        "isNoble" : true,
+        "isEcrivain": true
         
     },
     {
@@ -398,6 +453,22 @@
         "isMillitaire": true
     },
     {
+        "id": 43,
+        "name": "Madame de La Fayette",
+        "value": 1,
+        "isFemme": true,
+        "isNoble": true,
+        "isErudit": true
+    },
+    {
+        "id": 44,
+        "name": "Jean Talon",
+        "value": 2,
+        "isNoble": true,
+        "isHommedEtat": true,
+        "countByAllTypes" : 5
+    },
+    {
         "id": 45,
         "name": "Duchesse de Fontanges",
         "value": -2,
@@ -413,6 +484,21 @@
         "isFemme": true,
         "isErudit": true,
         "pointsByFemme": 2
+    },
+    {
+        "id": 47,
+        "name": "Hyacinthe Rigaud",
+        "value": 0,
+        "isErudit": true,
+        "isPeintre": true
+    },
+    {
+        "id": 48,
+        "name": "Sieur de Sacy",
+        "value": 0,
+        "isErudit": true,
+        "isEcrivain": true,
+        "isClerge": true
     },
     {
         "id": 49,
@@ -433,8 +519,20 @@
         "value": 4,
         "isHommedEtat": true
     },
-
-    
+    {
+        "id": 52,
+        "name": "François d'Aix de La Chaise",
+        "value": 5,
+        "isClerge": true
+    },
+    {
+        "id": 53,
+        "name": "François Henri de Montmorency",
+        "value": 0,
+        "isNoble": true,
+        "isMillitaire": true,
+        "isPoison": true
+    },
     {
         "id": 54,
         "name": "Jean de La Bruyère",
@@ -490,8 +588,4 @@
         "isPoison": true
     }
 
-    
-
-    
-    
 ]
