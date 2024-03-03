@@ -296,9 +296,16 @@ export default class Board {
                     ];
                     element.card.adjacentCardsRules.forEach(rule => {
                         rule.adjacentCard.forEach((cardToFind: number) => {
-                            if (adjacentCardIds.includes(cardToFind)) {
-                                sum += rule.adjacentCardValue
-                             }
+                            if(cardToFind == 1) {
+                                if (adjacentCardIds.includes(1) || adjacentCardIds.includes(11) ) {
+                                    sum += rule.adjacentCardValue
+                                 }
+                            } else {
+                                if (adjacentCardIds.includes(cardToFind)) {
+                                    sum += rule.adjacentCardValue
+                                 }
+                            }
+                            
                         });
                         
                     });
@@ -472,12 +479,22 @@ export default class Board {
                     card.otherCardsRules.forEach(rule => {
                         if (card && !card.hidden && rule.ifOtherCards?.length) {
                             const othercardFound = rule.ifOtherCards.every((otherCard: number) => {
-                                return this.tableau.some(row2 => row2.some(element2 => element2.card?.id === otherCard && !element2.card?.hidden));
+                                if(otherCard == 1) {
+                                    return this.tableau.some(row2 => 
+                                        row2.some(element2 => 
+                                            (element2.card?.id === 1 || element2.card?.id == 11) && !element2.card?.hidden));
+                                } else {
+                                    return this.tableau.some(row2 => 
+                                        row2.some(element2 => 
+                                            element2.card?.id === otherCard && !element2.card?.hidden));
+                                }
+                               
                             });
             
                             if (othercardFound) {
-                                if(card.id == 4 && this.getFavorite() > 1) {
+                                if(card.id == 4 && (rule.ifOtherCards.includes(1) || rule.ifOtherCards.includes(11)) && this.getFavorite() > 1) {
                                     sumCardsIfOtherCards += 0;
+                                    console.log('count');
                                 } else {
                                     sumCardsIfOtherCards += rule.ifOtherCardsValue || 0;
                                 }
@@ -491,6 +508,12 @@ export default class Board {
         });
     
         return sumCardsIfOtherCards;
+    }
+
+    isPresent(id: number) {
+        return this.tableau.some(row => 
+            row.some(tile => 
+                tile.card?.id === id && !tile.card?.hidden));
     }
 
     getElement(row: number, col: number): Tile | undefined {

@@ -29,7 +29,7 @@ export default class Card {
     public isEcrivain: boolean=false;
     public isMusicien: boolean=false;
     public countByMetiers: boolean=false;
-    public countByAllTypes: boolean=false;
+    public countByAllTypes: number= 0;
     public isHommedEtat: boolean = false;
     public isClerge: boolean = false;
     public pointsByFavorite: number = 0;
