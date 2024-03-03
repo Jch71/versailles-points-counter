@@ -68,7 +68,7 @@ function endLongPress() {
     width: 100%;
     position: absolute;
     border-radius: 5px;
-    transition: all 0.5s ease-in;
+    transition: all 0.3s;
     &.fullscreen {
         position: fixed;
         z-index: 15;

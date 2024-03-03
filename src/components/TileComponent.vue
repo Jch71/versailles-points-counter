@@ -59,6 +59,7 @@ function updateTileCard() {
 }
 
 function switchCard() {
+  inputCard.value?.blur();
   if(tile.value?.card) {
     tile.value.card.hidden = !tile.value?.card?.hidden;
   }
