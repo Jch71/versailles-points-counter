@@ -70,20 +70,13 @@ export default class Board {
         let found21: boolean= false;
         let found20: boolean= false;
 
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                if(element.card && !element.card.hidden && element.card.id == 21) {
-                    found21=true;
-                }
-                if(element.card && !element.card.hidden && element.card.id == 20) {
-                    found20=true;
-                }
-            });
-        });
-
-        if(found20 && found21) {
+        if(this.isPresent(20) && this.isPresent(21)) {
             sumEcrivain+=2;
         }
+        if(this.isPresent(33) && this.isPresent(5)) {
+            sumEcrivain+=1;
+        }
+
         return sumEcrivain;
     }
 
@@ -109,13 +102,10 @@ export default class Board {
 
     getPoison(): number {
         let sumPoison = this.countCardsByType("isPoison") ;
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                if(element.card && !element.card.hidden && element.card.id == 58) {
-                    sumPoison += 2;
-                }
-            });
-        });
+
+        if(this.isPresent(58)) {
+            sumPoison += 2;
+        }
         return sumPoison;
     }
 
@@ -125,18 +115,13 @@ export default class Board {
 
     getMillitaire(): number {
         let sumMillitaire = this.countCardsByType("isMillitaire") ;
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                if(element.card && !element.card.hidden && element.card.id == 14) {
-                    sumMillitaire += 2;
-                }                 
-                if(element.card && !element.card.hidden && element.card.id == 37) {
-                    sumMillitaire += 1;
-                } 
+        if(this.isPresent(14)) {
+            sumMillitaire += 2;
+        }
+        if(this.isPresent(37)) {
+            sumMillitaire += 1;
+        } 
 
-                
-            });
-        });
         return sumMillitaire;
     }
     
