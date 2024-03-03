@@ -68,12 +68,16 @@ function endLongPress() {
     width: 100%;
     position: absolute;
     border-radius: 5px;
+    transition: all 0.5s ease-in;
     &.fullscreen {
         position: fixed;
         z-index: 15;
         top: 0;
         left: 0;
         border-radius: 6%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 }
 </style>
