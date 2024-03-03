@@ -10,7 +10,7 @@ export default class Board {
 
         const hautGauche : Tile= new Tile(true, false, false, true); 
         const hautMilieu : Tile= new Tile( true, false, false, false);
-        const hautDroite : Tile= new Tile(true, false, true, false);
+        const hautDroite : Tile= new Tile(true, true, false, false);
 
         
         const milieuGauche : Tile= new Tile(false, false, false, true);

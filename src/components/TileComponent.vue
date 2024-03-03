@@ -1,12 +1,11 @@
 <template>
     <div class="tile-container" @click="focusInput()" :class="tile?.card && tile?.card.id ? 'has-card':''">
-      <button @click="resetCard()" class="reset-button" v-if="tile?.card && tile?.card.id">
-            Reset
-        </button>
+      <div @click="resetCard()" class="reset-button" v-if="tile?.card && tile?.card.id">
+      </div>
         <input ref="inputCard" type="number" @change="updateTileCard()" v-model="cardId" :class="tile?.card && tile?.card.id ? 'bottom' : 'center'">
-        <button @click="switchCard()" class="hide-button" v-if="tile?.card && tile?.card.id">
-          {{tile.card.hidden? 'Show': 'Hide'}}
-        </button>
+        <div @click="switchCard()" class="hide-button " :class="tile.card.hidden? 'hide': 'show'" v-if="tile?.card && tile?.card.id">
+          
+        </div>
       <card-component :card="tile?.card"/>
     </div>
 </template>
@@ -110,32 +109,45 @@ function resetCard() {
   .hide-button, .reset-button {
     position: absolute;
     top: 10px;
-    z-index: 5;
     cursor: pointer;
     appearance: none;
-    background: none;
     color: white;
     border-radius: 5px;
     border: none;
     z-index: 2;
+    height: 25px;
+    width: 25px;
+    background-size: 25px;
+    background-position: center;
+    box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
+    cursor: pointer;
+    transition: all ease-in-out 100ms;
+    text-decoration: none;
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0px 37px 20px -15px rgba(0,0,0,0.2);
+       transform: translate(0px, -2px);
+    }
   }
 
   .hide-button{
-    right: 5px;
-    &:hover {
-      background-color: white;
-      color: black;
+    
+    right: 10px;
+    top: 18%;
+    &.show {
+      background-image: url('../assets/icons/Icon-hide.png');
     }
-
+    &.hide {
+      background-image: url('../assets/icons/Icon-show.png');
+    }
   }
 
   
   .reset-button{
-    left: 5px;
-    &:hover {
-      background-color: white;
-      color: black;
-    }
+    background-image: url('../assets/icons/Icon-reset.png');
+    right: 10px;
+    top: 5%;
+    border-radius: 50%;
 
   }
 

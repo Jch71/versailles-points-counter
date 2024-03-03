@@ -123,7 +123,7 @@
              justify-content: center;
 
             .type {
-                height: 100px;
+                height: 90px;
                 width: 15%;
                 max-width: 65px;
                 background-repeat: no-repeat;
@@ -165,13 +165,13 @@
 
 
         .metiers {
-            margin-top: 2em;
+            margin-top: 1em;
             margin-bottom: 1em;
             display: flex;
             justify-content: center;
 
             .metier {
-                height: 100px;
+                height: 90px;
                 width: 15%;
                 max-width: 65px;
                 background-repeat: no-repeat;

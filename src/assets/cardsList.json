@@ -233,7 +233,11 @@
         "name": "Nicolas Boileau",
         "value": 2,
         "isErudit": true,
-        "isEcrivain": true
+        "isEcrivain": true,
+        "otherCardsRules" : [{
+            "ifOtherCards": [20],
+            "ifOtherCardsValue": 2
+        }]
     },
     {
         "id": 22,
@@ -409,6 +413,7 @@
                 "ifOtherCardsValue" : 2
             }
         ],
+        "isFemme": true,
         "isErudit" : true,
         "isNoble" : true,
         "isEcrivain": true
