@@ -30,6 +30,24 @@ export default class Board {
         [basGauche, basMilieu, basDroite],
       ];
     }
+
+    reset() {
+
+        this.reynieActivated = false;
+        this.louisActivated = false;
+        this.bonus3 = false;
+        this.bonus7 = false;
+
+        let count = 0;
+        this.tableau.forEach(row => {
+            row.forEach(element => {
+                element.card = undefined;
+                element.inputValue = undefined;
+            });
+        });
+        
+        
+    }
   
 
     getTableau(): Tile[][] {

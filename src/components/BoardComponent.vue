@@ -28,9 +28,13 @@
 
         <div class="main-board">
 
-            <div class="score">
+            <div class="score-header">
+                <div class="score">
                 {{ board.getScore() }}
+                </div>
+                <div class="reset-button" @click="resetAll()"></div>
             </div>
+ 
 
             <div class="row" v-for="(row, rowIndex) in board.getTableau()">
                 <TileComponent v-for="(tile, colIndex) in row" :tile="tile" :board="(board as Board)" />
@@ -69,6 +73,9 @@
         board.value.louisActivated = !board.value.louisActivated;
     }
 
+    function resetAll() {
+        board.value.reset();
+    }
     
     function switchBonus3() {
         if(board.value.bonus7) {
@@ -95,6 +102,10 @@
         font-weight: bold;
     }
 
+    .score-header{
+        position: relative;
+    }
+
     .score {
         background: url('../assets/icons/cercle-point-de-victroire.png');
         background-size: 60px;
@@ -107,6 +118,19 @@
         color: #e1ca98;
         font-size: 2em;
         font-weight: bold;
+    }
+
+    .reset-button {
+        position: absolute;
+        top: 50%;
+        height: 100%;
+        width: 40px;
+        background-image: url('../assets/icons/Icon-reset.png');
+        background-size: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        right: 0;
+        transform: translate(0, -50%);
     }
 
     .cour-summary {

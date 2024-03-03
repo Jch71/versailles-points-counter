@@ -1,8 +1,8 @@
 <template>
-    <div class="tile-container" @click="focusInput()" :class="tile?.card && tile?.card.id ? 'has-card':''">
+    <div v-if="tile" class="tile-container" @click="focusInput()" :class="tile?.card && tile?.card.id ? 'has-card':''">
       <div @click="resetCard()" class="reset-button" v-if="tile?.card && tile?.card.id">
       </div>
-        <input ref="inputCard" type="number" @change="updateTileCard()" v-model="cardId" :class="tile?.card && tile?.card.id ? 'bottom' : 'center'">
+        <input ref="inputCard" type="number" @change="updateTileCard()" v-model="tile.inputValue" :class="tile?.card && tile?.card.id ? 'bottom' : 'center'">
         <div @click="switchCard()" class="hide-button " :class="tile.card.hidden? 'hide': 'show'" v-if="tile?.card && tile?.card.id">
           
         </div>
@@ -26,7 +26,6 @@ const props = defineProps({
 
 const tile= toRef(props.tile);
 const board= toRef(props.board);
-const cardId = ref<number>();
 const inputCard = ref<HTMLInputElement>();
 
 function focusInput(){
@@ -38,8 +37,8 @@ function updateTileCard() {
   let idExists: boolean=false;
   board.value?.getTableau().forEach(row => {
     row.forEach(element => {
-      if(element.card?.id == cardId.value){
-        cardId.value= undefined;
+      if(tile.value?.inputValue && element.card?.id == tile.value?.inputValue){
+        tile.value.inputValue= undefined;
         idExists = true;
       }
     });
@@ -48,11 +47,11 @@ function updateTileCard() {
     alert('carte déja présente');
     return;
   }
-  tile.value!.card =  cardsList.find((elem: any) => elem.id ==cardId.value) ? 
-                new Card(cardsList.find((elem: any) => elem.id ==cardId.value)) : 
+  tile.value!.card =  cardsList.find((elem: any) => elem.id == tile.value?.inputValue) ? 
+                new Card(cardsList.find((elem: any) => elem.id ==tile.value?.inputValue)) : 
                 undefined ;
-  if(tile.value!.card == undefined){
-    cardId.value= undefined;
+  if(tile.value!.card == undefined && tile.value?.inputValue){
+    tile.value.inputValue= undefined;
     alert('carte inconnue');
     return;
   }
@@ -69,7 +68,7 @@ function switchCard() {
 function resetCard() {
   if(tile.value?.card) {
     tile.value.card = undefined;
-    cardId.value = undefined;
+    tile.value.inputValue = undefined;
     inputCard.value?.blur();
   }
 }

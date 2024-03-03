@@ -7,6 +7,7 @@ export default class Tile {
     public isTop: boolean = false;
     public isBottom: boolean = false;
     public card?: Card;
+    public inputValue?: number;
 
     constructor(isTop?: boolean, isRight?: boolean, isBottom?: boolean, isLeft?: boolean, card?: Card) {
         this.isTop = isTop || false;
