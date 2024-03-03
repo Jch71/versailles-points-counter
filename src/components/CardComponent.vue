@@ -1,7 +1,7 @@
 <template>
     <div v-if="card" :class="card && !card.hidden ? 'card-container': 'hidden-card-container'">
         <img :src="`images/${card.id}.png`" alt="" class="card-image" :class="fullscreen ? 'fullscreen': ''" v-if="!card.hidden"
-         @touchstart="startLongPress()" @touchend="endLongPress()">
+         @touchstart="startLongPress()" @touchend="endLongPress()" @contextmenu.prevent>
     </div>
     
 </template>
