@@ -2,6 +2,7 @@ export default class Card {
 
     public id?: number;
     public hidden : boolean = false;
+    public hasEffect: boolean = false;
     public name?: string;
     public value?: number = 0;
     public ifLeftValue?: number = 0;
@@ -19,6 +20,8 @@ export default class Card {
     public isNoble: boolean = false;
     public isFavorite: boolean = false;
     public isPoison: boolean = false;
+    public poisonHidden: boolean = false;
+    public negativeHidden: boolean = false;
     public isMillitaire: boolean = false;
     public ifAdjacentNobleBonus: number= 0;
     public ifAdjacentEruditBonus: number= 0;
@@ -29,15 +32,18 @@ export default class Card {
     public isEcrivain: boolean=false;
     public isMusicien: boolean=false;
     public countByMetiers: boolean=false;
+    public paintedByHyacinthe: boolean = false;
     public countByAllTypes: number= 0;
     public isHommedEtat: boolean = false;
     public isClerge: boolean = false;
     public pointsByFavorite: number = 0;
     public pointsByClerge: number = 0;
+    public pointsByPaintedByHyacinthe: number = 0;
     public pointsByEcrivain: number = 0;
     public pointsByPoison: number = 0 ;
-    public pointsByHidden: number = 8;
-    public pointsByFemme: number = 8;
+    public pointsByHidden: number = 0;
+    public pointsByFemme: number = 0;
+    public pointsByZero: number = 0;
 
 
 
@@ -45,6 +51,7 @@ export default class Card {
         if(cardObject) {
             this.id=cardObject.id;
             this.name=cardObject.name;
+            this.hasEffect = cardObject.hasEffect;
             this.value = cardObject.value;
             this.ifTopValue = cardObject.ifTopValue;
             this.ifLeftValue = cardObject.ifLeftValue;
@@ -63,6 +70,8 @@ export default class Card {
             this.isJardinier =cardObject.isJardinier;
             this.isEcrivain =cardObject.isEcrivain;
             this.isPoison =cardObject.isPoison;
+            this.poisonHidden = cardObject.poisonHidden;
+            this.negativeHidden = cardObject.negativeHidden;
             this.isMillitaire =cardObject.isMillitaire;
             this.isFavorite =cardObject.isFavorite;
             this.isMusicien =cardObject.isMusicien;
@@ -75,13 +84,15 @@ export default class Card {
             this.pointsByEcrivain =cardObject.pointsByEcrivain;
             this.pointsByPoison =cardObject.pointsByPoison;
             this.pointsByHidden =cardObject.pointsByHidden;
+            this.pointsByZero =cardObject.pointsByZero;
             this.pointsByFemme =cardObject.pointsByFemme;
             this.otherCardsRules =cardObject.otherCardsRules;
             this.adjacentCardsRules =cardObject.adjacentCardsRules;
             this.isFemme =cardObject.isFemme;
             this.countByAllTypes =cardObject.countByAllTypes;
+            this.paintedByHyacinthe =cardObject.paintedByHyacinthe;
+            this.pointsByPaintedByHyacinthe =cardObject.pointsByPaintedByHyacinthe;
 
-            
         }    
     } 
 

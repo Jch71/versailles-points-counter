@@ -5,7 +5,8 @@
         "value": 5,
         "isNoble": true,
         "ifMiddleValue" : 7,
-        "pointsByFavorite": 1
+        "pointsByFavorite": 1,
+        "paintedByHyacinthe" : true
     },
     {
         "id": 2,
@@ -89,7 +90,8 @@
         "value": 2,
         "isNoble": true,
         "isMillitaire" : true,
-        "isHommedEtat" : true
+        "isHommedEtat" : true,
+        "hasEffect": true
     },
     {
         "id": 8,
@@ -114,7 +116,9 @@
         "value": 1,
         "isErudit": true,
         "isClerge" : true,
-        "isEcrivain": true
+        "isEcrivain": true,
+        "paintedByHyacinthe" : true,
+        "hasEffect": true
     },
     {
         "id": 10,
@@ -153,6 +157,7 @@
         "id": 12,
         "name": "Chevalier de Lorraine",
         "value": 2,
+        "hasEffect": true,
         "isNoble" : true
     },
     {
@@ -178,7 +183,8 @@
         "name": "Bernardin Gigault",
         "value": 2,
         "isNoble" : true,
-        "isMillitaire":true
+        "isMillitaire":true,
+        "hasEffect": true
     },
     {
         "id": 16,
@@ -211,7 +217,8 @@
         "isArchitecte" : true,
         "isNoble": true,
         "isErudit": true,
-        "countByMetiers" : true
+        "countByMetiers" : true,
+        "paintedByHyacinthe" : true
     },
     {
         "id": 20,
@@ -237,7 +244,8 @@
         "otherCardsRules" : [{
             "ifOtherCards": [4],
             "ifOtherCardsValue": 6
-        }]
+        }],
+        "paintedByHyacinthe" : true
     },
     {
         "id": 23,
@@ -345,7 +353,8 @@
         "name": "Monsieur de Lauzun",
         "value": 3,
         "isNoble" : true,
-        "isMillitaire": true
+        "isMillitaire": true,
+        "hasEffect": true
     },
     {
         "id": 33,
@@ -370,7 +379,8 @@
         "value": -2,
         "isHommedEtat" : true,
         "isNoble" : true,
-        "isMillitaire" : true
+        "isMillitaire" : true,
+        "pointsByZero" : 1
         
     },
     {
@@ -412,7 +422,8 @@
         "isMillitaire": true,
         "isErudit":true,
         "isArchitecte":true,
-        "isEcrivain":true
+        "isEcrivain":true,
+        "paintedByHyacinthe" : true
     },
     {
         "id": 38,
@@ -422,13 +433,15 @@
         "isMillitaire": true,
         "isErudit":true,
         "isEcrivain": true,
-        "ifAdjacentEruditBonus": 3
+        "ifAdjacentEruditBonus": 3,
+        "paintedByHyacinthe" : true
     },
     {
         "id": 39,
         "name": "Diane et Blonde",
         "value": 0,
-        "ifAdjacentNobleBonus": 1
+        "ifAdjacentNobleBonus": 1,
+        "hasEffect": true
     },
     {
         "id": 40,
@@ -436,14 +449,16 @@
         "value": 0,
         "isClerge": true,
         "isErudit": true,
-        "isEcrivain": true
+        "isEcrivain": true,
+        "hasEffect": true
     },
     {
         "id": 41,
         "name": "Marie-Madeleine de Rochechouart",
         "value": 0,
         "isClerge": true,
-        "isErudit": true
+        "isErudit": true,
+        "hasEffect": true
     },
     {
         "id": 42,
@@ -490,7 +505,9 @@
         "name": "Hyacinthe Rigaud",
         "value": 0,
         "isErudit": true,
-        "isPeintre": true
+        "isPeintre": true,
+        "paintedByHyacinthe" : true,
+        "pointsByPaintedByHyacinthe" : 2
     },
     {
         "id": 48,
@@ -505,13 +522,15 @@
         "name": "Antoine Arnauld",
         "value": 3,
         "isClerge": true,
-        "isErudit": true
+        "isErudit": true,
+        "hasEffect": true
     },
     {
         "id": 50,
         "name": "Michel Le Tellier",
         "value": 4,
-        "isHommedEtat": true
+        "isHommedEtat": true,
+        "hasEffect": true
     },
     {
         "id": 51,
@@ -531,21 +550,25 @@
         "value": 0,
         "isNoble": true,
         "isMillitaire": true,
-        "isPoison": true
+        "isPoison": true,
+        "paintedByHyacinthe" : true
     },
     {
         "id": 54,
         "name": "Jean de La Bruyère",
         "value": 0,
         "isErudit": true,
-        "isEcrivain": true
+        "isEcrivain": true,
+        "paintedByHyacinthe" : true,
+        "hasEffect": true
     },  
     {
         "id": 55,
         "name": "Louis Phélypeaux de Pontchartrain",
         "value": 2,
         "isNoble": true,
-        "isHommedEtat": true
+        "isHommedEtat": true,
+        "hasEffect": true
     },    
     {
         "id": 56,
@@ -585,7 +608,8 @@
         "isFemme": true,
         "name": "La Voisin",
         "value": -9,
-        "isPoison": true
+        "isPoison": true,
+        "hasEffect": true
     }
 
 ]
