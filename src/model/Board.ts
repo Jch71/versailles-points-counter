@@ -283,7 +283,6 @@ export default class Board {
                 sum += 3;
             }
         }
-        console.log(sum);
        return sum; 
     }
 

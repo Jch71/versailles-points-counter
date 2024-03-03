@@ -79,10 +79,9 @@ function resetCard() {
 .tile-container{
 
   padding : 3px;
-  border: solid 1px grey;
   cursor: pointer;
   display: flex;
-  background-color: beige;
+  background-color: #e1ca98;
   flex-direction: column; /* Pour empiler les éléments verticalement */
   align-items: center; /* Pour aligner les éléments au centre horizontalement */
   justify-content: center; /* Pour aligner les éléments au centre verticalement */
@@ -94,21 +93,23 @@ function resetCard() {
     z-index: 2;
     border-radius: 5px;
     border: none;
-    width: 25px;
-    width: 20px;
+    width: 2.5em;
+    font-family: FogtwoNo5;
+    font-weight: bold;
     &:focus{
       outline: none;
     }
     &.bottom {
+     width: 1.2em;
       position: absolute;
-      bottom: 6%;
-      right:6%;
+      bottom: 4%;
+      right:5%;
     }
   }
 
   .hide-button, .reset-button {
+    right: 5px;
     position: absolute;
-    top: 10px;
     cursor: pointer;
     appearance: none;
     color: white;
@@ -117,23 +118,24 @@ function resetCard() {
     z-index: 2;
     height: 25px;
     width: 25px;
-    background-size: 25px;
+    max-height: 15%;
+    max-width: 15%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    border-radius: 50%;
     background-position: center;
-    box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
     cursor: pointer;
     transition: all ease-in-out 100ms;
     text-decoration: none;
     &:hover {
-      cursor: pointer;
-      box-shadow: 0px 37px 20px -15px rgba(0,0,0,0.2);
+      cursor: pointer; 
        transform: translate(0px, -2px);
     }
   }
 
   .hide-button{
     
-    right: 10px;
-    top: 18%;
+    top: 25%;
     &.show {
       background-image: url('../assets/icons/Icon-hide.png');
     }
@@ -145,10 +147,7 @@ function resetCard() {
   
   .reset-button{
     background-image: url('../assets/icons/Icon-reset.png');
-    right: 10px;
-    top: 5%;
-    border-radius: 50%;
-
+    top: 13%;
   }
 
     /* Chrome, Safari, Edge, Opera */
