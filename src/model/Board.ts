@@ -468,6 +468,7 @@ export default class Board {
         return sumExt;
     }
 
+   
     computeCardIfOtherCards(): number {
         let sumCardsIfOtherCards = 0;
     
@@ -494,7 +495,6 @@ export default class Board {
                             if (othercardFound) {
                                 if(card.id == 4 && (rule.ifOtherCards.includes(1) || rule.ifOtherCards.includes(11)) && this.getFavorite() > 1) {
                                     sumCardsIfOtherCards += 0;
-                                    console.log('count');
                                 } else {
                                     sumCardsIfOtherCards += rule.ifOtherCardsValue || 0;
                                 }
