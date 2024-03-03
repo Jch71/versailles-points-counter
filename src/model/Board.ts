@@ -685,7 +685,7 @@ export default class Board {
                                 if(otherCard == 1) {
                                     return this.tableau.some(row2 => 
                                         row2.some(element2 => 
-                                            (element2.card?.id === 1 || element2.card?.id == 11) && !element2.card?.hidden));
+                                            (element2.card?.id === 1 || (element2.card?.id == 11 && card.id != 10)) && !element2.card?.hidden));
                                 } else {
                                     return this.tableau.some(row2 => 
                                         row2.some(element2 => 

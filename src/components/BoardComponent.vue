@@ -131,6 +131,11 @@
         background-repeat: no-repeat;
         right: 0;
         transform: translate(0, -50%);
+        &:hover{
+            
+        cursor: pointer;
+        transform: translate(0px, -2px);
+        }
     }
 
     .cour-summary {
