@@ -37,8 +37,13 @@
             </div>
 
             <div class="boards-mod">
-                <div class="mod" @click="switchReynie()" :class="board.reynieActivated ? 'activated':''">
-                    La Reynie
+                <div class="mod reynie" @click="switchReynie()" :class="board.reynieActivated ? 'activated':'desactivated'">
+                </div>
+                <div class="mod louis" @click="switchLouis()" :class="board.louisActivated ? 'activated':'desactivated'">
+                </div>
+                <div class="mod jeton-3-pts" @click="switchBonus3()" :class="board.bonus3 ? 'activated':'desactivated'">
+                </div>
+                <div class="mod jeton-7-pts" @click="switchBonus7()" :class="board.bonus7 ? 'activated':'desactivated'">
                 </div>
             </div>
         </div>
@@ -59,6 +64,26 @@
     function switchReynie() {
         board.value.reynieActivated = !board.value.reynieActivated;
     }
+
+    function switchLouis() {
+        board.value.louisActivated = !board.value.louisActivated;
+    }
+
+    
+    function switchBonus3() {
+        if(board.value.bonus7) {
+            board.value.bonus7 = false;
+        }
+        board.value.bonus3 = !board.value.bonus3;
+    }
+    function switchBonus7() {
+        if(board.value.bonus3) {
+            board.value.bonus3 = false;
+        }
+        board.value.bonus7 = !board.value.bonus7;
+    }
+
+    
 </script>
 
 <style scoped>
@@ -215,14 +240,39 @@
         .mod {
             width: 60px;
             height: 60px;
-            border: solid 1px lightsalmon;
+            background-size: 100%;
+            background-repeat: no-repeat;
             cursor: pointer;
             border-radius: 5px;
             padding: 5px;
+            margin: 0 10px;
 
-            &.activated {
-                background-color: lightsalmon;
-                color: black;
+            &.reynie{
+                background-image: url('../assets/icons/reynie.png');
+                &.desactivated {
+                    background-image: url('../assets/icons/reynie-nb.png');
+                }
+            }
+
+            &.louis{
+                background-image: url('../assets/icons/louis-II.png');
+                &.desactivated {
+                    background-image: url('../assets/icons/louis-II-nb.png');
+                }
+            }
+
+            &.jeton-3-pts{
+                background-image: url('../assets/icons/jeton-3-points.png');
+                &.desactivated {
+                     filter: grayscale(1);
+                }
+            }
+            
+            &.jeton-7-pts{
+                background-image: url('../assets/icons/jeton-7-points.png');
+                &.desactivated {
+                     filter: grayscale(1);
+                }
             }
         }
     }

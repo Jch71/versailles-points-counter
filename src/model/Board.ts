@@ -5,6 +5,9 @@ export default class Board {
 
     private tableau: Tile[][];
     public reynieActivated: boolean = false;
+    public louisActivated: boolean = false;
+    public bonus3: boolean = false;
+    public bonus7: boolean = false;
   
     constructor() {
 
@@ -156,6 +159,9 @@ export default class Board {
         if(this.isPresent(37)) {
             sumMillitaire += 1;
         } 
+        if(this.louisActivated) {
+            sumMillitaire += 1;
+        }
 
         return sumMillitaire;
     }
@@ -258,6 +264,7 @@ export default class Board {
        cardsValue += this.computeLaFayette();
        cardsValue += this.computeColumns();
        cardsValue += this.computeReynie();
+       cardsValue += this.computeBonusMilitaire();
        return cardsValue;
     }
 
@@ -265,6 +272,16 @@ export default class Board {
         if(this.isPresent(48)) {
             return Math.floor(this.getEffects()/2) * 3
         }
+       return 0; 
+    }
+
+    computeBonusMilitaire(): number {
+        if(this.bonus3) {
+           return 3;
+        }
+        if(this.bonus7) {
+            return 7;
+         }
        return 0; 
     }
 
