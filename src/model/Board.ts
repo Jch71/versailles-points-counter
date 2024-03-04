@@ -439,7 +439,7 @@ export default class Board {
     }
 
     computeCardsByFemme(): number {
-        return this.computeCardsByCriterion('pointsByFemme', () => this.getFemmes());
+        return this.computeCardsByCriterion('pointsByFemme', () => this.getFemmes() - 1);
     }
     
     computeCardsByEcrivain(): number {
@@ -447,7 +447,7 @@ export default class Board {
     }
 
     computeCardsByPaintedByHyacinthe(): number {
-        return this.computeCardsByCriterion('pointsByPaintedByHyacinthe', () => this.getPaintedByHyacinthe());
+        return this.computeCardsByCriterion('pointsByPaintedByHyacinthe', () => this.getPaintedByHyacinthe() - 1);
     }
     
 
