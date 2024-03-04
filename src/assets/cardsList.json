@@ -81,6 +81,10 @@
             {
                 "adjacentCard": [1],
                 "adjacentCardValue" : 4
+            },
+            {
+                "adjacentCard": [11],
+                "adjacentCardValue" : 4
             }
         ]
     },
