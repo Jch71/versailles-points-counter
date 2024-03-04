@@ -116,7 +116,7 @@ export default class Board {
                             !this.getElementLeft(rowIndex, colIndex)?.card?.hidden && this.getElementLeft(rowIndex, colIndex)?.card?.id,
                             !this.getElementRight(rowIndex, colIndex)?.card?.hidden && this.getElementRight(rowIndex, colIndex)?.card?.id,
                         ];
-                        if (adjacentCardIds.includes(43) ) {
+                        if (adjacentCardIds.includes(40) ) {
                             sumEcrivain += 4
                          }     
                     }
@@ -398,7 +398,7 @@ export default class Board {
     }
     
     computeLaFayette(): number {
-        if(this.isPresent(43)) {
+        if(this.isPresent(40)) {
             return Math.min(this.getEcrivains(), this.getNobles());
         } 
         return 0;

@@ -450,12 +450,11 @@
     },
     {
         "id": 40,
-        "name": "Fénélon",
-        "value": 0,
-        "isClerge": true,
-        "isErudit": true,
-        "isEcrivain": true,
-        "hasEffect": true
+        "name": "Madame de La Fayette",
+        "value": 1,
+        "isFemme": true,
+        "isNoble": true,
+        "isErudit": true
     },
     {
         "id": 41,
@@ -474,11 +473,12 @@
     },
     {
         "id": 43,
-        "name": "Madame de La Fayette",
-        "value": 1,
-        "isFemme": true,
-        "isNoble": true,
-        "isErudit": true
+        "name": "Fénélon",
+        "value": 0,
+        "isClerge": true,
+        "isErudit": true,
+        "isEcrivain": true,
+        "hasEffect": true
     },
     {
         "id": 44,
