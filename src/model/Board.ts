@@ -498,7 +498,7 @@ export default class Board {
                     ];
                     element.card.adjacentCardsRules.forEach(rule => {
                         rule.adjacentCard.forEach((cardToFind: number) => {
-                            if(cardToFind == 1) {
+                            if(cardToFind == 1 && element.card?.id != 6) {
                                 if (adjacentCardIds.includes(1) || adjacentCardIds.includes(11) ) {
                                     sum += rule.adjacentCardValue
                                  }
