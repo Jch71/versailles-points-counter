@@ -131,10 +131,11 @@
         background-repeat: no-repeat;
         right: 0;
         transform: translate(0, -50%);
+        transition: all 0.2s;
+
         &:hover{
-            
-        cursor: pointer;
-        transform: translate(0px, -2px);
+            cursor: pointer;
+            transform: translate(0px, calc(-50% - 2px));
         }
     }
 
@@ -275,6 +276,8 @@
             border-radius: 5px;
             padding: 5px;
             margin: 0 10px;
+            outline:none;
+            --webkit-tap-highlight-color: transparent;
 
             &.reynie{
                 background-image: url('../assets/icons/reynie.png');

@@ -20,14 +20,47 @@ let fullscreen = ref<boolean>(false);
 
 function startLongPress() {
     pressTimer = setTimeout(() => {
-    // Ouvrir l'image en plein écran ici
+    disableScroll();
     fullscreen.value = true;
     }, 500); // Ajustez la durée selon vos besoins
 }
 
 function endLongPress() {
     fullscreen.value = false;
+    enableScroll();
     clearTimeout(pressTimer);
+}
+
+var keys: any = {37: 1, 38: 1, 39: 1, 40: 1};
+
+function preventDefault(e) {
+  e.preventDefault();
+}
+
+function preventDefaultForScrollKeys(e) {
+  if (keys[e.keyCode]) {
+    preventDefault(e);
+    return false;
+  }
+}
+
+var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
+
+
+// call this to Disable
+function disableScroll() {
+  window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
+  window.addEventListener(wheelEvent, preventDefault, {passive: false}); // modern desktop
+  window.addEventListener('touchmove', preventDefault, {passive: false}); // mobile
+  window.addEventListener('keydown', preventDefaultForScrollKeys, false);
+}
+
+// call this to Enable
+function enableScroll() {
+  window.removeEventListener('DOMMouseScroll', preventDefault, false);
+  window.removeEventListener(wheelEvent, preventDefault, false); 
+  window.removeEventListener('touchmove', preventDefault, false);
+  window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
 }
 
 
@@ -39,6 +72,8 @@ function endLongPress() {
     user-select: none !important;
     -webkit-user-drag: none;
     -webkit-touch-callout: none;
+    outline:none;
+    --webkit-tap-highlight-color: transparent;
     
 }
 

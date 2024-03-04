@@ -108,7 +108,7 @@ function resetCard() {
   }
 
   .hide-button, .reset-button {
-    right: 5px;
+    right: 8px;
     position: absolute;
     cursor: pointer;
     appearance: none;
@@ -116,10 +116,10 @@ function resetCard() {
     border-radius: 5px;
     border: none;
     z-index: 2;
-    height: 25px;
-    width: 25px;
-    max-height: 15%;
-    max-width: 15%;
+    height: 30px;
+    width: 30px;
+    max-height: 17%;
+    max-width: 17%;
     background-size: 100%;
     background-repeat: no-repeat;
     border-radius: 50%;
@@ -135,7 +135,7 @@ function resetCard() {
 
   .hide-button{
     
-    top: 25%;
+    top: 35%;
     &.show {
       background-image: url('../assets/icons/Icon-hide.png');
     }
