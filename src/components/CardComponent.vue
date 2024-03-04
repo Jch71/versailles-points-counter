@@ -90,8 +90,6 @@ function enableScroll() {
 
 .card-container {
    background: #E5CD9C;
-
-    border: solid 1px black;
 }
 
 .hidden-card-container { 
