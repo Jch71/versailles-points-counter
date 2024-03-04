@@ -33,11 +33,11 @@ function endLongPress() {
 
 var keys: any = {37: 1, 38: 1, 39: 1, 40: 1};
 
-function preventDefault(e) {
+function preventDefault(e: any) {
   e.preventDefault();
 }
 
-function preventDefaultForScrollKeys(e) {
+function preventDefaultForScrollKeys(e: any) {
   if (keys[e.keyCode]) {
     preventDefault(e);
     return false;
