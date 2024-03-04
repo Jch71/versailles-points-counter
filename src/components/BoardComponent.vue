@@ -3,7 +3,7 @@
 
         <div class="cour-summary">
             <div class="title">
-
+                <img src="../assets/bandeau-ma-cour.png" alt="">
             </div>
             <div class="types">
                 <div class="type erudits-count">{{ board.getErudits() }}</div>
@@ -143,7 +143,7 @@
         justify-content: center;
         align-self: center;
         flex-grow: 1;
-        min-width: 300px;
+        max-width: 500px;
     }
 
     .board {
@@ -167,10 +167,10 @@
             display: grid;
             position: relative;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+            gap: 3px;
             width: 100%;
             max-width: 500px;
-            margin: 5px auto;
+            margin: 4px auto;
         }
 
         .types {
@@ -311,10 +311,8 @@
 
     .title {
         width: 100%;
-        background-image: url('../assets/bandeau-ma-cour.png');
-        background-size: contain;
-        min-height: 125px;
-        background-repeat: no-repeat;
-        background-position: center;
+        img{
+            width: 100%;
+        }
     }
 </style>
