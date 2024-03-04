@@ -98,6 +98,7 @@ function enableScroll() {
 }
 
 .card-image{
+    outline: solid 1px black;
     width: 100%;
     position: absolute;
     border-radius: 5px;

@@ -33,8 +33,7 @@
                 {{ board.getScore() }}
                 </div>
                 <div class="reset-button" @click="resetAll()"></div>
-            </div>
- 
+            </div> 
 
             <div class="row" v-for="(row, rowIndex) in board.getTableau()">
                 <TileComponent v-for="(tile, colIndex) in row" :tile="tile" :board="(board as Board)" />
@@ -45,9 +44,15 @@
                 </div>
                 <div class="mod louis" @click="switchLouis()" :class="board.louisActivated ? 'activated':'desactivated'">
                 </div>
+            </div>
+            <div class="boards-mod">
                 <div class="mod jeton-3-pts" @click="switchBonus3()" :class="board.bonus3 ? 'activated':'desactivated'">
                 </div>
+                <div class="mod jeton-moins-3" @click="switchBonusMoins3()" :class="board.bonusMoins3 ? 'activated':'desactivated'">
+                </div>
                 <div class="mod jeton-7-pts" @click="switchBonus7()" :class="board.bonus7 ? 'activated':'desactivated'">
+                </div>
+                <div class="mod jeton-moins-7" @click="switchBonusMoins7()" :class="board.bonusMoins7 ? 'activated':'desactivated'">
                 </div>
             </div>
         </div>
@@ -78,16 +83,45 @@
     }
     
     function switchBonus3() {
+        board.value.bonusMoins7 = false;
         if(board.value.bonus7) {
             board.value.bonus7 = false;
+        }
+        if(board.value.bonusMoins3) {
+            board.value.bonusMoins3 = false;
         }
         board.value.bonus3 = !board.value.bonus3;
     }
     function switchBonus7() {
+        board.value.bonusMoins3 = false;
         if(board.value.bonus3) {
             board.value.bonus3 = false;
         }
+        if(board.value.bonusMoins7) {
+            board.value.bonusMoins7 = false;
+        }
         board.value.bonus7 = !board.value.bonus7;
+    }
+
+    function switchBonusMoins3() {
+        board.value.bonus7 = false;
+        if(board.value.bonusMoins7) {
+            board.value.bonusMoins7 = false;
+        }
+        if(board.value.bonus3) {
+            board.value.bonus3 = false;
+        }
+        board.value.bonusMoins3 = !board.value.bonusMoins3;
+    }
+    function switchBonusMoins7() {
+        board.value.bonus3 = false;
+        if(board.value.bonusMoins3) {
+            board.value.bonusMoins3 = false;
+        }
+        if(board.value.bonus7) {
+            board.value.bonus7 = false;
+        }
+        board.value.bonusMoins7 = !board.value.bonusMoins7;
     }
 
     
@@ -125,7 +159,7 @@
         top: 50%;
         height: 100%;
         width: 40px;
-        background-image: url('../assets/icons/Icon-reset.png');
+        background-image: url('../assets/icons/Icon-reset-global.png');
         background-size: 100%;
         background-position: center;
         background-repeat: no-repeat;
@@ -261,15 +295,17 @@
     }
 
     .boards-mod {
+        &:first-child {
+            margin-top: 10px;
+        }
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 10px;
 
         .mod {
             width: 60px;
-            height: 60px;
+            height: 40px;
             background-size: 100%;
             background-repeat: no-repeat;
             cursor: pointer;
@@ -278,18 +314,21 @@
             margin: 0 10px;
             outline:none;
             --webkit-tap-highlight-color: transparent;
+            background-position: center;
 
             &.reynie{
                 background-image: url('../assets/icons/reynie.png');
+                width: 100px;
                 &.desactivated {
-                    background-image: url('../assets/icons/reynie-nb.png');
+                     filter: grayscale(1);
                 }
             }
 
             &.louis{
                 background-image: url('../assets/icons/louis-II.png');
+                width: 100px;
                 &.desactivated {
-                    background-image: url('../assets/icons/louis-II-nb.png');
+                     filter: grayscale(1);
                 }
             }
 
@@ -302,6 +341,19 @@
             
             &.jeton-7-pts{
                 background-image: url('../assets/icons/jeton-7-points.png');
+                &.desactivated {
+                     filter: grayscale(1);
+                }
+            }
+            &.jeton-moins-3{
+                background-image: url('../assets/icons/jeton-moins-3.png');
+                &.desactivated {
+                     filter: grayscale(1);
+                }
+            }
+            
+            &.jeton-moins-7{
+                background-image: url('../assets/icons/jeton-moins-7.png');
                 &.desactivated {
                      filter: grayscale(1);
                 }

@@ -108,7 +108,7 @@ function resetCard() {
   }
 
   .hide-button, .reset-button {
-    right: 8px;
+    right: 1px;
     position: absolute;
     cursor: pointer;
     appearance: none;

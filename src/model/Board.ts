@@ -7,7 +7,9 @@ export default class Board {
     public reynieActivated: boolean = false;
     public louisActivated: boolean = false;
     public bonus3: boolean = false;
+    public bonusMoins3 : boolean = false;
     public bonus7: boolean = false;
+    public bonusMoins7 : boolean = false;
   
     constructor() {
 
@@ -37,6 +39,8 @@ export default class Board {
         this.louisActivated = false;
         this.bonus3 = false;
         this.bonus7 = false;
+        this.bonusMoins3 = false;
+        this.bonusMoins7 = false;
 
         let count = 0;
         this.tableau.forEach(row => {
@@ -299,6 +303,12 @@ export default class Board {
         }
         if(this.bonus7) {
             return 7;
+         }
+         if(this.bonusMoins3) {
+            return -3;
+         }
+         if(this.bonusMoins7) {
+            return -7;
          }
        return 0; 
     }
