@@ -39,6 +39,16 @@
                 <TileComponent v-for="(tile, colIndex) in row" :tile="tile" :board="(board as Board)" />
             </div>
 
+            <div class="types fenelon" v-if="board.isPresent(43)">
+                <div class="type erudits-count" :class="board.fenelonResource['erudit'] ? '':'inactive'" @click="addFenelonResource('erudit')"></div>
+                <div class="type nobles-count" :class="board.fenelonResource['noble'] ? '':'inactive'" @click="addFenelonResource('noble')"> </div>
+                <div class="type poison-count" :class="board.fenelonResource['poison'] ? '':'inactive'" @click="addFenelonResource('poison')"> </div>
+                <div class="type favorite-count" :class="board.fenelonResource['favorite'] ? '':'inactive'" @click="addFenelonResource('favorite')"> </div>
+                <div class="type millitaire-count" :class="board.fenelonResource['millitaire'] ? '':'inactive'" @click="addFenelonResource('millitaire')"> </div>
+                <div class="type hommes-detat-count" :class="board.fenelonResource['homme-detat'] ? '':'inactive'" @click="addFenelonResource('homme-detat')"></div>
+                <div class="type clerge-count" :class="board.fenelonResource['clerge'] ? '':'inactive'" @click="addFenelonResource('clerge')"> </div>
+            </div>
+
             <div class="boards-mod">
                 <div class="mod reynie" @click="switchReynie()" :class="board.reynieActivated ? 'activated':'desactivated'">
                 </div>
@@ -80,6 +90,10 @@
 
     function resetAll() {
         board.value.reset();
+    }
+
+    function addFenelonResource(type: string ) {
+        board.value.fenelonResource[type] = !board.value.fenelonResource[type];
     }
     
     function switchBonus3() {
@@ -210,6 +224,19 @@
         .types {
             display: flex;
              justify-content: center;
+
+             &.fenelon {
+                background-position: center;
+                margin-bottom: 10px;
+                .type{
+                    cursor: pointer;
+                    height: 50px;
+                    width: 12%;
+                    &.inactive {
+                        filter: grayscale(1);
+                    }
+                }
+             }
 
             .type {
                 height: 90px;

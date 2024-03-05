@@ -10,6 +10,7 @@ export default class Board {
     public bonusMoins3 : boolean = false;
     public bonus7: boolean = false;
     public bonusMoins7 : boolean = false;
+    public fenelonResource : any = {};
   
     constructor() {
 
@@ -71,7 +72,8 @@ export default class Board {
     }
 
     getErudits(): number {
-        return this.countCardsByType("isErudit");
+       let sumErudit = this.isPresent(43) &&  this.fenelonResource['erudit']? 1 : 0;
+        return sumErudit += this.countCardsByType("isErudit");
     }
 
     getJardiniers(): number {
@@ -137,7 +139,8 @@ export default class Board {
     }
 
     getNobles(): number {
-        return this.countCardsByType("isNoble");
+        let sumNoble = this.isPresent(43) &&  this.fenelonResource['noble']? 1 : 0;
+        return sumNoble += this.countCardsByType("isNoble");
     }
 
     getHidden(): number {
@@ -166,11 +169,15 @@ export default class Board {
         if(this.isPresent(58)) {
             sumPoison += 2;
         }
+
+        sumPoison += this.isPresent(43) && this.fenelonResource['poison']? 1 : 0;
+
         return sumPoison;
     }
 
     getFavorite(): number {
-        return this.countCardsByType("isFavorite");
+        let sumFavorite = this.isPresent(43) &&  this.fenelonResource['favorite']? 1 : 0;
+        return sumFavorite += this.countCardsByType("isFavorite");
     }
 
     getMillitaire(): number {
@@ -185,15 +192,19 @@ export default class Board {
             sumMillitaire += 1;
         }
 
+        sumMillitaire += this.isPresent(43) &&  this.fenelonResource['millitaire']? 1 : 0;
+
         return sumMillitaire;
     }
     
     getHommedEtat(): number {
-        return this.countCardsByType("isHommedEtat");
+        let sumHommedEtat = this.isPresent(43) &&  this.fenelonResource['homme-detat']? 1 : 0;
+        return sumHommedEtat += this.countCardsByType("isHommedEtat");
     }    
     
     getClerge(): number {
-        return this.countCardsByType("isClerge");
+        let sumClerge = this.isPresent(43) &&  this.fenelonResource['clerge']? 1 : 0;
+        return sumClerge += this.countCardsByType("isClerge");
     }
 
     
