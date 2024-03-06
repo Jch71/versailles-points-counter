@@ -110,9 +110,22 @@ function enableScroll() {
         position: fixed;
         z-index: 15;
         border-radius: 6%;
-        top: 50%;
-        left: 50%;
         transform: translate(0%, -50%);
+        top: 50%;
+        left: calc(50%);
+
+        @media screen and (max-width: 1200px) {
+          transform: translate(-50%, -50%);
+          left: 50%;
+        }
+/* 
+        max-height: 100%;
+    width: auto;
+    max-width: 100%;
+    position: fixed;
+    z-index: 15;
+    border-radius: 6%;
+        border-radius: 6%; */
     }
 }
 </style>
