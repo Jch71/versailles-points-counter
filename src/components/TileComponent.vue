@@ -1,9 +1,9 @@
 <template>
     <div v-if="tile" class="tile-container" @click="focusInput()" :class="tile?.card && tile?.card.id ? 'has-card':''">
-      <div @click="resetCard()" class="reset-button" v-if="tile?.card && tile?.card.id">
+      <div @click="resetCard($event)" class="reset-button" v-if="tile?.card && tile?.card.id">
       </div>
         <input ref="inputCard" type="number" @change="updateTileCard()" v-model="tile.inputValue" :class="tile?.card && tile?.card.id ? 'bottom' : 'center'">
-        <div @click="switchCard()" class="hide-button " :class="tile.card.hidden? 'hide': 'show'" v-if="tile?.card && tile?.card.id">
+        <div @click="switchCard($event)" class="hide-button " :class="tile.card.hidden? 'hide': 'show'" v-if="tile?.card && tile?.card.id">
           
         </div>
       <card-component :card="tile?.card"/>
@@ -57,28 +57,28 @@ function updateTileCard() {
   }
 }
 
-function switchCard() {
+function switchCard($event: any) {
   inputCard.value?.blur();
   if(tile.value?.card) {
     tile.value.card.hidden = !tile.value?.card?.hidden;
   }
+  $event.stopPropagation();
 }
 
 
-function resetCard() {
+function resetCard($event: any) {
   if(tile.value?.card) {
     tile.value.card = undefined;
     tile.value.inputValue = undefined;
     inputCard.value?.blur();
   }
+  $event.stopPropagation();
 }
 
 </script>
 
 <style type="scss">
 .tile-container{
-
-  padding : 3px;
   cursor: pointer;
   display: flex;
   background-color: #e1ca98;
@@ -87,7 +87,7 @@ function resetCard() {
   justify-content: center; /* Pour aligner les éléments au centre verticalement */
   border-radius: 8px;
   position: relative;
-  aspect-ratio: 63/86;
+  aspect-ratio: 63/88;
 
   input {
     z-index: 2;

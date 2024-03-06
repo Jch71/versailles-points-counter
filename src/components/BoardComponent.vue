@@ -56,13 +56,13 @@
                 </div>
             </div>
             <div class="boards-mod">
-                <div class="mod jeton-3-pts" @click="switchBonus3()" :class="board.bonus3 ? 'activated':'desactivated'">
+                <div class="mod jeton-moins-7" @click="switchBonusMoins7()" :class="board.bonusMoins7 ? 'activated':'desactivated'">
                 </div>
                 <div class="mod jeton-moins-3" @click="switchBonusMoins3()" :class="board.bonusMoins3 ? 'activated':'desactivated'">
                 </div>
                 <div class="mod jeton-7-pts" @click="switchBonus7()" :class="board.bonus7 ? 'activated':'desactivated'">
                 </div>
-                <div class="mod jeton-moins-7" @click="switchBonusMoins7()" :class="board.bonusMoins7 ? 'activated':'desactivated'">
+                <div class="mod jeton-3-pts" @click="switchBonus3()" :class="board.bonus3 ? 'activated':'desactivated'">
                 </div>
             </div>
         </div>
@@ -215,10 +215,10 @@
             display: grid;
             position: relative;
             grid-template-columns: repeat(3, 1fr);
-            gap: 3px;
+            gap: 4px;
             width: 100%;
             max-width: 500px;
-            margin: 4px auto;
+            margin: 3px auto;
         }
 
         .types {
@@ -322,6 +322,7 @@
     }
 
     .boards-mod {
+       
         &:first-child {
             margin-top: 10px;
         }
@@ -329,7 +330,13 @@
         display: flex;
         align-items: center;
         justify-content: center;
-
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+        -webkit-tap-highlight-color: transparent;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
         .mod {
             width: 60px;
             height: 40px;
