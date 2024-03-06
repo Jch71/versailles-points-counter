@@ -118,14 +118,6 @@ function enableScroll() {
           transform: translate(-50%, -50%);
           left: 50%;
         }
-/* 
-        max-height: 100%;
-    width: auto;
-    max-width: 100%;
-    position: fixed;
-    z-index: 15;
-    border-radius: 6%;
-        border-radius: 6%; */
     }
 }
 </style>

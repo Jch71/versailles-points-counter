@@ -85,7 +85,7 @@ function resetCard($event: any) {
   flex-direction: column; /* Pour empiler les éléments verticalement */
   align-items: center; /* Pour aligner les éléments au centre horizontalement */
   justify-content: center; /* Pour aligner les éléments au centre verticalement */
-  border-radius: 8px;
+  border-radius: 5px;
   position: relative;
   aspect-ratio: 63/88;
 

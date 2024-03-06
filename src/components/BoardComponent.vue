@@ -60,10 +60,11 @@
                 </div>
                 <div class="mod jeton-moins-3" @click="switchBonusMoins3()" :class="board.bonusMoins3 ? 'activated':'desactivated'">
                 </div>
-                <div class="mod jeton-7-pts" @click="switchBonus7()" :class="board.bonus7 ? 'activated':'desactivated'">
-                </div>
                 <div class="mod jeton-3-pts" @click="switchBonus3()" :class="board.bonus3 ? 'activated':'desactivated'">
                 </div>
+                <div class="mod jeton-7-pts" @click="switchBonus7()" :class="board.bonus7 ? 'activated':'desactivated'">
+                </div>
+                
             </div>
         </div>
     </div>
