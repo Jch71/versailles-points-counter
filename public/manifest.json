@@ -1,6 +1,10 @@
 {
   "name": "La Cour de Versailles",
+<<<<<<< Updated upstream
   "short_name": "LCV",
+=======
+  "short_name": "La Cour de Versailles",
+>>>>>>> Stashed changes
   "description": "Compteur de points pour le jeu de cartes La Cour de Versailles",
   "start_url": "./index.html",
   "display": "standalone",
