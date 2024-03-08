@@ -1,37 +1,39 @@
 <template>
-    <div v-if="card" :class="card && !card.hidden ? 'card-container': 'hidden-card-container'">
-        <img :src="`images/${card.id}.png`" loading="eager" alt="" class="card-image"   :class="[fullscreen ? 'fullscreen' : '', shouldRenderOnce ? 'once' : '']" v-if="!card.hidden"
-        @mousedown="startLongPress()"   @mouseup="endLongPress()"  @touchstart="startLongPress()" @touchend="endLongPress()" @contextmenu.prevent>
-    </div>
-    
+  <div v-if="card" :class="card && !card.hidden ? 'card-container': 'hidden-card-container'">
+    <img v-show="shouldRenderOnce" :src="`images/${card.id}.png`" alt="" class="card-image"
+         :class="[fullscreen ? 'fullscreen' : '']"
+         v-if="!card.hidden" @mousedown="startLongPress()" @mouseup="endLongPress()"
+         @touchstart="startLongPress()" @touchend="endLongPress()" @contextmenu.prevent @load="imageLoaded">
+  </div>
 </template>
 
 <script setup lang="ts">
 import Card from '@/model/Card';
-import {
-        ref
-    } from 'vue';
+import { ref, defineProps } from 'vue';
 
 const props = defineProps({
-  card: Card
-})
+  card: Card,
+});
 let pressTimer: any;
 let fullscreen = ref<boolean>(false);
-let shouldRenderOnce = true;
+let shouldRenderOnce = ref<boolean>(false);
+
+function imageLoaded() {
+  // Réinitialisez shouldRenderOnce après le chargement de l'image
+  shouldRenderOnce.value = true;
+}
 
 function startLongPress() {
-    pressTimer = setTimeout(() => {
+  pressTimer = setTimeout(() => {
     disableScroll();
-    shouldRenderOnce = false;
     fullscreen.value = true;
-    }, 500); // Ajustez la durée selon vos besoins
+  }, 500); // Ajustez la durée selon vos besoins
 }
 
 function endLongPress() {
-    fullscreen.value = false;
-    enableScroll();
-    shouldRenderOnce = true;
-    clearTimeout(pressTimer);
+  fullscreen.value = false;
+  enableScroll();
+  clearTimeout(pressTimer);
 }
 
 var keys: any = {37: 1, 38: 1, 39: 1, 40: 1};
@@ -101,7 +103,6 @@ function enableScroll() {
 }
 
 .card-image{
-    /* outline: solid 1px black; */
     width: 100%;
     position: absolute;
     border-radius: 5px;
