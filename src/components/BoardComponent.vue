@@ -79,6 +79,11 @@
     import Board from '../model/Board';
     import TileComponent from './TileComponent.vue';
 
+    window.addEventListener('beforeinstallprompt', function(event: any) {
+        console.log("before install prompt")
+        event.prompt();
+    })
+
     const board = ref < Board > (new Board());
 
     function switchReynie() {
