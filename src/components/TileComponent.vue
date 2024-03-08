@@ -100,10 +100,12 @@ function resetCard($event: any) {
       outline: none;
     }
     &.bottom {
-     width: 1.2em;
-      position: absolute;
-      bottom: 4%;
-      right:5%;
+        max-height: 7%;
+        width: 12%;
+        position: absolute;
+        bottom: 4%;
+        right: 3px;
+        border-radius: 2px;
     }
   }
 
@@ -122,7 +124,6 @@ function resetCard($event: any) {
     max-width: 17%;
     background-size: 100%;
     background-repeat: no-repeat;
-    border-radius: 50%;
     background-position: center;
     cursor: pointer;
     transition: all ease-in-out 100ms;
@@ -137,16 +138,16 @@ function resetCard($event: any) {
     
     top: 35%;
     &.show {
-      background-image: url('../assets/icons/Icon-hide.png');
+      background-image: url('../assets/icons/hide.png');
     }
     &.hide {
-      background-image: url('../assets/icons/Icon-show.png');
+      background-image: url('../assets/icons/show.png');
     }
   }
 
   
   .reset-button{
-    background-image: url('../assets/icons/Icon-reset.png');
+    background-image: url('../assets/icons/reset.png');
     top: 13%;
   }
 

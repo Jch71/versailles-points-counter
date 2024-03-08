@@ -1,6 +1,6 @@
 <template>
     <div v-if="card" :class="card && !card.hidden ? 'card-container': 'hidden-card-container'">
-        <img :src="`images/${card.id}.png`" alt="" class="card-image" :class="fullscreen ? 'fullscreen': ''" v-if="!card.hidden"
+        <img :src="`images/${card.id}.png`"  v-once loading="eager" alt="" class="card-image" :class="fullscreen ? 'fullscreen': ''" v-if="!card.hidden"
         @mousedown="startLongPress()"   @mouseup="endLongPress()"  @touchstart="startLongPress()" @touchend="endLongPress()" @contextmenu.prevent>
     </div>
     
@@ -22,7 +22,7 @@ function startLongPress() {
     pressTimer = setTimeout(() => {
     disableScroll();
     fullscreen.value = true;
-    }, 300); // Ajustez la durée selon vos besoins
+    }, 500); // Ajustez la durée selon vos besoins
 }
 
 function endLongPress() {

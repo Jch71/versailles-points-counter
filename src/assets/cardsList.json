@@ -99,6 +99,7 @@
         "name": "Princesse Palatine",
         "value": 3,
         "isNoble": true,
+        "isEcrivain": true,
         "otherCardsRules" : [
             {
                 "ifOtherCards": [3],
