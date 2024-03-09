@@ -38,9 +38,8 @@ onMounted(() => {
 
 <template>
   <header @click="installPWA" v-if="installPromptEvent && showInstallButton">
-      Installer l'application
-      <button @click="hideInstallButton($event)">
-        Non
+      Cliquez ici pour installer l'application
+      <button @click="hideInstallButton($event)" class="close-button">
       </button>
   </header>
   <main>
@@ -51,16 +50,38 @@ onMounted(() => {
     <a href="https://www.chevre-edition.com/" target="_blank">Chèvre Edition</a> - <a href="mailto:blandinleo@gmail.com">Signaler un problème</a>
   </footer>
 
+
   
 </template>
 
 <style scoped>
   header {
-    text-align: center;
-    height: 30px;
+    border-radius: 8px;
+    background-color: beige;
+    height: 50px;
     border: solid 1px grey;
     margin: 5px;
     cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+
+    button.close-button{
+      position:absolute;
+      top: 0;
+      right:0;
+      border: none;
+      height: 30px;
+      width: 30px;
+      cursor: pointer;
+      background: none;
+      background-image: url('./assets/icons/Icon-reset-global.png');        
+      background-size: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
   }
 
 </style>
