@@ -6,6 +6,10 @@ const installPromptEvent = ref<any>();
 const showInstallButton = ref<boolean>(true)
 
 onMounted(() => {
+  const screenWidth = window.innerWidth;
+  if (screenWidth >= 1024) {
+    showInstallButton.value = false;
+  }
       window.addEventListener('beforeinstallprompt', (event) => {
         event.preventDefault();
         installPromptEvent.value = event;
@@ -60,7 +64,9 @@ onMounted(() => {
     background-color: beige;
     height: 50px;
     border: solid 1px grey;
+    color: var(--color-text);
     margin: 5px;
+    margin-top: 10px;
     cursor: pointer;
     position: relative;
     display: flex;
@@ -70,8 +76,8 @@ onMounted(() => {
 
     button.close-button{
       position:absolute;
-      top: 0;
-      right:0;
+      top: -10px;
+      right: -10px;
       border: none;
       height: 30px;
       width: 30px;

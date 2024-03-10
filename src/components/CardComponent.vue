@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import Card from '@/model/Card';
-import { ref, defineProps } from 'vue';
+import { ref } from 'vue';
 
 const props = defineProps({
   card: Card,
@@ -27,7 +27,7 @@ function startLongPress() {
   pressTimer = setTimeout(() => {
     disableScroll();
     fullscreen.value = true;
-  }, 500); // Ajustez la durée selon vos besoins
+  }, 400); // Ajustez la durée selon vos besoins
 }
 
 function endLongPress() {
