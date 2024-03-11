@@ -64,7 +64,7 @@ onMounted(() => {
     background-color: beige;
     height: 50px;
     border: solid 1px grey;
-    color: var(--color-text);
+    color: var(--vt-c-text-light-1);
     margin: 5px;
     margin-top: 10px;
     cursor: pointer;
