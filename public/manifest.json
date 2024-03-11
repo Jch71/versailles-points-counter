@@ -17,5 +17,20 @@
       "sizes": "512x512",
       "type": "image/png"
     }
+  ],
+  "screenshots" : [
+    {
+      "src": "img/screenshot-wide.png",
+      "sizes": "1143x844",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Ecran large du compteur de points"
+    },{
+      "src": "img/screenshot-narrow.png",
+      "sizes": "425x825",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Ecran haut du compteur de points"
+    }
   ]
 }
