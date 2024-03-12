@@ -1,4 +1,15 @@
 <template>
+    <div class="modal-backdrop" v-if="modalOpened">
+        <div  class="modal-container" >
+            <button @click="hideModal()" class="close-button"></button>
+            <div class="modal-content">
+            Contenu de la modale <br>
+            Là on peut mettre des infos <br>
+            Et comment on se sert du calculateur
+
+            </div>
+        </div>
+    </div>
     <div class="board">
 
         <div class="cour-summary">
@@ -29,6 +40,9 @@
         <div class="main-board">
 
             <div class="score-header">
+                <div class="info-button" @click="openInfoModal()">
+                    
+                </div>
                 <div class="score">
                 {{ board.getScore() }}
                 </div>
@@ -85,6 +99,8 @@
     })
 
     const board = ref < Board > (new Board());
+    const modalOpened = ref<boolean> (false);
+    
 
     function switchReynie() {
         board.value.reynieActivated = !board.value.reynieActivated;
@@ -92,6 +108,14 @@
 
     function switchLouis() {
         board.value.louisActivated = !board.value.louisActivated;
+    }
+
+    function openInfoModal() {
+        modalOpened.value = true;
+    }
+
+    function hideModal() {
+        modalOpened.value = false;
     }
 
     function resetAll() {
@@ -158,40 +182,45 @@
 
     .score-header{
         position: relative;
-    }
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
-    .score {
-        background: url('../assets/icons/cercle-point-de-victroire.png');
-        background-size: 60px;
-        width: 100%;
-        padding: 0.2em;
-        text-align: center;
-        background-repeat: no-repeat;
-        height: 60px;
-        background-position: center;
-        color: #e1ca98;
-        font-size: 2em;
-        font-weight: bold;
-    }
-
-    .reset-button {
-        position: absolute;
-        top: 50%;
-        height: 100%;
-        width: 40px;
-        background-image: url('../assets/icons/Icon-reset-global.png');
-        background-size: 100%;
-        background-position: center;
-        background-repeat: no-repeat;
-        right: 0;
-        transform: translate(0, -50%);
-        transition: all 0.2s;
-
-        &:hover{
-            cursor: pointer;
-            transform: translate(0px, calc(-50% - 2px));
+        .score {
+            background: url('../assets/icons/cercle-point-de-victroire.png');
+            background-size: 60px;
+            width: 100%;
+            padding: 0.2em;
+            text-align: center;
+            background-repeat: no-repeat;
+            height: 60px;
+            background-position: center;
+            color: #e1ca98;
+            font-size: 2em;
+            font-weight: bold;
         }
+
+        .reset-button, .info-button{
+            height: 100%;
+            width: 40px;
+            min-height: 40px;
+            background-size: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            cursor: pointer;
+        }
+
+        .info-button {
+            background-image: url('../assets/icons/Icon-info.png');
+        }
+
+        .reset-button {
+            background-image: url('../assets/icons/Icon-reset-global.png');
+        }
+
+
     }
+ 
 
     .cour-summary {
         justify-content: center;
@@ -405,6 +434,52 @@
         width: 100%;
         img{
             width: 100%;
+        }
+    }
+
+    .modal-backdrop{
+        position: fixed;
+        top: 0; right: 0; bottom: 0; left: 0;
+        background: black;
+        background-color: rgba(0,0,0, .5);
+        z-index: 3;
+    }
+    .modal-container {
+        height: 90vh;
+        max-width: 90vw;
+        margin-top: 5vh;
+        position: fixed;
+        aspect-ratio: 63/88;
+        left: 50%;
+        transform: translate(-50%, 0);
+        z-index: 4;
+        opacity: 1;
+        border: solid 5px black;
+        border-radius:10px;
+        background-color: #e1ca98;
+        color: var(--vt-c-text-light-1);
+        text-align: center;
+        padding: 1em;
+
+        .modal-content {
+            height: 100%;
+            overflow: auto;
+        }
+
+        button.close-button {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            border: none;
+            z-index: 5;
+            height: 40px;
+            width: 40px;
+            cursor: pointer;
+            background: none;
+            background-image: url('../assets/icons/Icon-reset-global.png');
+            background-size: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
         }
     }
 </style>
