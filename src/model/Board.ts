@@ -260,9 +260,18 @@ export default class Board {
                         sumAdjacentErudits+=element.card.ifAdjacentEruditBonus;}
                    if(!this.getElementRight(rowIndex, colIndex)?.card?.hidden && this.getElementRight(rowIndex, colIndex)?.card?.isErudit) 
                         sumAdjacentErudits+=element.card.ifAdjacentEruditBonus;
+                } if(element.card && !element.card.hidden && element.card.id == 38) {
+                    if((!this.getElementAbove(rowIndex, colIndex)?.card?.hidden && this.getElementAbove(rowIndex, colIndex)?.card?.isErudit) || 
+                        (!this.getElementBelow(rowIndex, colIndex)?.card?.hidden && this.getElementBelow(rowIndex, colIndex)?.card?.isErudit) || 
+                        (!this.getElementLeft(rowIndex, colIndex)?.card?.hidden && this.getElementLeft(rowIndex, colIndex)?.card?.isErudit) || 
+                        (!this.getElementRight(rowIndex, colIndex)?.card?.hidden && this.getElementRight(rowIndex, colIndex)?.card?.isErudit)) {
+                            sumAdjacentErudits+=3;
+                        }
                 }
             });
+            
         });
+        
         return sumAdjacentErudits;
     }
 
