@@ -16,6 +16,7 @@ export default class Card {
     public ifOtherCards?: number[] = [];
     public ifOtherCardsValue?: number = 0;
     public isFemme: boolean = false;
+    public isHomme: boolean = false;
     public isErudit: boolean = false;
     public isNoble: boolean = false;
     public isFavorite: boolean = false;
@@ -89,6 +90,7 @@ export default class Card {
             this.otherCardsRules =cardObject.otherCardsRules;
             this.adjacentCardsRules =cardObject.adjacentCardsRules;
             this.isFemme =cardObject.isFemme;
+            this.isHomme =cardObject.isHomme;
             this.countByAllTypes =cardObject.countByAllTypes;
             this.paintedByHyacinthe =cardObject.paintedByHyacinthe;
             this.pointsByPaintedByHyacinthe =cardObject.pointsByPaintedByHyacinthe;

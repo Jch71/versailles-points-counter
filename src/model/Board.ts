@@ -96,6 +96,15 @@ export default class Board {
         return this.countCardsByType("isFemme");
     }
 
+    getHommes(): number {
+        return  this.countCardsByType("isHomme");
+    }
+
+    getEclairs(): number {
+        return this.countCardsByType("hasEffect");
+    }
+
+
     getPaintedByHyacinthe(): number {
         return this.countCardsByType("paintedByHyacinthe");
     }

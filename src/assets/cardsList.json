@@ -5,6 +5,7 @@
         "value": 5,
         "isNoble": true,
         "ifMiddleValue" : 7,
+        "isHomme" : true,
         "pointsByFavorite": 1,
         "paintedByHyacinthe" : true
     },
@@ -22,6 +23,7 @@
         "value": 5,
         "isNoble": true,
         "isFemme": true,
+        "isHomme" : true,
         "otherCardsRules" : [
             {
                 "ifOtherCards": [12],
@@ -75,6 +77,7 @@
         "id": 6,
         "name": "Jean-Baptiste Colbert",
         "value": 2,
+        "isHomme" : true,
         "isHommedEtat": true,
         "ifAdjacentHommedEtatBonus": 2,
         "adjacentCardsRules" : [
@@ -88,6 +91,7 @@
         "id": 7,
         "name": "Le Tellier de Louvois",
         "value": 2,
+        "isHomme" : true,
         "isNoble": true,
         "isMillitaire" : true,
         "isHommedEtat" : true,
@@ -115,6 +119,7 @@
         "id": 9,
         "name": "Jacques-Bénigne Bossuet",
         "value": 1,
+        "isHomme" : true,
         "isErudit": true,
         "isClerge" : true,
         "isEcrivain": true,
@@ -125,6 +130,7 @@
         "id": 10,
         "name": "Louis de France",
         "value": 0,
+        "isHomme" : true,
         "isNoble": true,
         "otherCardsRules" : [
             {
@@ -149,6 +155,7 @@
         "id": 11,
         "name": "Toussaint rose",
         "value": 1,
+        "isHomme" : true,
         "isNoble" : true,
         "isEcrivain" : true,
         "isLouis14" : true,
@@ -158,6 +165,7 @@
         "id": 12,
         "name": "Chevalier de Lorraine",
         "value": 2,
+        "isHomme" : true,
         "hasEffect": true,
         "isNoble" : true
     },
@@ -165,6 +173,7 @@
         "id": 13,
         "name": "Charles de Sainte-Maure",
         "value": 3,
+        "isHomme" : true,
         "isNoble" : true,
         "isMillitaire":true,
         "otherCardsRules" : [{
@@ -174,6 +183,7 @@
     },
     {
         "id": 14,
+        "isHomme" : true,
         "name": "François de Créquy",
         "value": 0,
         "isNoble" : true,
@@ -181,6 +191,7 @@
     },
     {
         "id": 15,
+        "isHomme" : true,
         "name": "Bernardin Gigault",
         "value": 2,
         "isNoble" : true,
@@ -189,6 +200,7 @@
     },
     {
         "id": 16,
+        "isHomme" : true,
         "name": "Charles le brun",
         "value": 0,
         "isErudit" : true,
@@ -197,6 +209,7 @@
     },
     {
         "id": 17,
+        "isHomme" : true,
         "name": "Jean-Baptiste Lully",
         "value": 0,
         "isErudit" : true,
@@ -205,6 +218,7 @@
     },
     {
         "id": 18,
+        "isHomme" : true,
         "name": "André Le Notre",
         "value" : 0,
         "isErudit": true,
@@ -213,6 +227,7 @@
     },
     {
         "id": 19,
+        "isHomme" : true,
         "name": "Jules Hardouin Mansart",
         "value": 0,
         "isArchitecte" : true,
@@ -223,6 +238,7 @@
     },
     {
         "id": 20,
+        "isHomme" : true,
         "name": "Jean Racine",
         "value": 0,
         "isErudit": true,
@@ -231,6 +247,7 @@
     },
     {
         "id": 21,
+        "isHomme" : true,
         "name": "Nicolas Boileau",
         "value": 2,
         "isErudit": true,
@@ -242,6 +259,7 @@
     },
     {
         "id": 22,
+        "isHomme" : true,
         "name": "Jean de la fontaine",
         "value": -1,
         "isErudit" : true,
@@ -355,6 +373,7 @@
     },
     {
         "id": 32,
+        "isHomme" : true,
         "name": "Monsieur de Lauzun",
         "value": 3,
         "isNoble" : true,
@@ -380,6 +399,7 @@
     },
     {
         "id": 34,
+        "isHomme" : true,
         "name": "Simon Arnauld de Pomponne",
         "value": -2,
         "isHommedEtat" : true,
@@ -390,6 +410,7 @@
     },
     {
         "id": 35,
+        "isHomme" : true,
         "name": "François de La Rochefoucauld",
         "value": 2,
         "adjacentCardsRules" : [
@@ -422,6 +443,7 @@
     },
     {
         "id": 37,
+        "isHomme" : true,
         "name": "Sébastien Le Prestre",
         "value": 0,
         "isNoble" : true,
@@ -433,6 +455,7 @@
     },
     {
         "id": 38,
+        "isHomme" : true,
         "name": "Philippe de Courcillon",
         "value": 2,
         "isNoble" : true,
@@ -458,6 +481,7 @@
     },
     {
         "id": 41,
+        "isHomme" : true,
         "name": "Marie-Madeleine de Rochechouart",
         "value": 0,
         "isClerge": true,
@@ -466,6 +490,7 @@
     },
     {
         "id": 42,
+        "isHomme" : true,
         "name": "Louis II de Bourbon-Condé",
         "value": 6,
         "isNoble": true,
@@ -473,6 +498,7 @@
     },
     {
         "id": 43,
+        "isHomme" : true,
         "name": "Fénélon",
         "value": 0,
         "isClerge": true,
@@ -482,6 +508,7 @@
     },
     {
         "id": 44,
+        "isHomme" : true,
         "name": "Jean Talon",
         "value": 2,
         "isNoble": true,
@@ -507,6 +534,7 @@
     },
     {
         "id": 47,
+        "isHomme" : true,
         "name": "Hyacinthe Rigaud",
         "value": 0,
         "isErudit": true,
@@ -516,6 +544,7 @@
     },
     {
         "id": 48,
+        "isHomme" : true,
         "name": "Sieur de Sacy",
         "value": 0,
         "isErudit": true,
@@ -524,6 +553,7 @@
     },
     {
         "id": 49,
+        "isHomme" : true,
         "name": "Antoine Arnauld",
         "value": 3,
         "isClerge": true,
@@ -532,6 +562,7 @@
     },
     {
         "id": 50,
+        "isHomme" : true,
         "name": "Michel Le Tellier",
         "value": 4,
         "isHommedEtat": true,
@@ -539,18 +570,21 @@
     },
     {
         "id": 51,
+        "isHomme" : true,
         "name": "La Reynie",
         "value": 4,
         "isHommedEtat": true
     },
     {
         "id": 52,
+        "isHomme" : true,
         "name": "François d'Aix de La Chaise",
         "value": 5,
         "isClerge": true
     },
     {
         "id": 53,
+        "isHomme" : true,
         "name": "François Henri de Montmorency",
         "value": 0,
         "isNoble": true,
@@ -560,6 +594,7 @@
     },
     {
         "id": 54,
+        "isHomme" : true,
         "name": "Jean de La Bruyère",
         "value": 0,
         "isErudit": true,
@@ -569,6 +604,7 @@
     },  
     {
         "id": 55,
+        "isHomme" : true,
         "name": "Louis Phélypeaux de Pontchartrain",
         "value": 2,
         "isNoble": true,
@@ -577,6 +613,7 @@
     },    
     {
         "id": 56,
+        "isHomme" : true,
         "name": "Nicolas Fouquet",
         "value": -5,
         "isNoble": true,
@@ -602,6 +639,7 @@
     }, 
     {
         "id": 59,
+        "isHomme" : true,
         "name": "Etienne Guibourg",
         "value": -4,
         "isPoison": true,

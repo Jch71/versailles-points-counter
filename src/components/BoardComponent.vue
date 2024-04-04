@@ -13,10 +13,11 @@
     <div class="board">
 
         <div class="cour-summary">
-            <div class="title">
+            <div class="title" @click="isOpened = !isOpened">
                 <img src="../assets/bandeau-ma-cour.png" alt="">
             </div>
-            <div class="types">
+            <div class="summary" :class="isOpened?'opened':'' ">
+                <div class="types">
                 <div class="type erudits-count">{{ board.getErudits() }}</div>
                 <div class="type nobles-count">{{ board.getNobles() }} </div>
                 <div class="type poison-count">{{ board.getPoison() }} </div>
@@ -33,8 +34,13 @@
                 <span class="metier architectes-count">{{ board.getArchitectes() }} </span>
                 <span class="metier ecrivains-count">{{ board.getEcrivains() }} </span>
                 <span class="metier musiciens-count">{{ board.getMusiciens() }} </span>
+                <span class="metier hommes-count">{{ board.getHommes() }} </span>
+                <span class="metier femmes-count">{{ board.getFemmes() }} </span>
+                <span class="metier eclairs-count">{{ board.getEclairs() }} </span>
 
             </div>
+            </div>
+            
         </div>
 
         <div class="main-board">
@@ -70,13 +76,13 @@
                 </div>
             </div>
             <div class="boards-mod">
-                <div class="mod jeton-moins-7" @click="switchBonusMoins7()" :class="board.bonusMoins7 ? 'activated':'desactivated'">
+                <div class="mod jeton-moins-7 millitaire" @click="switchBonusMoins7()" :class="board.bonusMoins7 ? 'activated':'desactivated'">
                 </div>
-                <div class="mod jeton-moins-3" @click="switchBonusMoins3()" :class="board.bonusMoins3 ? 'activated':'desactivated'">
+                <div class="mod jeton-moins-3 millitaire" @click="switchBonusMoins3()" :class="board.bonusMoins3 ? 'activated':'desactivated'">
                 </div>
-                <div class="mod jeton-3-pts" @click="switchBonus3()" :class="board.bonus3 ? 'activated':'desactivated'">
+                <div class="mod jeton-3-pts millitaire" @click="switchBonus3()" :class="board.bonus3 ? 'activated':'desactivated'">
                 </div>
-                <div class="mod jeton-7-pts" @click="switchBonus7()" :class="board.bonus7 ? 'activated':'desactivated'">
+                <div class="mod jeton-7-pts millitaire" @click="switchBonus7()" :class="board.bonus7 ? 'activated':'desactivated'">
                 </div>
                 
             </div>
@@ -95,6 +101,8 @@
 
     const board = ref < Board > (new Board());
     const modalOpened = ref<boolean> (false);
+    const isOpened = ref<boolean> (true);
+        
     
 
     function switchReynie() {
@@ -251,16 +259,29 @@
             margin: 3px auto;
         }
 
+        .summary {
+            transition: all 0.3s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+
+        .summary.opened {
+            max-height: 170px;
+        }
+
         .types {
             display: flex;
              justify-content: center;
 
              &.fenelon {
-                background-position: center;
                 margin-bottom: 10px;
+                margin-top: 5px;
+                background-color: #e1ca98;
+                border-radius: 8px;
                 .type{
+                background-position: center;
                     cursor: pointer;
-                    height: 50px;
+                    height: 45px;
                     width: 12%;
                     &.inactive {
                         filter: grayscale(1);
@@ -269,7 +290,7 @@
              }
 
             .type {
-                height: 90px;
+                height: 82px;
                 width: 15%;
                 max-width: 65px;
                 background-repeat: no-repeat;
@@ -311,13 +332,12 @@
 
 
         .metiers {
-            margin-top: 1em;
-            margin-bottom: 1em;
+            margin-bottom: 0.5em;
             display: flex;
             justify-content: center;
 
             .metier {
-                height: 90px;
+                height: 85px;
                 width: 15%;
                 max-width: 65px;
                 background-repeat: no-repeat;
@@ -346,6 +366,18 @@
 
             .musiciens-count {
                 background-image: url('../assets/icons/compositeur.png');
+            }
+
+            .hommes-count {
+                background-image: url('../assets/icons/genre-homme.png');
+            }
+
+            .femmes-count {
+                background-image: url('../assets/icons/genre-femme.png');
+            }
+
+            .eclairs-count {
+                background-image: url('../assets/icons/eclair.png');
             }
 
         }
@@ -379,6 +411,10 @@
             outline:none;
             --webkit-tap-highlight-color: transparent;
             background-position: center;
+
+            &.millitaire {
+                width: 25% ;
+            }
 
             &.reynie{
                 background-image: url('../assets/icons/reynie.png');
@@ -426,6 +462,7 @@
     }
 
     .title {
+        cursor: pointer;
         width: 100%;
         img{
             width: 100%;
