@@ -148,8 +148,7 @@ export default class Board {
     }
 
     getNobles(): number {
-        let sumNoble = this.isPresent(43) &&  this.fenelonResource['noble']? 1 : 0;
-        return sumNoble += this.countCardsByType("isNoble");
+        return this.countCardsByType("isNoble");
     }
 
     getHidden(): number {
@@ -179,14 +178,12 @@ export default class Board {
             sumPoison += 2;
         }
 
-        sumPoison += this.isPresent(43) && this.fenelonResource['poison']? 1 : 0;
 
         return sumPoison;
     }
 
     getFavorite(): number {
-        let sumFavorite = this.isPresent(43) &&  this.fenelonResource['favorite']? 1 : 0;
-        return sumFavorite += this.countCardsByType("isFavorite");
+        return this.countCardsByType("isFavorite");
     }
 
     getMillitaire(): number {
@@ -201,14 +198,11 @@ export default class Board {
             sumMillitaire += 1;
         }
 
-        sumMillitaire += this.isPresent(43) &&  this.fenelonResource['millitaire']? 1 : 0;
-
         return sumMillitaire;
     }
     
     getHommedEtat(): number {
-        let sumHommedEtat = this.isPresent(43) &&  this.fenelonResource['homme-detat']? 1 : 0;
-        return sumHommedEtat += this.countCardsByType("isHommedEtat");
+        return this.countCardsByType("isHommedEtat");
     }    
     
     getClerge(): number {
@@ -562,11 +556,25 @@ export default class Board {
         let sum = 0 ;
         this.tableau.forEach(row => {
             row.forEach(element => {
-                if(element.card && !element.card.hidden) {
+                if(element.card && !element.card.hidden && element.card.id != 89) {
                     sum += element.card.negativeHidden ? Math.abs(element.card.value || 0): element.card.value || 0;
                 }
             });
         });
+        let leoSum = 0;
+        if(this.isPresent(89)) {
+            leoSum = 33;
+            this.tableau.forEach(row => {
+                row.forEach(element => {
+                    if(element.card && !element.card.hidden && element.card.id != 89) {
+                        leoSum -= Math.abs(element.card.value || 0)
+                    }
+                });
+            });
+        }
+
+        sum+= leoSum;
+       
         return sum;
     }
 
@@ -755,6 +763,17 @@ export default class Board {
         return this.tableau.some(row => 
             row.some(tile => 
                 tile.card?.id === id && !tile.card?.hidden));
+    }
+
+    getCardById(id: number) {
+        for (let i = 0; i < this.tableau.length; i++) {
+            for (let j = 0; j < this.tableau[i].length; j++) {
+                if (this.tableau[i][j].card?.id === id && !this.tableau[i][j].card?.hidden) {
+                    return this.tableau[i][j].card;
+                }
+            }
+        }
+        return null;
     }
 
     getElement(row: number, col: number): Tile | undefined {

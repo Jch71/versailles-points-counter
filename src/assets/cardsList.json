@@ -653,6 +653,13 @@
         "value": -9,
         "isPoison": true,
         "hasEffect": true
+    },   
+    {
+        "id": 89,
+        "isHomme": true,
+        "name": "Léo Blandin",
+        "value": 33,
+        "isErudit": true,
+        "isNoble": true
     }
-
 ]

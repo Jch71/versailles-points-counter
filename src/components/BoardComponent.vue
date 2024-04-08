@@ -34,11 +34,17 @@
                 <span class="metier architectes-count">{{ board.getArchitectes() }} </span>
                 <span class="metier ecrivains-count">{{ board.getEcrivains() }} </span>
                 <span class="metier musiciens-count">{{ board.getMusiciens() }} </span>
+            </div>
+
+            <div class="other">
                 <span class="metier hommes-count">{{ board.getHommes() }} </span>
                 <span class="metier femmes-count">{{ board.getFemmes() }} </span>
                 <span class="metier eclairs-count">{{ board.getEclairs() }} </span>
-
             </div>
+
+            
+
+
             </div>
             
         </div>
@@ -61,11 +67,11 @@
 
             <div class="types fenelon" v-if="board.isPresent(43)">
                 <div class="type erudits-count" :class="board.fenelonResource['erudit'] ? '':'inactive'" @click="addFenelonResource('erudit')"></div>
-                <div class="type nobles-count" :class="board.fenelonResource['noble'] ? '':'inactive'" @click="addFenelonResource('noble')"> </div>
-                <div class="type poison-count" :class="board.fenelonResource['poison'] ? '':'inactive'" @click="addFenelonResource('poison')"> </div>
-                <div class="type favorite-count" :class="board.fenelonResource['favorite'] ? '':'inactive'" @click="addFenelonResource('favorite')"> </div>
-                <div class="type millitaire-count" :class="board.fenelonResource['millitaire'] ? '':'inactive'" @click="addFenelonResource('millitaire')"> </div>
-                <div class="type hommes-detat-count" :class="board.fenelonResource['homme-detat'] ? '':'inactive'" @click="addFenelonResource('homme-detat')"></div>
+                <div class="type nobles-count" :class="board.fenelonResource['noble'] ? '':'inactive'" @click="toggleFenelonProperty('isNoble'); addFenelonResource('noble')"> </div>
+                <div class="type poison-count" :class="board.fenelonResource['poison'] ? '':'inactive'" @click="toggleFenelonProperty('isPoison'); addFenelonResource('poison')"> </div>
+                <div class="type favorite-count" :class="board.fenelonResource['favorite'] ? '':'inactive'" @click="toggleFenelonProperty('isFavorite'); addFenelonResource('favorite')"> </div>
+                <div class="type millitaire-count" :class="board.fenelonResource['millitaire'] ? '':'inactive'" @click="toggleFenelonProperty('isMillitaire'); addFenelonResource('millitaire')"> </div>
+                <div class="type hommes-detat-count" :class="board.fenelonResource['homme-detat'] ? '':'inactive'" @click="toggleFenelonProperty('isHommedEtat'); addFenelonResource('homme-detat')"></div>
                 <div class="type clerge-count" :class="board.fenelonResource['clerge'] ? '':'inactive'" @click="addFenelonResource('clerge')"> </div>
             </div>
 
@@ -98,6 +104,7 @@
     } from 'vue';
     import Board from '../model/Board';
     import TileComponent from './TileComponent.vue';
+import type Card from '@/model/Card';
 
     const board = ref < Board > (new Board());
     const modalOpened = ref<boolean> (false);
@@ -125,9 +132,26 @@
         board.value.reset();
     }
 
-    function addFenelonResource(type: string ) {
+    function addFenelonResource(type:string)  {
         board.value.fenelonResource[type] = !board.value.fenelonResource[type];
     }
+
+    function toggleFenelonProperty(property: keyof Card) {
+    let card = board.value.getCardById(43)!;
+    switch (property) {
+        case 'isNoble':
+        case 'isPoison':
+        case 'isMillitaire':
+        case 'isFavorite':
+        case 'isHommedEtat':
+            card[property] = !card[property] as boolean;
+            break;
+        default:
+            break;
+    }
+}
+
+    
     
     function switchBonus3() {
         board.value.bonusMoins7 = false;
@@ -266,7 +290,7 @@
         }
 
         .summary.opened {
-            max-height: 170px;
+            max-height: 255px;
         }
 
         .types {
@@ -331,8 +355,7 @@
         }
 
 
-        .metiers {
-            margin-bottom: 0.5em;
+        .metiers, .other {
             display: flex;
             justify-content: center;
 
@@ -380,6 +403,10 @@
                 background-image: url('../assets/icons/eclair.png');
             }
 
+        }
+
+        .other {
+            margin-bottom: 0.5em;
         }
     }
 
