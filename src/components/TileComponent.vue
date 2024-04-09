@@ -2,7 +2,7 @@
     <div v-if="tile" class="tile-container" @click="focusInput()" :class="tile?.card && tile?.card.id ? 'has-card':''">
       <div @click="resetCard($event)" class="reset-button" v-if="tile?.card && tile?.card.id">
       </div>
-        <input ref="inputCard" type="number" @change="updateTileCard()" v-model="tile.inputValue" :class="tile?.card && tile?.card.id ? 'bottom' : 'center'" @keyup.enter="inputCard?.blur()">
+        <input ref="inputCard" type="number" @change="updateTileCard($event)" v-model="tile.inputValue" :class="tile?.card && tile?.card.id ? 'bottom' : 'center'" >
         <div @click="switchCard($event)" class="hide-button " :class="tile.card.hidden? 'hide': 'show'" v-if="tile?.card && tile?.card.id">
           
         </div>
@@ -40,7 +40,7 @@ function focusInput(){
     inputCard.value.focus();
   }
 }
-function updateTileCard() {
+function updateTileCard($event: any) {
   let idExists: boolean=false;
   board.value?.getTableau().forEach(row => {
     row.forEach(element => {
@@ -61,6 +61,8 @@ function updateTileCard() {
                 undefined ;
                 
     inputCard.value?.blur();
+  $event.stopPropagation();
+
   if(tile.value!.card == undefined && tile.value?.inputValue){
     tile.value.inputValue= undefined;
     inputCard.value?.blur();
