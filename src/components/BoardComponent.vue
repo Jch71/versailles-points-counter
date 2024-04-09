@@ -1,17 +1,7 @@
 <template>
-    <div class="modal-backdrop" v-if="modalOpened">
-        <div  class="modal-container" >
-            <button @click="hideModal()" class="close-button"></button>
-            <div class="modal-content">
-            Contenu de la modale <br>
-            Là on peut mettre des infos <br>
-            Et comment on se sert du calculateur
-
-            </div>
-        </div>
-    </div>
+    <ModalComponent v-model:opened="modalOpened"/>
     <div class="board">
-
+        
         <div class="cour-summary">
             <div class="title" @click="isOpened = !isOpened">
                 <img src="../assets/bandeau-ma-cour.png" alt="">
@@ -104,6 +94,7 @@
     } from 'vue';
     import Board from '../model/Board';
     import TileComponent from './TileComponent.vue';
+    import ModalComponent from './ModalComponent.vue';
 import type Card from '@/model/Card';
 
     const board = ref < Board > (new Board());
@@ -496,49 +487,6 @@ import type Card from '@/model/Card';
         }
     }
 
-    .modal-backdrop{
-        position: fixed;
-        top: 0; right: 0; bottom: 0; left: 0;
-        background: black;
-        background-color: rgba(0,0,0, .5);
-        z-index: 3;
-    }
-    .modal-container {
-        height: 90vh;
-        max-width: 90vw;
-        margin-top: 5vh;
-        position: fixed;
-        aspect-ratio: 63/88;
-        left: 50%;
-        transform: translate(-50%, 0);
-        z-index: 4;
-        opacity: 1;
-        border: solid 5px black;
-        border-radius:10px;
-        background-color: #e1ca98;
-        color: var(--vt-c-text-light-1);
-        text-align: center;
-        padding: 1em;
 
-        .modal-content {
-            height: 100%;
-            overflow: auto;
-        }
-
-        button.close-button {
-            position: absolute;
-            top: -15px;
-            right: -15px;
-            border: none;
-            z-index: 5;
-            height: 40px;
-            width: 40px;
-            cursor: pointer;
-            background: none;
-            background-image: url('../assets/icons/Icon-reset-global.png');
-            background-size: 100%;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-    }
+    
 </style>

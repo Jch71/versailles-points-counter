@@ -11,6 +11,7 @@
           {{ tile?.card?.cardValue }}
          </div>
     </div>
+  <ModalComponent v-model:opened="modalOpened" :small="true" :content="modalContent" />
 </template>
 
 <script setup lang="ts">
@@ -20,6 +21,7 @@ import CardComponent from './CardComponent.vue';
 import Card from '@/model/Card';
 import cardsList from '@/assets/cardsList.json';
 import Board from '@/model/Board';
+    import ModalComponent from './ModalComponent.vue';
 
 
 const props = defineProps({
@@ -30,6 +32,8 @@ const props = defineProps({
 const tile= toRef(props.tile);
 const board= toRef(props.board);
 const inputCard = ref<HTMLInputElement>();
+const modalOpened = ref<boolean>(false);
+const modalContent= ref<string>();
 
 function focusInput(){
   if(inputCard.value) {
@@ -47,7 +51,8 @@ function updateTileCard() {
     });
   });
   if(idExists) {
-    alert('carte déja présente');
+    modalOpened.value = true;
+    modalContent.value = "Attention, cette personnalité est déjà à votre cour !"
     return;
   }
   tile.value!.card =  cardsList.find((elem: any) => elem.id == tile.value?.inputValue) ? 
@@ -55,7 +60,8 @@ function updateTileCard() {
                 undefined ;
   if(tile.value!.card == undefined && tile.value?.inputValue){
     tile.value.inputValue= undefined;
-    alert('carte inconnue');
+    modalOpened.value = true;
+    modalContent.value = "Attention, cette carte n\'existe pas (en tout cas pas à cette époque) !"
     return;
   }
 }
@@ -138,18 +144,20 @@ function resetCard($event: any) {
   }
 
   .card-score{
-    /* display: none; */
     position: absolute;
     top: 0;
-    font-size: 1.47em;
-    line-height: 1.47em;
-    width: 1.47em;
-    height: 1.47em;
+    font-size: 1.27em;
+    width: 100%;
+    height: 15%;
     background: url('../assets/icons/cercle-point-de-victroire.png');
-    background-size: cover;
+    background-size: contain;
+    background-position: center;
     background-repeat: no-repeat;
     color:#e1ca98;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .hide-button{
