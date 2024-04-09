@@ -53,15 +53,19 @@ function updateTileCard() {
   if(idExists) {
     modalOpened.value = true;
     modalContent.value = "Attention, cette personnalité est déjà à votre cour !"
+    inputCard.value?.blur();
     return;
   }
   tile.value!.card =  cardsList.find((elem: any) => elem.id == tile.value?.inputValue) ? 
                 new Card(cardsList.find((elem: any) => elem.id ==tile.value?.inputValue)) : 
                 undefined ;
+                
+    inputCard.value?.blur();
   if(tile.value!.card == undefined && tile.value?.inputValue){
     tile.value.inputValue= undefined;
     modalOpened.value = true;
     modalContent.value = "Attention, cette carte n\'existe pas (en tout cas pas à cette époque) !"
+    inputCard.value?.blur();
     return;
   }
 }
