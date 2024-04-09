@@ -45,7 +45,7 @@ export default class Card {
     public pointsByHidden: number = 0;
     public pointsByFemme: number = 0;
     public pointsByZero: number = 0;
-
+    public cardValue: number = 0;
 
 
     constructor(cardObject: any) {

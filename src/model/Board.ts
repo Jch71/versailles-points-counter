@@ -211,110 +211,118 @@ export default class Board {
     }
 
     
-    computeAdjacentHommedEtat() {
+    computeAdjacentHommedEtat(tile: Tile, rowIndex: number, colIndex: number) {
         let sumAdjacentHommedEtat = 0 ;
-        this.tableau.forEach((row, rowIndex) => {
-            row.forEach((element, colIndex) => {
-                if(element.card && !element.card.hidden && element.card.ifAdjacentHommedEtatBonus) {
+
+                if(tile.card && !tile.card.hidden && tile.card.ifAdjacentHommedEtatBonus) {
                    if(!this.getElementAbove(rowIndex, colIndex)?.card?.hidden && this.getElementAbove(rowIndex, colIndex)?.card?.isHommedEtat) {
-                        sumAdjacentHommedEtat+=element.card.ifAdjacentHommedEtatBonus;}
+                        sumAdjacentHommedEtat+=tile.card.ifAdjacentHommedEtatBonus;}
                    if(!this.getElementBelow(rowIndex, colIndex)?.card?.hidden && this.getElementBelow(rowIndex, colIndex)?.card?.isHommedEtat) {
-                        sumAdjacentHommedEtat+=element.card.ifAdjacentHommedEtatBonus;}
+                        sumAdjacentHommedEtat+=tile.card.ifAdjacentHommedEtatBonus;}
                    if(!this.getElementLeft(rowIndex, colIndex)?.card?.hidden && this.getElementLeft(rowIndex, colIndex)?.card?.isHommedEtat) {
-                        sumAdjacentHommedEtat+=element.card.ifAdjacentHommedEtatBonus;}
+                        sumAdjacentHommedEtat+=tile.card.ifAdjacentHommedEtatBonus;}
                    if(!this.getElementRight(rowIndex, colIndex)?.card?.hidden && this.getElementRight(rowIndex, colIndex)?.card?.isHommedEtat) 
-                        sumAdjacentHommedEtat+=element.card.ifAdjacentHommedEtatBonus;
+                        sumAdjacentHommedEtat+=tile.card.ifAdjacentHommedEtatBonus;
                 }
-            });
-        });
+
         return sumAdjacentHommedEtat;
     }
 
-    computeAdjacentNobles() {
+    computeAdjacentNobles(tile: Tile, rowIndex: number, colIndex: number) {
         let sumAdjacentNobles = 0 ;
-        this.tableau.forEach((row, rowIndex) => {
-            row.forEach((element, colIndex) => {
-                if(element.card && !element.card.hidden && element.card.ifAdjacentNobleBonus) {
+       
+                if(tile.card && !tile.card.hidden && tile.card.ifAdjacentNobleBonus) {
                    if(!this.getElementAbove(rowIndex, colIndex)?.card?.hidden && this.getElementAbove(rowIndex, colIndex)?.card?.isNoble) {
-                        sumAdjacentNobles+=element.card.ifAdjacentNobleBonus;}
+                        sumAdjacentNobles+=tile.card.ifAdjacentNobleBonus;}
                    if(!this.getElementBelow(rowIndex, colIndex)?.card?.hidden && this.getElementBelow(rowIndex, colIndex)?.card?.isNoble) {
-                        sumAdjacentNobles+=element.card.ifAdjacentNobleBonus;}
+                        sumAdjacentNobles+=tile.card.ifAdjacentNobleBonus;}
                    if(!this.getElementLeft(rowIndex, colIndex)?.card?.hidden && this.getElementLeft(rowIndex, colIndex)?.card?.isNoble) {
-                        sumAdjacentNobles+=element.card.ifAdjacentNobleBonus;}
+                        sumAdjacentNobles+=tile.card.ifAdjacentNobleBonus;}
                    if(!this.getElementRight(rowIndex, colIndex)?.card?.hidden && this.getElementRight(rowIndex, colIndex)?.card?.isNoble) 
-                        sumAdjacentNobles+=element.card.ifAdjacentNobleBonus;
+                        sumAdjacentNobles+=tile.card.ifAdjacentNobleBonus;
                 }
-            });
-        });
         return sumAdjacentNobles;
     }
 
 
-    computeAdjacentErudits() {
+    computeAdjacentErudits(tile: Tile, rowIndex: number, colIndex: number) {
         let sumAdjacentErudits = 0 ;
-        this.tableau.forEach((row, rowIndex) => {
-            row.forEach((element, colIndex) => {
-                if(element.card && !element.card.hidden && element.card.ifAdjacentEruditBonus) {
-                   if(!this.getElementAbove(rowIndex, colIndex)?.card?.hidden && this.getElementAbove(rowIndex, colIndex)?.card?.isErudit) {
-                        sumAdjacentErudits+=element.card.ifAdjacentEruditBonus;}
-                   if(!this.getElementBelow(rowIndex, colIndex)?.card?.hidden && this.getElementBelow(rowIndex, colIndex)?.card?.isErudit) {
-                        sumAdjacentErudits+=element.card.ifAdjacentEruditBonus;}
-                   if(!this.getElementLeft(rowIndex, colIndex)?.card?.hidden && this.getElementLeft(rowIndex, colIndex)?.card?.isErudit) {
-                        sumAdjacentErudits+=element.card.ifAdjacentEruditBonus;}
-                   if(!this.getElementRight(rowIndex, colIndex)?.card?.hidden && this.getElementRight(rowIndex, colIndex)?.card?.isErudit) 
-                        sumAdjacentErudits+=element.card.ifAdjacentEruditBonus;
-                } if(element.card && !element.card.hidden && element.card.id == 38) {
-                    if((!this.getElementAbove(rowIndex, colIndex)?.card?.hidden && this.getElementAbove(rowIndex, colIndex)?.card?.isErudit) || 
-                        (!this.getElementBelow(rowIndex, colIndex)?.card?.hidden && this.getElementBelow(rowIndex, colIndex)?.card?.isErudit) || 
-                        (!this.getElementLeft(rowIndex, colIndex)?.card?.hidden && this.getElementLeft(rowIndex, colIndex)?.card?.isErudit) || 
-                        (!this.getElementRight(rowIndex, colIndex)?.card?.hidden && this.getElementRight(rowIndex, colIndex)?.card?.isErudit)) {
-                            sumAdjacentErudits+=3;
-                        }
+
+        if(tile.card && !tile.card.hidden && tile.card.ifAdjacentEruditBonus) {
+            if(!this.getElementAbove(rowIndex, colIndex)?.card?.hidden && this.getElementAbove(rowIndex, colIndex)?.card?.isErudit) {
+                sumAdjacentErudits+=tile.card.ifAdjacentEruditBonus;}
+            if(!this.getElementBelow(rowIndex, colIndex)?.card?.hidden && this.getElementBelow(rowIndex, colIndex)?.card?.isErudit) {
+                sumAdjacentErudits+=tile.card.ifAdjacentEruditBonus;}
+            if(!this.getElementLeft(rowIndex, colIndex)?.card?.hidden && this.getElementLeft(rowIndex, colIndex)?.card?.isErudit) {
+                sumAdjacentErudits+=tile.card.ifAdjacentEruditBonus;}
+            if(!this.getElementRight(rowIndex, colIndex)?.card?.hidden && this.getElementRight(rowIndex, colIndex)?.card?.isErudit) 
+                sumAdjacentErudits+=tile.card.ifAdjacentEruditBonus;
+        } if(tile.card && !tile.card.hidden && tile.card.id == 38) {
+            if((!this.getElementAbove(rowIndex, colIndex)?.card?.hidden && this.getElementAbove(rowIndex, colIndex)?.card?.isErudit) || 
+                (!this.getElementBelow(rowIndex, colIndex)?.card?.hidden && this.getElementBelow(rowIndex, colIndex)?.card?.isErudit) || 
+                (!this.getElementLeft(rowIndex, colIndex)?.card?.hidden && this.getElementLeft(rowIndex, colIndex)?.card?.isErudit) || 
+                (!this.getElementRight(rowIndex, colIndex)?.card?.hidden && this.getElementRight(rowIndex, colIndex)?.card?.isErudit)) {
+                    sumAdjacentErudits+=3;
                 }
-            });
-            
-        });
+        }
+
         
         return sumAdjacentErudits;
     }
+    
 
     getScore() : number {
-        
+
        let cardsValue:number = 0;
        this.switchPoison();
        this.switchNegative();
-       cardsValue += this.computeCardsSum();
-       cardsValue += this.computeCardsIfTop();
-       cardsValue += this.computeCardsIfLeft();
-       cardsValue += this.computeCardsIfRight();
-       cardsValue += this.computeCardsIfBottom();
-       cardsValue += this.computeCardsIfMiddle();
-       cardsValue += this.computeCardsIfExt();
-       cardsValue += this.computeCardIfOtherCards();
-       cardsValue += this.computeAdjacentNobles();
-       cardsValue += this.computeAdjacentHommedEtat();
-       cardsValue += this.computeAdjacentErudits();
-       cardsValue += this.computeByDifferentMetiers();
-       cardsValue += this.computeCardsByFavorite();
-       cardsValue += this.computeCardsByFemme();
-       cardsValue += this.computeCardsByZero();
-       cardsValue += this.computeAdjacentCards();
-       cardsValue += this.computeCardsByClerge();
-       cardsValue += this.computeCardsByEcrivain();
-       cardsValue += this.computeCardsByPaintedByHyacinthe();
-       cardsValue += this.computeCardsByPoison();
-       cardsValue += this.computeCardsByHidden();
-       cardsValue += this.computeByDifferentTypes();
-       cardsValue += this.computeEffects();
-       cardsValue += this.computeLaFayette();
-       cardsValue += this.computeColumns();
-       cardsValue += this.computeReynie();
-       cardsValue += this.computeBonusMilitaire();
+
+
+        this.tableau.forEach((row, rowIndex) => {
+            row.forEach((tile, colIndex) => { 
+                if(tile.card && !tile.card.hidden){
+                    let cardSum = 0;
+                    cardSum += this.computeCardsSum(tile);
+                    cardSum += this.computeCardsIfTop(tile);
+                    cardSum += this.computeCardsIfLeft(tile);
+                    cardSum += this.computeCardsIfRight(tile);
+                    cardSum += this.computeCardsIfBottom(tile);
+                    cardSum += this.computeCardsIfMiddle(tile);
+                    cardSum += this.computeCardsIfExt(tile);
+                    cardSum += this.computeCardIfOtherCards(tile);
+                    cardSum += this.computeAdjacentNobles(tile, rowIndex, colIndex);
+                    cardSum += this.computeAdjacentHommedEtat(tile, rowIndex, colIndex);
+                    cardSum += this.computeAdjacentErudits(tile, rowIndex, colIndex);
+                    cardSum += this.computeByDifferentMetiers(tile);
+                    cardSum += this.computeCardsByFavorite(tile);
+                    cardSum += this.computeCardsByFemme(tile);
+                    cardSum += this.computeCardsByZero(tile);
+                    cardSum += this.computeAdjacentCards(tile, rowIndex, colIndex);
+                    cardSum += this.computeCardsByClerge(tile);
+                    cardSum += this.computeCardsByEcrivain(tile);
+                    cardSum += this.computeCardsByPaintedByHyacinthe(tile);
+                    cardSum += this.computeCardsByPoison(tile);
+                    cardSum += this.computeCardsByHidden(tile);
+                    cardSum += this.computeByDifferentTypes(tile);
+                    cardSum += this.computeEffects(tile);
+                    cardSum += this.computeLaFayette(tile);
+                    cardSum += this.computeColumns(tile);
+                    cardSum += this.computeReynie(tile);
+
+                    tile.card.cardValue = cardSum;
+
+                    cardsValue+=cardSum;
+                }
+            })
+        })
+
+        cardsValue += this.computeBonusMilitaire();
+
        return cardsValue;
     }
 
-    computeEffects(): number {
-        if(this.isPresent(48)) {
+    computeEffects(tile: Tile): number {
+        if(tile.card?.id == 48) {
             return Math.floor(this.getEffects()/2) * 3
         }
        return 0; 
@@ -336,9 +344,9 @@ export default class Board {
        return 0; 
     }
 
-    computeColumns(): number {
+    computeColumns(tile: Tile): number {
         let sum = 0;
-        if(this.isPresent(45)) {
+        if(tile.card?.id == 45) {
             if (this.isColumnNoble(0)) {
                 sum += 3;
             }
@@ -430,73 +438,64 @@ export default class Board {
         }
     }
     
-    computeLaFayette(): number {
-        if(this.isPresent(40)) {
+    computeLaFayette(tile:Tile): number {
+        if(tile.card!.id === 40) {
             return Math.min(this.getEcrivains(), this.getNobles());
         } 
         return 0;
     }
 
     
-    computeCardsByHidden(): number {
+    computeCardsByHidden(tile: Tile): number {
         let sum = 0;
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                if (element.card && !element.card.hidden && element.card.pointsByHidden) {
-                    sum += this.getHidden() *  element.card.pointsByHidden;
-                }
-            });
-        });
+        
+        if (tile.card && !tile.card.hidden && tile.card.pointsByHidden) {
+            sum += this.getHidden() *  tile.card.pointsByHidden;
+        }
+                
         return sum;
     }
 
-    computeCardsByCriterion(property: string, getMultiplier: () => number): number {
+    computeCardsByCriterion(tile: Tile, property: string, getMultiplier: () => number): number {
         let sum = 0;
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                if (element.card && !element.card.hidden && element.card[property as keyof Card]) {
-                    let number: number = element.card[property as keyof Card] as number || 0
-                    sum += getMultiplier() * number;
-                }
-            });
-        });
+       
+        if (tile.card && !tile.card.hidden && tile.card[property as keyof Card]) {
+            let number: number = tile.card[property as keyof Card] as number || 0
+            sum += getMultiplier() * number;
+        }
         return sum;
     }
     
-    computeCardsByFavorite(): number {
-        return this.computeCardsByCriterion('pointsByFavorite', () => this.getFavorite());
+    computeCardsByFavorite(tile: Tile): number {
+        return this.computeCardsByCriterion(tile, 'pointsByFavorite', () => this.getFavorite());
     }
     
-    computeCardsByClerge(): number {
-        return this.computeCardsByCriterion('pointsByClerge', () => this.getClerge());
+    computeCardsByClerge(tile: Tile): number {
+        return this.computeCardsByCriterion(tile, 'pointsByClerge', () => this.getClerge());
     }
 
-    computeCardsByFemme(): number {
-        return this.computeCardsByCriterion('pointsByFemme', () => this.getFemmes() - 1);
+    computeCardsByFemme(tile: Tile): number {
+        return this.computeCardsByCriterion(tile, 'pointsByFemme', () => this.getFemmes() - 1);
     }
     
-    computeCardsByEcrivain(): number {
-        return this.computeCardsByCriterion('pointsByEcrivain', () => this.getEcrivains()); 
+    computeCardsByEcrivain(tile: Tile): number {
+        return this.computeCardsByCriterion(tile, 'pointsByEcrivain', () => this.getEcrivains()); 
     }
 
-    computeCardsByPaintedByHyacinthe(): number {
-        return this.computeCardsByCriterion('pointsByPaintedByHyacinthe', () => this.getPaintedByHyacinthe() - 1);
+    computeCardsByPaintedByHyacinthe(tile: Tile): number {
+        return this.computeCardsByCriterion(tile, 'pointsByPaintedByHyacinthe', () => this.getPaintedByHyacinthe() - 1);
     }
     
 
-    computeCardsByPoison(): number {
-        return this.computeCardsByCriterion('pointsByPoison', () => this.getPoison()); 
+    computeCardsByPoison(tile: Tile): number {
+        return this.computeCardsByCriterion(tile, 'pointsByPoison', () => this.getPoison()); 
     }
 
-    computeCardsByZero(): number {
+    computeCardsByZero(tile: Tile): number {
         let sum = 0;
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                if (element.card && !element.card.hidden && element.card.pointsByZero) {
-                    sum += element.card.pointsByZero * this.getZero();
-                }
-            });
-        });
+        if (tile.card && !tile.card.hidden && tile.card.pointsByZero) {
+            sum += tile.card.pointsByZero * this.getZero();
+        }
         return sum;
     }
 
@@ -515,54 +514,42 @@ export default class Board {
 
 
 
-    computeAdjacentCards(): number {
+    computeAdjacentCards(tile:Tile, rowIndex: number, colIndex: number): number {
         let sum = 0;
     
-        this.tableau.forEach((row, rowIndex) => {
-            row.forEach((element, colIndex) => {
    
-                if (element.card && !element.card.hidden && element.card.adjacentCardsRules) {
-                   
-                    const adjacentCardIds = [
-                        !this.getElementAbove(rowIndex, colIndex)?.card?.hidden && this.getElementAbove(rowIndex, colIndex)?.card?.id,
-                        !this.getElementBelow(rowIndex, colIndex)?.card?.hidden && this.getElementBelow(rowIndex, colIndex)?.card?.id,
-                        !this.getElementLeft(rowIndex, colIndex)?.card?.hidden && this.getElementLeft(rowIndex, colIndex)?.card?.id,
-                        !this.getElementRight(rowIndex, colIndex)?.card?.hidden && this.getElementRight(rowIndex, colIndex)?.card?.id,
-                    ];
-                    element.card.adjacentCardsRules.forEach(rule => {
-                        rule.adjacentCard.forEach((cardToFind: number) => {
-                            if(cardToFind == 1) {
-                                if (adjacentCardIds.includes(1) || adjacentCardIds.includes(11) ) {
-                                    sum += rule.adjacentCardValue
-                                 }
-                            } else {
-                                if (adjacentCardIds.includes(cardToFind)) {
-                                    sum += rule.adjacentCardValue
-                                 }
+        if (tile.card && !tile.card.hidden && tile.card.adjacentCardsRules) {
+            
+            const adjacentCardIds = [
+                !this.getElementAbove(rowIndex, colIndex)?.card?.hidden && this.getElementAbove(rowIndex, colIndex)?.card?.id,
+                !this.getElementBelow(rowIndex, colIndex)?.card?.hidden && this.getElementBelow(rowIndex, colIndex)?.card?.id,
+                !this.getElementLeft(rowIndex, colIndex)?.card?.hidden && this.getElementLeft(rowIndex, colIndex)?.card?.id,
+                !this.getElementRight(rowIndex, colIndex)?.card?.hidden && this.getElementRight(rowIndex, colIndex)?.card?.id,
+            ];
+            tile.card.adjacentCardsRules.forEach(rule => {
+                rule.adjacentCard.forEach((cardToFind: number) => {
+                    if(cardToFind == 1) {
+                        if (adjacentCardIds.includes(1) || adjacentCardIds.includes(11) ) {
+                            sum += rule.adjacentCardValue
                             }
-                            
-                        });
-                        
-                    });
-                }
+                    } else {
+                        if (adjacentCardIds.includes(cardToFind)) {
+                            sum += rule.adjacentCardValue
+                            }
+                    }
+                    
+                });
+                
             });
-        });
+        }
     
         return sum;
     }
 
 
-    computeCardsSum() : number {
-        let sum = 0 ;
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                if(element.card && !element.card.hidden && element.card.id != 89) {
-                    sum += element.card.negativeHidden ? Math.abs(element.card.value || 0): element.card.value || 0;
-                }
-            });
-        });
+    computeCardsSum(tile: Tile) : number {
         let leoSum = 0;
-        if(this.isPresent(89)) {
+        if(tile.card?.id == 89) {
             leoSum = 33;
             this.tableau.forEach(row => {
                 row.forEach(element => {
@@ -571,159 +558,132 @@ export default class Board {
                     }
                 });
             });
+            return leoSum
         }
 
-        sum+= leoSum;
-       
-        return sum;
+        return tile.card!.negativeHidden ? Math.abs(tile.card!.value || 0): tile.card!.value || 0;
     }
 
-    computeReynie(): number {
-        return this.reynieActivated ? this.getPoison() * -3 : 0;
+    computeReynie(tile: Tile): number {
+        return this.reynieActivated && tile.card?.isPoison ? -3 : 0;
     }
 
-    computeByDifferentMetiers(): number {
+    computeByDifferentMetiers(tile: Tile): number {
         let sum = 0 ;
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                if(element.card && !element.card.hidden && element.card.countByMetiers) {
-                    let metiersTable = [];
-                    metiersTable.push(this.getJardiniers());
-                    metiersTable.push(this.getArchitectes());
-                    metiersTable.push(this.getEcrivains());
-                    metiersTable.push(this.getMusiciens());
-                    metiersTable.push(this.getPeintres());
-                    metiersTable = metiersTable.filter((val )=> val !=0);
-                    switch (metiersTable.length) {
-                        case 2:
-                            sum += 1;
-                        break;
-                        case 3:
-                            sum += 3;
-                        break;
-                        case 4:
-                            sum += 5;
-                        break;
-                        case 5:
-                            sum += 8;
-                        break;
-                
-                        default:
-                            break;
-                    }
-                }
-            });
-        });
+      
+        if(tile.card && !tile.card.hidden && tile.card.countByMetiers) {
+            let metiersTable = [];
+            metiersTable.push(this.getJardiniers());
+            metiersTable.push(this.getArchitectes());
+            metiersTable.push(this.getEcrivains());
+            metiersTable.push(this.getMusiciens());
+            metiersTable.push(this.getPeintres());
+            metiersTable = metiersTable.filter((val )=> val !=0);
+            switch (metiersTable.length) {
+                case 2:
+                    sum += 1;
+                break;
+                case 3:
+                    sum += 3;
+                break;
+                case 4:
+                    sum += 5;
+                break;
+                case 5:
+                    sum += 8;
+                break;
+        
+                default:
+                    break;
+            }
+        }
         return sum;
     }
 
     
-    computeByDifferentTypes(): number {
+    computeByDifferentTypes(tile: Tile): number {
         let sum = 0 ;
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                if(element.card && !element.card.hidden && element.card.countByAllTypes) {
-                    let typesTable = [];
-                    typesTable.push(this.getNobles());
-                    typesTable.push(this.getErudits());
-                    typesTable.push(this.getClerge());
-                    typesTable.push(this.getFavorite());
-                    typesTable.push(this.getPoison());
-                    typesTable.push(this.getMillitaire());
-                    typesTable.push(this.getHommedEtat());
-                    typesTable = typesTable.filter((val )=> val !=0);
-                    if(typesTable.length == 7) {
-                       sum += element.card.countByAllTypes; 
-                    }
-                }
-            });
-        });
+        if(tile.card && !tile.card.hidden && tile.card.countByAllTypes) {
+            let typesTable = [];
+            typesTable.push(this.getNobles());
+            typesTable.push(this.getErudits());
+            typesTable.push(this.getClerge());
+            typesTable.push(this.getFavorite());
+            typesTable.push(this.getPoison());
+            typesTable.push(this.getMillitaire());
+            typesTable.push(this.getHommedEtat());
+            typesTable = typesTable.filter((val )=> val !=0);
+            if(typesTable.length == 7) {
+                sum += tile.card.countByAllTypes; 
+            }
+        }
         return sum;
     }
 
     
-
-    computeCardsIfMiddle() : number {
+    
+    computeCardsIfMiddle(tile: Tile) : number {
         let sumMiddle = 0 ;
-        this.tableau.forEach((row, rowIndex) => {
-            row.forEach((element, colIndex) => {
-                if(element.card && !element.card.hidden && (rowIndex==1 && colIndex ==1)) {
-                    sumMiddle += element.card.ifMiddleValue || 0;
-                }
-            });
-        });
-        return sumMiddle;
+
+        if(!tile.isTop && !tile.isBottom && !tile.isLeft && !tile.isRight) {
+            sumMiddle += tile.card!.ifMiddleValue || 0;
+        }
+        return sumMiddle
     }
 
-    computeCardsIfTop() : number {
+
+    computeCardsIfTop(tile: Tile) : number {
         let sumTop = 0 ;
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                if(element.card && !element.card.hidden && element.isTop) {
-                    sumTop += element.card.ifTopValue || 0;
-                }
-            });
-        });
-        return sumTop;
+
+        if(tile.isTop) {
+            sumTop += tile.card!.ifTopValue || 0;
+        }
+        return sumTop
     }
 
-    computeCardsIfLeft() : number {
+    computeCardsIfLeft(tile: Tile) : number {
         let sumLeft = 0 ;
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                if(element.card && !element.card.hidden && element.isLeft) {
-                    sumLeft += element.card.ifLeftValue || 0;
-                }
-            });
-        });
+
+        if(tile.isLeft) {
+            sumLeft += tile.card!.ifLeftValue || 0;
+        }
         return sumLeft;
     }
 
-    
-    computeCardsIfRight() : number {
+
+    computeCardsIfRight(tile: Tile) : number {
         let sumRight = 0 ;
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                if(element.card && !element.card.hidden && element.isRight) {
-                    sumRight += element.card.ifRightValue || 0;
-                }
-            });
-        });
+
+        if(tile.isRight) {
+            sumRight += tile.card!.ifRightValue || 0;
+        }
         return sumRight;
     }
 
-    computeCardsIfBottom() : number {
+    computeCardsIfBottom(tile: Tile) : number {
         let sumBottom = 0 ;
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                if(element.card && !element.card.hidden && element.isBottom) {
-                    sumBottom += element.card.ifBottomValue || 0;
-                }
-            });
-        });
+
+        if(tile.isBottom) {
+            sumBottom += tile.card!.ifBottomValue || 0;
+        }
         return sumBottom;
     }
 
-
-    computeCardsIfExt() : number {
+    computeCardsIfExt(tile: Tile) : number {
         let sumExt = 0 ;
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                if(element.card && !element.card.hidden && element.card.ifExtValue && (element.isTop ||  element.isBottom || element.isRight || element.isLeft)) {
-                    sumExt += element.card.ifExtValue || 0;
-                }
-            });
-        });
+        if( tile.card!.ifExtValue && (tile.isTop ||  tile.isBottom || tile.isRight || tile.isLeft) ) {
+            sumExt += tile.card!.ifExtValue || 0;
+        }
         return sumExt;
     }
 
    
-    computeCardIfOtherCards(): number {
+    computeCardIfOtherCards(tile: Tile): number {
         let sumCardsIfOtherCards = 0;
-    
-        this.tableau.forEach(row => {
-            row.forEach(element => {
-                const card = element?.card;
+        
+        const card = tile.card!;
+
+                
 
                 if(card && !card.hidden && card.otherCardsRules && card.otherCardsRules.length) {
                     card.otherCardsRules.forEach(rule => {
@@ -752,9 +712,6 @@ export default class Board {
                     });
                 }
     
-                
-            });
-        });
     
         return sumCardsIfOtherCards;
     }
