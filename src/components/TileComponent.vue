@@ -2,7 +2,7 @@
     <div v-if="tile" class="tile-container" @click="focusInput()" :class="tile?.card && tile?.card.id ? 'has-card':''">
       <div @click="resetCard($event)" class="reset-button" v-if="tile?.card && tile?.card.id">
       </div>
-        <input ref="inputCard" type="number" @change="updateTileCard($event)" v-model="tile.inputValue" :class="tile?.card && tile?.card.id ? 'bottom' : 'center'" >
+        <input ref="inputCard" type="number" @change="updateTileCard($event)"  @keydown.enter="inputCard?.blur(); $event.preventDefault();" v-model="tile.inputValue" :class="tile?.card && tile?.card.id ? 'bottom' : 'center'" >
         <div @click="switchCard($event)" class="hide-button " :class="tile.card.hidden? 'hide': 'show'" v-if="tile?.card && tile?.card.id">
           
         </div>
@@ -61,7 +61,8 @@ function updateTileCard($event: any) {
                 undefined ;
                 
     inputCard.value?.blur();
-  $event.stopPropagation();
+  $event.preventDefault();
+    $event.stopPropagation();
 
   if(tile.value!.card == undefined && tile.value?.inputValue){
     tile.value.inputValue= undefined;
@@ -77,6 +78,7 @@ function switchCard($event: any) {
   if(tile.value?.card) {
     tile.value.card.hidden = !tile.value?.card?.hidden;
   }
+  $event.preventDefault();
   $event.stopPropagation();
 }
 
@@ -87,6 +89,7 @@ function resetCard($event: any) {
     tile.value.inputValue = undefined;
     inputCard.value?.blur();
   }
+  $event.preventDefault();
   $event.stopPropagation();
 }
 
