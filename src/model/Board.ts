@@ -565,7 +565,7 @@ export default class Board {
     }
 
     computeReynie(tile: Tile): number {
-        return this.reynieActivated && tile.card?.isPoison ? -3 : 0;
+        return this.reynieActivated && tile.card?.isPoison && !tile.card?.poisonHidden ? -3 : 0;
     }
 
     computeByDifferentMetiers(tile: Tile): number {
