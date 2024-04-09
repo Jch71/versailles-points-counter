@@ -7,6 +7,9 @@
           
         </div>
       <card-component :card="tile?.card"/>
+      <div class="card-score" v-if="tile?.card && tile?.card.id">
+          {{ tile?.card?.cardValue }}
+         </div>
     </div>
 </template>
 
@@ -132,6 +135,21 @@ function resetCard($event: any) {
       cursor: pointer; 
        transform: translate(0px, -2px);
     }
+  }
+
+  .card-score{
+    /* display: none; */
+    position: absolute;
+    top: 0;
+    font-size: 1.47em;
+    line-height: 1.47em;
+    width: 1.47em;
+    height: 1.47em;
+    background: url('../assets/icons/cercle-point-de-victroire.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    color:#e1ca98;
+    font-weight: bold;
   }
 
   .hide-button{

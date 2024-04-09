@@ -4,9 +4,6 @@
          :class="[fullscreen ? 'fullscreen' : '']"
          v-if="!card.hidden" @mousedown="startLongPress()" @mouseup="endLongPress()"
          @touchstart="startLongPress()" @touchend="endLongPress()" @contextmenu.prevent @load="imageLoaded">
-         <div class="card-score">
-          {{ card.cardValue }}
-         </div>
   </div>
 </template>
 
@@ -103,12 +100,6 @@ function enableScroll() {
 .hidden-card-container { 
     background:  url('/images/00.png');
     background-size: cover;
-}
-
-.card-score {
-  position: absolute;
-  bottom: 0;
-  color: blue;
 }
 
 .card-image{
