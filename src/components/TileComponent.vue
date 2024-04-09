@@ -2,7 +2,7 @@
     <div v-if="tile" class="tile-container" @click="focusInput()" :class="tile?.card && tile?.card.id ? 'has-card':''">
       <div @click="resetCard($event)" class="reset-button" v-if="tile?.card && tile?.card.id">
       </div>
-        <input ref="inputCard" type="number" @change="updateTileCard()" v-model="tile.inputValue" :class="tile?.card && tile?.card.id ? 'bottom' : 'center'">
+        <input ref="inputCard" type="number" @change="updateTileCard()" v-model="tile.inputValue" :class="tile?.card && tile?.card.id ? 'bottom' : 'center'" @keyup.enter="inputCard?.blur()">
         <div @click="switchCard($event)" class="hide-button " :class="tile.card.hidden? 'hide': 'show'" v-if="tile?.card && tile?.card.id">
           
         </div>
