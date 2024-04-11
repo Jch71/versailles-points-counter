@@ -7,7 +7,7 @@
           
         </div>
       <card-component :card="tile?.card"/>
-      <div class="card-score" v-if="tile?.card && tile?.card.id">
+      <div class="card-score" v-if="tile?.card && tile?.card.id && !tile?.card.hidden ">
           {{ tile?.card?.cardValue }}
          </div>
     </div>

@@ -653,7 +653,23 @@
         "value": -9,
         "isPoison": true,
         "hasEffect": true
-    },   
+    },
+    {
+        "id": 75,
+        "isFemme": true,
+        "name": "Mounia Faure",
+        "value": 0,
+        "isNoble": true
+    },
+    {
+        "id": 76,
+        "isHomme": true,
+        "name": "Stéphane Nouet",
+        "value": 9,
+        "isHommedEtat": true,
+        "isMillitaire": true,
+        "hasEffect" : true
+    },
     {
         "id": 89,
         "isHomme": true,
@@ -661,5 +677,26 @@
         "value": 33,
         "isErudit": true,
         "isNoble": true
+    },
+    {
+        "id": 94,
+        "isHomme": true,
+        "name": "Maxime Blandin",
+        "value": 0,
+        "isHommedEtat": true,
+        "otherCardsRules" : [
+            {
+                "ifOtherCards": [3, 1],
+                "ifOtherCardsValue" : 10
+            }
+        ]
+    },
+    {
+        "id": 99,
+        "isHomme": true,
+        "name": "Alexandre Cauchois",
+        "value": 0,
+        "isPoison": true,
+        "isMillitaire": true
     }
 ]
