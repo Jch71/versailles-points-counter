@@ -155,7 +155,7 @@ function resetCard($event: any) {
   .card-score{
     position: absolute;
     top: 0;
-    font-size: 1.27em;
+    font-size: 1em;
     width: 100%;
     height: 15%;
     background: url('../assets/icons/cercle-point-de-victroire.png');
