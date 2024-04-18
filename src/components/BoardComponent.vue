@@ -65,12 +65,7 @@
                 <div class="type clerge-count" :class="board.fenelonResource['clerge'] ? '':'inactive'" @click="addFenelonResource('clerge')"> </div>
             </div>
 
-            <div class="boards-mod">
-                <div class="mod reynie" @click="switchReynie()" :class="board.reynieActivated ? 'activated':'desactivated'">
-                </div>
-                <div class="mod louis" @click="switchLouis()" :class="board.louisActivated ? 'activated':'desactivated'">
-                </div>
-            </div>
+            
             <div class="boards-mod">
                 <div class="mod jeton-moins-7 millitaire" @click="switchBonusMoins7()" :class="board.bonusMoins7 ? 'activated':'desactivated'">
                 </div>
@@ -81,6 +76,12 @@
                 <div class="mod jeton-7-pts millitaire" @click="switchBonus7()" :class="board.bonus7 ? 'activated':'desactivated'">
                 </div>
                 
+            </div>
+            <div class="boards-mod">
+                <div class="mod reynie" @click="switchReynie()" :class="board.reynieActivated ? 'activated':'desactivated'">
+                </div>
+                <div class="mod louis" @click="switchLouis()" :class="board.louisActivated ? 'activated':'desactivated'">
+                </div>
             </div>
         </div>
     </div>
