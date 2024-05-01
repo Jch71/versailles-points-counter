@@ -169,15 +169,10 @@ export default class Board {
         this.tableau.forEach(row => {
             row.forEach(element => {
                 if (element.card && !element.card.hidden && element.card.isPoison && !element.card.poisonHidden) {
-                    sumPoison++;
+                    element.card.id === 58 ? sumPoison+=3 : sumPoison+=1;
                 }
             });
         });
-
-        if(this.isPresent(58)) {
-            sumPoison += 2;
-        }
-
 
         return sumPoison;
     }
