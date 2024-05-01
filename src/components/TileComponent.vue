@@ -53,7 +53,7 @@ function updateTileCard($event: any) {
   if(idExists) {
     inputCard.value?.blur();
     modalOpened.value = true;
-    modalContent.value = "Attention, cette personnalité est déjà à votre cour !"
+    modalContent.value = "<img src='images/deja-dans-la-cour.png'>";
     return;
   }
   tile.value!.card =  cardsList.find((elem: any) => elem.id == tile.value?.inputValue) ? 
@@ -68,7 +68,7 @@ function updateTileCard($event: any) {
     tile.value.inputValue= undefined;
     inputCard.value?.blur();
     modalOpened.value = true;
-    modalContent.value = "Attention, cette carte n\'existe pas (en tout cas pas à cette époque) !"
+    modalContent.value = "<img src='images/cette-carte-n_existe-pas.png'>";
     return;
   }
 }

@@ -67,12 +67,16 @@ function hideModal() {
     }
 
     &.small {
-        height: 20vh;
-        margin-top: 20vh;
+        height: fit-content;
+        margin-top: 10vh;
+        padding: 0;
         .modal-content {
             display: flex;
             align-items: center;
             vertical-align: middle;
+            img {
+                max-width: 80vw;
+            }
         }
     }
     button.close-button {

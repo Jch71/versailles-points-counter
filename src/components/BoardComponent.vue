@@ -5,6 +5,7 @@
         <div class="cour-summary">
             <div class="title" @click="isOpened = !isOpened">
                 <img src="../assets/bandeau-ma-cour.png" alt="">
+                <img src="../assets/icons/menu-lateral.png" class="accordion-icon" alt="Déplier/Replier les icônes">
             </div>
             <div class="summary" :class="isOpened?'opened':'' ">
                 <div class="types">
@@ -290,8 +291,7 @@ import type Card from '@/model/Card';
              justify-content: center;
 
              &.fenelon {
-                margin-bottom: 10px;
-                margin-top: 5px;
+                margin: 5px 0;
                 background-color: #e1ca98;
                 border-radius: 8px;
                 .type{
@@ -317,32 +317,32 @@ import type Card from '@/model/Card';
             }
 
             .erudits-count {
-                background-image: url('../assets/icons/erudit.png');
+                background-image: url('../assets/icons/icon-erudit.png');
 
             }
 
             .nobles-count {
-                background-image: url('../assets/icons/noblesse.png');
+                background-image: url('../assets/icons/icon-noble.png');
             }
 
             .favorite-count {
-                background-image: url('../assets/icons/favorite.png');
+                background-image: url('../assets/icons/icon-favorite.png');
             }
 
             .millitaire-count {
-                background-image: url('../assets/icons/militaire.png');
+                background-image: url('../assets/icons/icon-militaire.png');
             }
 
             .poison-count {
-                background-image: url('../assets/icons/poison.png');
+                background-image: url('../assets/icons/icon-poison.png');
             }
 
             .hommes-detat-count {
-                background-image: url('../assets/icons/homme-detat.png');
+                background-image: url('../assets/icons/icon-homme-detat.png');
             }
 
             .clerge-count {
-                background-image: url('../assets/icons/clerge.png');
+                background-image: url('../assets/icons/icon-clerge.png');
             }
         }
 
@@ -420,13 +420,13 @@ import type Card from '@/model/Card';
         user-select: none;
         .mod {
             width: 60px;
-            height: 40px;
+            height: 30px;
             background-size: 100%;
             background-repeat: no-repeat;
             cursor: pointer;
             border-radius: 5px;
             padding: 5px;
-            margin: 0 10px;
+            margin: 5px;
             outline:none;
             --webkit-tap-highlight-color: transparent;
             background-position: center;
@@ -437,7 +437,7 @@ import type Card from '@/model/Card';
 
             &.reynie{
                 background-image: url('../assets/icons/reynie.png');
-                width: 100px;
+                width: 150px;
                 &.desactivated {
                      filter: grayscale(1);
                 }
@@ -445,7 +445,7 @@ import type Card from '@/model/Card';
 
             &.louis{
                 background-image: url('../assets/icons/louis-II.png');
-                width: 100px;
+                width: 150px;
                 &.desactivated {
                      filter: grayscale(1);
                 }
@@ -483,8 +483,16 @@ import type Card from '@/model/Card';
     .title {
         cursor: pointer;
         width: 100%;
+        position: relative;
         img{
             width: 100%;
+        }
+
+        .accordion-icon {
+            position: absolute;
+            bottom: 30px;
+            width: 30px;
+            right: 10px;
         }
     }
 
