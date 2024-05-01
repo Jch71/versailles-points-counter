@@ -437,7 +437,7 @@ import type Card from '@/model/Card';
 
             &.reynie{
                 background-image: url('../assets/icons/reynie.png');
-                width: 150px;
+                width: 180px;
                 &.desactivated {
                      filter: grayscale(1);
                 }
@@ -445,7 +445,7 @@ import type Card from '@/model/Card';
 
             &.louis{
                 background-image: url('../assets/icons/louis-II.png');
-                width: 150px;
+                width: 180px;
                 &.desactivated {
                      filter: grayscale(1);
                 }
