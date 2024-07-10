@@ -555,7 +555,8 @@ export default class Board {
 
 
     computeCardsSum(tile: Tile) : number {
-        let leoSum, kingSum = 0;
+        let leoSum= 0;
+        let kingSum = 0;
         if(tile.card?.id == 89) {
             leoSum = 33;
             this.tableau.forEach(row => {
@@ -569,7 +570,7 @@ export default class Board {
         }
 
         if(tile.card?.id == 70) {
-            kingSum = 33;
+            kingSum = 30;
             this.tableau.forEach(row => {
                 row.forEach(element => {
                     if(element.card && !element.card.hidden && element.card.id != 70) {
