@@ -25,6 +25,7 @@
                 <span class="metier architectes-count">{{ board.getArchitectes() }} </span>
                 <span class="metier ecrivains-count">{{ board.getEcrivains() }} </span>
                 <span class="metier musiciens-count">{{ board.getMusiciens() }} </span>
+                <span class="metier sculpteurs-count">{{ board.getSculpteurs() }} </span>
             </div>
 
             <div class="other">
@@ -381,6 +382,10 @@ import type Card from '@/model/Card';
 
             .musiciens-count {
                 background-image: url('../assets/icons/compositeur.png');
+            }
+
+            .sculpteurs-count {
+                background-image: url('../assets/icons/sculpteur.png');
             }
 
             .hommes-count {

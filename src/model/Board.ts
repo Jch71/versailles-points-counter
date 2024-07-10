@@ -84,6 +84,10 @@ export default class Board {
         return this.countCardsByType("isPeintre");
     }
 
+    getSculpteurs(): number {
+        return this.countCardsByType("isSculpteur");
+    }
+
     getEffects(): number {
         return this.countCardsByType("hasEffect");
     }
@@ -300,6 +304,7 @@ export default class Board {
                     cardSum += this.computeCardsByHidden(tile);
                     cardSum += this.computeByDifferentTypes(tile);
                     cardSum += this.computeEffects(tile);
+                    cardSum += this.computeMillitairePairs(tile);
                     cardSum += this.computeLaFayette(tile);
                     cardSum += this.computeColumns(tile);
                     cardSum += this.computeReynie(tile);
@@ -317,6 +322,13 @@ export default class Board {
     }
 
     computeEffects(tile: Tile): number {
+        if(tile.card?.id == 65) {
+            return Math.floor(this.getMillitaire()/2) * 3
+        }
+       return 0; 
+    }
+    
+    computeMillitairePairs(tile: Tile): number {
         if(tile.card?.id == 48) {
             return Math.floor(this.getEffects()/2) * 3
         }
@@ -543,7 +555,7 @@ export default class Board {
 
 
     computeCardsSum(tile: Tile) : number {
-        let leoSum = 0;
+        let leoSum, kingSum = 0;
         if(tile.card?.id == 89) {
             leoSum = 33;
             this.tableau.forEach(row => {
@@ -554,6 +566,18 @@ export default class Board {
                 });
             });
             return leoSum
+        }
+
+        if(tile.card?.id == 70) {
+            kingSum = 33;
+            this.tableau.forEach(row => {
+                row.forEach(element => {
+                    if(element.card && !element.card.hidden && element.card.id != 70) {
+                        kingSum -= Math.abs(element.card.value || 0)
+                    }
+                });
+            });
+            return kingSum
         }
 
         return tile.card!.negativeHidden ? Math.abs(tile.card!.value || 0): tile.card!.value || 0;
@@ -573,6 +597,7 @@ export default class Board {
             metiersTable.push(this.getEcrivains());
             metiersTable.push(this.getMusiciens());
             metiersTable.push(this.getPeintres());
+            metiersTable.push(this.getSculpteurs());
             metiersTable = metiersTable.filter((val )=> val !=0);
             switch (metiersTable.length) {
                 case 2:
@@ -585,6 +610,9 @@ export default class Board {
                     sum += 5;
                 break;
                 case 5:
+                    sum += 8;
+                break;
+                case 6:
                     sum += 8;
                 break;
         

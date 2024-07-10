@@ -32,6 +32,7 @@ export default class Card {
     public isJardinier: boolean=false;
     public isEcrivain: boolean=false;
     public isMusicien: boolean=false;
+    public isSculpteur: boolean=false;
     public countByMetiers: boolean=false;
     public paintedByHyacinthe: boolean = false;
     public countByAllTypes: number= 0;
@@ -70,6 +71,7 @@ export default class Card {
             this.isArchitecte =cardObject.isArchitecte;
             this.isJardinier =cardObject.isJardinier;
             this.isEcrivain =cardObject.isEcrivain;
+            this.isSculpteur=cardObject.isSculpteur;
             this.isPoison =cardObject.isPoison;
             this.poisonHidden = cardObject.poisonHidden;
             this.negativeHidden = cardObject.negativeHidden;

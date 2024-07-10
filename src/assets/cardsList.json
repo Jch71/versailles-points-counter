@@ -655,6 +655,108 @@
         "hasEffect": true
     },
     {
+        "id":61, 
+        "isHomme": true,
+        "value": 0,
+        "isErudit": true,
+        "isSculpteur": true,
+        "countByMetiers": true
+    },
+    {
+        "id":62,
+        "isFemme": true,
+        "value": -3,
+        "hasEffect": true,
+        "isClerge": true, 
+        "otherCardsRules" : [
+            {
+                "ifOtherCards": [2],
+                "ifOtherCardsValue" : 7
+            }
+        ]
+    },
+    {
+        "id":63,
+        "isFemme": true,
+        "value": 0,
+        "isClerge": true,
+        "isNoble" : true,
+        "isFavorite" : true
+    },
+    {
+        "id":64, 
+        "isHomme": true,
+        "value": 8,
+        "hasEffect": true,
+        "isNoble" : true
+    },
+    {
+        "id":65, 
+        "isHomme": true,
+        "value": 0,
+        "isNoble" : true,
+        "isMillitaire": true
+    },
+    {
+        "id":66, 
+        "isHomme": true,
+        "value": 3,
+        "isNoble" : true,
+        "isHommedEtat": true
+    },
+    {
+        "id":67, 
+        "isHomme": true,
+        "value": 3,
+        "isNoble" : true,
+        "otherCardsRules" : [            
+            {
+            "ifOtherCards": [4],
+            "ifOtherCardsValue" : 3
+        }
+    ]
+    },
+    {
+        "id":68,
+        "isFemme": true,
+        "value": 1,
+        "isNoble" : true,
+        "isFavorite" : true,
+        "otherCardsRules" : [            
+            {
+                "ifOtherCards": [2],
+                "ifOtherCardsValue" : 4
+            },
+            {
+                "ifOtherCards": [8],
+                "ifOtherCardsValue" : 4
+            },
+            {
+                "ifOtherCards": [2, 8],
+                "ifOtherCardsValue" : -4
+            },
+            {
+                "ifOtherCards": [4],
+                "ifOtherCardsValue" : -3
+            }
+        ]
+    },
+    {
+        "id":69,
+        "isFemme": true,
+        "value": -2,
+        "hasEffect": true,
+        "isNoble" : true,
+        "isFavorite" : true,
+        "isPoison": true
+    },
+    {
+        "id":70, 
+        "isHomme": true,
+        "value": 30,
+        "isNoble" : true
+    },
+    {
         "id": 75,
         "isFemme": true,
         "name": "Mounia Faure",
