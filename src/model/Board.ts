@@ -333,9 +333,12 @@ export default class Board {
             this.tableau.forEach((row, rowIndex) => {
                 row.forEach((element, colIndex) => {
                     if (element.card) {
-                        sumValliere += element.card?.isNoble || element.card?.isErudit ? 0 : 2
-
-                    }
+                        if(!element.card.hidden) {
+                            sumValliere += element.card?.isNoble || element.card?.isErudit ? 0 : 2;
+                        } else {
+                            sumValliere += 2;
+                        }
+                    } 
                  })
                 })
             
