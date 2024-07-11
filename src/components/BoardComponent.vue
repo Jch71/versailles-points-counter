@@ -67,6 +67,13 @@
                 <div class="type clerge-count" :class="board.fenelonResource['clerge'] ? '':'inactive'" @click="addFenelonResource('clerge')"> </div>
             </div>
 
+            <div class="types fenelon" v-if="board.isPresent(69)">
+                <div class="type clerge-count" :class="board.brinvilliersClerge ? '':'inactive'" @click="switchBrinvilliersClerge()"> </div>
+                <div class="type clerge-count" :class="board.brinvilliersClerge ? '':'inactive'" @click="switchBrinvilliersClerge()"> </div>
+                <div class="type poison-count" :class="board.brinvilliersPoison ? '':'inactive'" @click="switchBrinvilliersPoison()"> </div>
+                <div class="type poison-count" :class="board.brinvilliersPoison ? '':'inactive'" @click="switchBrinvilliersPoison()"> </div>
+            </div>
+
             
             <div class="boards-mod">
                 <div class="mod jeton-moins-7 millitaire" @click="switchBonusMoins7()" :class="board.bonusMoins7 ? 'activated':'desactivated'">
@@ -124,6 +131,16 @@ import type Card from '@/model/Card';
 
     function resetAll() {
         board.value.reset();
+    }
+
+    function switchBrinvilliersClerge(): void {
+        board.value.brinvilliersClerge = !board.value.brinvilliersClerge;
+        board.value.brinvilliersPoison = false;
+    }
+
+    function switchBrinvilliersPoison(): void {
+        board.value.brinvilliersPoison = !board.value.brinvilliersPoison;
+        board.value.brinvilliersClerge = false;
     }
 
     function addFenelonResource(type:string)  {

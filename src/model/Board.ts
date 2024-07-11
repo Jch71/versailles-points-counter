@@ -11,6 +11,8 @@ export default class Board {
     public bonus7: boolean = false;
     public bonusMoins7 : boolean = false;
     public fenelonResource : any = {};
+    public brinvilliersClerge: boolean = false;
+    public brinvilliersPoison: boolean = false;
   
     constructor() {
 
@@ -178,6 +180,8 @@ export default class Board {
             });
         });
 
+        sumPoison+= this.brinvilliersPoison ? 2 : 0;
+
         return sumPoison;
     }
 
@@ -206,6 +210,7 @@ export default class Board {
     
     getClerge(): number {
         let sumClerge = this.isPresent(43) &&  this.fenelonResource['clerge']? 1 : 0;
+        sumClerge += this.brinvilliersClerge ? 2 : 0;
         return sumClerge += this.countCardsByType("isClerge");
     }
 
@@ -305,6 +310,7 @@ export default class Board {
                     cardSum += this.computeByDifferentTypes(tile);
                     cardSum += this.computeEffects(tile);
                     cardSum += this.computeMillitairePairs(tile);
+                    cardSum += this.computeValliere(tile);
                     cardSum += this.computeLaFayette(tile);
                     cardSum += this.computeColumns(tile);
                     cardSum += this.computeReynie(tile);
@@ -321,6 +327,22 @@ export default class Board {
        return cardsValue;
     }
 
+    computeValliere(tile: Tile): number {
+        let sumValliere = 0;
+        if(tile.card?.id == 63) {
+            this.tableau.forEach((row, rowIndex) => {
+                row.forEach((element, colIndex) => {
+                    if (element.card) {
+                        sumValliere += element.card?.isNoble || element.card?.isErudit ? 0 : 2
+
+                    }
+                 })
+                })
+            
+        }
+       return sumValliere; 
+    }
+
     computeEffects(tile: Tile): number {
         if(tile.card?.id == 65) {
             return Math.floor(this.getMillitaire()/2) * 3
@@ -330,7 +352,7 @@ export default class Board {
     
     computeMillitairePairs(tile: Tile): number {
         if(tile.card?.id == 48) {
-            return Math.floor(this.getEffects()/2) * 3
+            return Math.floor(this.getEffects()/2) * 1
         }
        return 0; 
     }
