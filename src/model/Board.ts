@@ -348,14 +348,14 @@ export default class Board {
 
     computeEffects(tile: Tile): number {
         if(tile.card?.id == 65) {
-            return Math.floor(this.getMillitaire()/2) * 3
+            return Math.floor(this.getEffects()/2) * 3
         }
        return 0; 
     }
     
     computeMillitairePairs(tile: Tile): number {
         if(tile.card?.id == 48) {
-            return Math.floor(this.getEffects()/2) * 1
+            return Math.floor(this.getMillitaire()/2) * 1
         }
        return 0; 
     }
