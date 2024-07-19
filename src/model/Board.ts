@@ -355,7 +355,7 @@ export default class Board {
     
     computeMillitairePairs(tile: Tile): number {
         if(tile.card?.id == 48) {
-            return Math.floor(this.getMillitaire()/2) * 1
+            return Math.floor(this.getMillitaires()/2) * 1
         }
        return 0; 
     }
