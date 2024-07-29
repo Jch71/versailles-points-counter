@@ -1,6 +1,6 @@
 export default class Card {
 
-    public id?: number;
+    public id?: any;
     public hidden : boolean = false;
     public hasEffect: boolean = false;
     public name?: string;

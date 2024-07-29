@@ -109,7 +109,7 @@ import type Card from '@/model/Card';
 
     const board = ref < Board > (new Board());
     const modalOpened = ref<boolean> (false);
-    const isOpened = ref<boolean> (true);
+    const isOpened = ref<boolean> (false);
         
     
 

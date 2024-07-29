@@ -3,9 +3,11 @@
       <div @click="resetCard($event)" class="reset-button" v-if="tile?.card && tile?.card.id">
       </div>
         <input ref="inputCard" type="number" @change="updateTileCard($event)"  @keydown.enter="inputCard?.blur(); $event.preventDefault();" v-model="tile.inputValue" :class="tile?.card && tile?.card.id ? 'bottom' : 'center'" >
-        <div @click="switchCard($event)" class="hide-button " :class="tile.card.hidden? 'hide': 'show'" v-if="tile?.card && tile?.card.id">
-          
+        <div @click="switchCard($event)" class="hide-button " :class="tile.card.hidden? 'hide': 'show'" v-if="tile?.card && tile?.card.id && tile?.card.id !== ' '">
         </div>
+        <div @click="addEmptyCard($event)" class="hide-button show" v-if="!(tile?.card && tile?.card.id)">
+        </div>
+
       <card-component :card="tile?.card"/>
       <div class="card-score" v-if="tile?.card && tile?.card.id && !tile?.card.hidden ">
           {{ tile?.card?.cardValue }}
@@ -82,6 +84,14 @@ function switchCard($event: any) {
   $event.stopPropagation();
 }
 
+function addEmptyCard(event: any) {
+  inputCard.value?.blur();
+  if(tile.value) { 
+   let fakeCard = new Card({id:' '});
+   fakeCard.hidden = true;
+    tile.value.card = fakeCard;
+  }
+}
 
 function resetCard($event: any) {
   if(tile.value?.card) {
