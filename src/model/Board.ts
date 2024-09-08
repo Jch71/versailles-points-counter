@@ -124,6 +124,9 @@ export default class Board {
         if(this.isPresent(33) && this.isPresent(5)) {
             sumEcrivain+=1;
         }
+        if(this.isPresent(71)) {
+            sumEcrivain +=4;
+        }
 
         if(this.isPresent(36)){
             this.tableau.forEach((row, rowIndex) => {
@@ -180,13 +183,23 @@ export default class Board {
             });
         });
 
-        sumPoison+= this.brinvilliersPoison ? 2 : 0;
+        if(this.isPresent(74)) {
+            sumPoison += 1;
+        }
+
+        sumPoison+= this.brinvilliersPoison && this.isPresent(69) ? 2 : 0;
 
         return sumPoison;
     }
 
     getFavorite(): number {
-        return this.countCardsByType("isFavorite");
+        let sumFavorites = 0;
+        sumFavorites = this.countCardsByType("isFavorite");
+
+        if(this.isPresent(74)) {
+            sumFavorites += 2;
+        }
+        return sumFavorites
     }
 
     getMillitaire(): number {
@@ -197,6 +210,9 @@ export default class Board {
         if(this.isPresent(37)) {
             sumMillitaire += 1;
         } 
+        if(this.isPresent(72)) {
+            sumMillitaire +=4;
+        }
         if(this.louisActivated) {
             sumMillitaire += 1;
         }
@@ -210,7 +226,7 @@ export default class Board {
     
     getClerge(): number {
         let sumClerge = this.isPresent(43) &&  this.fenelonResource['clerge']? 1 : 0;
-        sumClerge += this.brinvilliersClerge ? 2 : 0;
+        sumClerge += this.brinvilliersClerge && this.isPresent(69) ? 2 : 0;
         return sumClerge += this.countCardsByType("isClerge");
     }
 
@@ -472,7 +488,7 @@ export default class Board {
     
     computeLaFayette(tile:Tile): number {
         if(tile.card!.id === 40) {
-            return Math.min(this.getEcrivains(), this.getNobles());
+            return this.getEcrivains() >= 5 ? 9 : 0;
         } 
         return 0;
     }
@@ -582,11 +598,11 @@ export default class Board {
     computeCardsSum(tile: Tile) : number {
         let leoSum= 0;
         let kingSum = 0;
-        if(tile.card?.id == 89) {
-            leoSum = 33;
+        if(tile.card?.id == -89) {
+            leoSum = tile.card.value!;
             this.tableau.forEach(row => {
                 row.forEach(element => {
-                    if(element.card && !element.card.hidden && element.card.id != 89) {
+                    if(element.card && !element.card.hidden && element.card.id != -89) {
                         leoSum -= Math.abs(element.card.value || 0)
                     }
                 });
@@ -595,7 +611,7 @@ export default class Board {
         }
 
         if(tile.card?.id == 70) {
-            kingSum = 30;
+            kingSum = tile.card.value!;
             this.tableau.forEach(row => {
                 row.forEach(element => {
                     if(element.card && !element.card.hidden && element.card.id != 70) {

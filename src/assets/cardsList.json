@@ -22,6 +22,7 @@
         "name": "Philippe d'Orléans",
         "value": 5,
         "isNoble": true,
+        "isMillitaire": true,
         "isFemme": true,
         "isHomme" : true,
         "otherCardsRules" : [
@@ -725,15 +726,15 @@
         "otherCardsRules" : [            
             {
                 "ifOtherCards": [2],
-                "ifOtherCardsValue" : 4
+                "ifOtherCardsValue" : 5
             },
             {
                 "ifOtherCards": [8],
-                "ifOtherCardsValue" : 4
+                "ifOtherCardsValue" : 5
             },
             {
                 "ifOtherCards": [2, 8],
-                "ifOtherCardsValue" : -4
+                "ifOtherCardsValue" : -5
             },
             {
                 "ifOtherCards": [4],
@@ -752,18 +753,51 @@
     {
         "id":70, 
         "isHomme": true,
-        "value": 30,
+        "value": 25,
         "isNoble" : true
     },
     {
-        "id": 75,
+        "id":71, 
+        "isHomme": true,
+        "value": 0,
+        "isErudit" : true
+    },
+    {
+        "id":72, 
+        "isHomme": true,
+        "value": -5,
+        "isNoble" : true,
+        "isMillitaire": true
+    },
+    {
+        "id":73, 
+        "isHomme": true,
+        "value": 0,
+        "pointsByClerge": 3,
+        "otherCardsRules" : [
+            {
+                "ifOtherCards": [1],
+                "ifOtherCardsValue" : -5
+            }
+        ],
+        "isClerge" : true
+    },
+    {
+        "id":74, 
+        "isFemme": true,
+        "value": 0,
+        "isFavorite" : true,
+        "isPoison": true
+    },
+    {
+        "id": -75,
         "isFemme": true,
         "name": "Mounia Faure",
         "value": 0,
         "isNoble": true
     },
     {
-        "id": 76,
+        "id": -76,
         "isHomme": true,
         "name": "Stéphane Nouet",
         "value": 9,
@@ -772,7 +806,7 @@
         "hasEffect" : true
     },
     {
-        "id": 89,
+        "id": -89,
         "isHomme": true,
         "name": "Léo Blandin",
         "value": 33,
@@ -780,7 +814,7 @@
         "isNoble": true
     },
     {
-        "id": 94,
+        "id": -94,
         "isHomme": true,
         "name": "Maxime Blandin",
         "value": 0,
@@ -793,7 +827,7 @@
         ]
     },
     {
-        "id": 99,
+        "id": -99,
         "isHomme": true,
         "name": "Alexandre Cauchois",
         "value": 0,

@@ -1,6 +1,6 @@
 <template>
   <div v-if="card" :class="card && !card.hidden ? 'card-container': 'hidden-card-container'">
-    <img v-show="shouldRenderOnce" :src="`images/${card.id}.png`" alt="" class="card-image"
+    <img v-show="shouldRenderOnce" :src="fullscreen ? `images/saviez-vous/saviez-vous-${card.id}.png` : `images/${card.id}.png`" alt="" class="card-image"
          :class="[fullscreen ? 'fullscreen' : '']"
          v-if="!card.hidden" @mousedown="startLongPress()" @mouseup="endLongPress()"
          @touchstart="startLongPress()" @touchend="endLongPress()" @contextmenu.prevent @load="imageLoaded">

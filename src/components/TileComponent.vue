@@ -5,7 +5,7 @@
         <input ref="inputCard" type="number" @change="updateTileCard($event)"  @keydown.enter="inputCard?.blur(); $event.preventDefault();" v-model="tile.inputValue" :class="tile?.card && tile?.card.id ? 'bottom' : 'center'" >
         <div @click="switchCard($event)" class="hide-button " :class="tile.card.hidden? 'hide': 'show'" v-if="tile?.card && tile?.card.id && tile?.card.id !== ' '">
         </div>
-        <div @click="addEmptyCard($event)" class="hide-button show" v-if="!(tile?.card && tile?.card.id)">
+        <div @click="addEmptyCard($event)" class="hide-button show empty-card" v-if="!(tile?.card && tile?.card.id)">
         </div>
 
       <card-component :card="tile?.card"/>
@@ -188,6 +188,10 @@ function resetCard($event: any) {
     }
     &.hide {
       background-image: url('../assets/icons/show.png');
+    }
+
+    &.empty-card{
+      right: 0px;
     }
   }
 
