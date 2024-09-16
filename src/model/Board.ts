@@ -183,11 +183,11 @@ export default class Board {
             });
         });
 
-        if(this.isPresent(74)) {
+        if(this.isPresent(74) && !this.getCardById(74)?.poisonHidden) {
             sumPoison += 1;
         }
 
-        sumPoison+= this.brinvilliersPoison && this.isPresent(69) ? 2 : 0;
+        sumPoison+= this.brinvilliersPoison && this.isPresent(69) && !this.getCardById(69)?.poisonHidden ? 2 : 0;
 
         return sumPoison;
     }
@@ -626,7 +626,20 @@ export default class Board {
     }
 
     computeReynie(tile: Tile): number {
-        return this.reynieActivated && tile.card?.isPoison && !tile.card?.poisonHidden ? (tile.card?.id === 58 ? -9 : -3) : 0;
+        let sumReynie = 0;
+        if( this.reynieActivated && tile.card?.isPoison && !tile.card?.poisonHidden) {
+            if (tile.card?.id === 58) {
+                sumReynie = -9;
+            } else if(tile.card?.id === 69 && this.brinvilliersPoison) {
+                sumReynie = -9;
+            } else if(tile.card?.id === 74) {
+                sumReynie = -6;
+            }
+            else {
+                sumReynie = -3;
+            }
+        }
+        return  sumReynie
     }
 
     computeByDifferentMetiers(tile: Tile): number {

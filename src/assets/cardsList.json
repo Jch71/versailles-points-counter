@@ -478,7 +478,8 @@
         "value": 1,
         "isFemme": true,
         "isNoble": true,
-        "isErudit": true
+        "isErudit": true,
+        "isEcrivain": true
     },
     {
         "id": 41,
