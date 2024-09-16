@@ -1,5 +1,8 @@
 const CACHE_NAME = 'versailles-cache-v1';
   const urlsToCache = [
+    './images/00.png',
+    './images/cette-carte-n_existe-pas.png',
+    './images/deja-dans-la-cour.png',
     './images/1.png',
     './images/2.png',
     './images/3.png',

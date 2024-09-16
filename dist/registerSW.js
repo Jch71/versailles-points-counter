@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/versailles-points-counter/sw.js', { scope: '/versailles-points-counter/' })})}
