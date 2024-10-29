@@ -3,12 +3,13 @@ import BoardComponent from './components/BoardComponent.vue';
 import FooterComponent from './components/FooterComponent.vue';
 import PWAInstallComponent from './components/PWAInstallComponent.vue';
 
+
 </script>
 
 <template>
     <PWAInstallComponent/>
       <main>
-        <BoardComponent/>
+        <router-view></router-view>
       </main>
     <FooterComponent/>
 </template> 

@@ -13,10 +13,13 @@ import { ref } from 'vue';
 
 const props = defineProps({
   card: Card,
+  inList: { type: Boolean, default: false }
 });
 let pressTimer: any;
 let fullscreen = ref<boolean>(false);
 let shouldRenderOnce = ref<boolean>(false);
+
+const timeout = props.inList ? 1000 : 400;
 
 function imageLoaded() {
   // Réinitialisez shouldRenderOnce après le chargement de l'image
@@ -27,7 +30,7 @@ function startLongPress() {
   pressTimer = setTimeout(() => {
     disableScroll();
     fullscreen.value = true;
-  }, 400); // Ajustez la durée selon vos besoins
+  }, timeout); // Ajustez la durée selon vos besoins
 }
 
 function endLongPress() {
@@ -116,7 +119,6 @@ function enableScroll() {
         border-radius: 6%;
         transform: translate(0%, -50%);
         top: 50%;
-        left: calc(50%);
 
         @media screen and (max-width: 1200px) {
           transform: translate(-50%, -50%);

@@ -45,7 +45,7 @@
 
 <template>
     <header @click="installPWA" v-if="installPromptEvent && showInstallButton">
-        Cliquez ici pour installer l'application
+        Vous pouvez installer cette application directement sur votre appareil en cliquant ici. 
         <button @click="hideInstallButton($event)" class="close-button">
         </button>
     </header>
@@ -55,7 +55,7 @@
 <style scoped>
     header {
         border-radius: 8px;
-        background-color: beige;
+        background-color: #e1ca98;
         height: 50px;
         border: solid 1px grey;
         color: var(--vt-c-text-light-1);

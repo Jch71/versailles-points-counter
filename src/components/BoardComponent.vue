@@ -1,6 +1,6 @@
 <template>
     <ModalComponent v-model:opened="modalOpened"/>
-    <div class="board">
+    <div class="board" v-if="boardLoaded">
         
         <div class="cour-summary">
             <div class="title" @click="isOpened = !isOpened">
@@ -9,54 +9,54 @@
             </div>
             <div class="summary" :class="isOpened?'opened':'' ">
                 <div class="types">
-                <div class="type erudits-count">{{ board.getErudits() }}</div>
-                <div class="type nobles-count">{{ board.getNobles() }} </div>
-                <div class="type poison-count">{{ board.getPoison() }} </div>
-                <div class="type favorite-count">{{ board.getFavorite() }} </div>
-                <div class="type millitaire-count">{{ board.getMillitaire() }} </div>
-                <div class="type hommes-detat-count">{{ board.getHommedEtat() }}</div>
-                <div class="type clerge-count">{{ board.getClerge() }} </div>
-            </div>
-
-
-            <div class="metiers">
-                <span class="metier jardiniers-count">{{ board.getJardiniers() }} </span>
-                <span class="metier peintres-count">{{ board.getPeintres() }} </span>
-                <span class="metier architectes-count">{{ board.getArchitectes() }} </span>
-                <span class="metier ecrivains-count">{{ board.getEcrivains() }} </span>
-                <span class="metier musiciens-count">{{ board.getMusiciens() }} </span>
-                <span class="metier sculpteurs-count">{{ board.getSculpteurs() }} </span>
-            </div>
-
-            <div class="other">
-                <span class="metier hommes-count">{{ board.getHommes() }} </span>
-                <span class="metier femmes-count">{{ board.getFemmes() }} </span>
-                <span class="metier eclairs-count">{{ board.getEclairs() }} </span>
-            </div>
-
-            
-
-
+                    <div class="type erudits-count">{{ board.getErudits() }}</div>
+                    <div class="type nobles-count">{{ board.getNobles() }} </div>
+                    <div class="type poison-count">{{ board.getPoison() }} </div>
+                    <div class="type favorite-count">{{ board.getFavorite() }} </div>
+                    <div class="type millitaire-count">{{ board.getMillitaire() }} </div>
+                    <div class="type hommes-detat-count">{{ board.getHommedEtat() }}</div>
+                    <div class="type clerge-count">{{ board.getClerge() }} </div>
+                </div>
+                
+                
+                <div class="metiers">
+                    <span class="metier jardiniers-count">{{ board.getJardiniers() }} </span>
+                    <span class="metier peintres-count">{{ board.getPeintres() }} </span>
+                    <span class="metier architectes-count">{{ board.getArchitectes() }} </span>
+                    <span class="metier ecrivains-count">{{ board.getEcrivains() }} </span>
+                    <span class="metier musiciens-count">{{ board.getMusiciens() }} </span>
+                    <span class="metier sculpteurs-count">{{ board.getSculpteurs() }} </span>
+                </div>
+                
+                <div class="other">
+                    <span class="metier hommes-count">{{ board.getHommes() }} </span>
+                    <span class="metier femmes-count">{{ board.getFemmes() }} </span>
+                    <span class="metier eclairs-count">{{ board.getEclairs() }} </span>
+                </div>
+                
+                
+                
+                
             </div>
             
         </div>
-
+        
         <div class="main-board">
-
+            
             <div class="score-header">
                 <div class="info-button" @click="openInfoModal()">
-                    
                 </div>
+                <a href="/list" class="cards-list">Liste des cartes</a>
                 <div class="score">
-                {{ board.getScore() }}
+                    {{ board.getScore() }}
                 </div>
                 <div class="reset-button" @click="resetAll()"></div>
             </div> 
-
+            
             <div class="row" v-for="(row, rowIndex) in board.getTableau()">
-                <TileComponent v-for="(tile, colIndex) in row" :tile="tile" :board="(board as Board)" />
+                <TileComponent v-for="(tile, colIndex) in row" :tile="(tile as Tile)" :board="(board as Board)" />
             </div>
-
+            
             <div class="types fenelon" v-if="board.isPresent(43)">
                 <div class="type erudits-count" :class="board.fenelonResource['erudit'] ? '':'inactive'" @click="addFenelonResource('erudit')"></div>
                 <div class="type nobles-count" :class="board.fenelonResource['noble'] ? '':'inactive'" @click="toggleFenelonProperty('isNoble'); addFenelonResource('noble')"> </div>
@@ -66,14 +66,14 @@
                 <div class="type hommes-detat-count" :class="board.fenelonResource['homme-detat'] ? '':'inactive'" @click="toggleFenelonProperty('isHommedEtat'); addFenelonResource('homme-detat')"></div>
                 <div class="type clerge-count" :class="board.fenelonResource['clerge'] ? '':'inactive'" @click="addFenelonResource('clerge')"> </div>
             </div>
-
+            
             <div class="types fenelon" v-if="board.isPresent(69)">
                 <div class="type clerge-count" :class="board.brinvilliersClerge ? '':'inactive'" @click="switchBrinvilliersClerge()"> </div>
                 <div class="type clerge-count" :class="board.brinvilliersClerge ? '':'inactive'" @click="switchBrinvilliersClerge()"> </div>
                 <div class="type poison-count" :class="board.brinvilliersPoison ? '':'inactive'" @click="switchBrinvilliersPoison()"> </div>
                 <div class="type poison-count" :class="board.brinvilliersPoison ? '':'inactive'" @click="switchBrinvilliersPoison()"> </div>
             </div>
-
+            
             
             <div class="boards-mod">
                 <div class="mod jeton-moins-7 millitaire" @click="switchBonusMoins7()" :class="board.bonusMoins7 ? 'activated':'desactivated'">
@@ -94,60 +94,94 @@
             </div>
         </div>
     </div>
-
-
+    
+    
 </template>
 
 <script setup lang="ts">
-    import {
-        ref
-    } from 'vue';
-    import Board from '../model/Board';
-    import TileComponent from './TileComponent.vue';
-    import ModalComponent from './ModalComponent.vue';
+import {
+    onMounted,
+    ref,
+    watch
+} from 'vue';
+import Board from '../model/Board';
+import TileComponent from './TileComponent.vue';
+import ModalComponent from './ModalComponent.vue';
 import type Card from '@/model/Card';
+import type Tile from '@/model/Tile';
 
-    const board = ref < Board > (new Board());
-    const modalOpened = ref<boolean> (false);
-    const isOpened = ref<boolean> (false);
-        
-    
+const board = ref<Board>(new Board());
+const modalOpened = ref<boolean> (false);
+const isOpened = ref<boolean> (false);
+const boardLoaded= ref<boolean> (false);
 
-    function switchReynie() {
-        board.value.reynieActivated = !board.value.reynieActivated;
+
+// Méthode pour sauvegarder l'état du Board
+const saveBoardState = () => {
+    const boardState = JSON.stringify(board.value);
+    localStorage.setItem('boardState', boardState);
+};
+
+// Méthode pour charger l'état du Board
+const loadBoardState = () => {
+    const savedState = localStorage.getItem('boardState');
+    if (savedState) {
+        const parsedState = JSON.parse(savedState);
+        // Ici, tu dois faire attention au type des propriétés
+        // Tu devras peut-être réinitialiser le tableau, par exemple :
+        board.value.reset(); // Reset pour mettre à zéro les états avant de charger
+        Object.assign(board.value, parsedState); // Copie les propriétés
     }
+    boardLoaded.value = true;
+};
 
-    function switchLouis() {
-        board.value.louisActivated = !board.value.louisActivated;
-    }
+// Charger l'état lorsque le composant est monté
+onMounted(() => {
+    loadBoardState();
+});
 
-    function openInfoModal() {
-        modalOpened.value = true;
-    }
+// Sauvegarder l'état avant de quitter ou réinitialiser
+watch(board.value, () => {
+    saveBoardState();
+});
 
-    function hideModal() {
-        modalOpened.value = false;
-    }
 
-    function resetAll() {
-        board.value.reset();
-    }
+function switchReynie() {
+    board.value.reynieActivated = !board.value.reynieActivated;
+}
 
-    function switchBrinvilliersClerge(): void {
-        board.value.brinvilliersClerge = !board.value.brinvilliersClerge;
-        board.value.brinvilliersPoison = false;
-    }
+function switchLouis() {
+    board.value.louisActivated = !board.value.louisActivated;
+}
 
-    function switchBrinvilliersPoison(): void {
-        board.value.brinvilliersPoison = !board.value.brinvilliersPoison;
-        board.value.brinvilliersClerge = false;
-    }
+function openInfoModal() {
+    modalOpened.value = true;
+}
 
-    function addFenelonResource(type:string)  {
-        board.value.fenelonResource[type] = !board.value.fenelonResource[type];
-    }
+function hideModal() {
+    modalOpened.value = false;
+}
 
-    function toggleFenelonProperty(property: keyof Card) {
+function resetAll() {
+    board.value.reset();
+    saveBoardState();
+}
+
+function switchBrinvilliersClerge(): void {
+    board.value.brinvilliersClerge = !board.value.brinvilliersClerge;
+    board.value.brinvilliersPoison = false;
+}
+
+function switchBrinvilliersPoison(): void {
+    board.value.brinvilliersPoison = !board.value.brinvilliersPoison;
+    board.value.brinvilliersClerge = false;
+}
+
+function addFenelonResource(type:string)  {
+    board.value.fenelonResource[type] = !board.value.fenelonResource[type];
+}
+
+function toggleFenelonProperty(property: keyof Card) {
     let card = board.value.getCardById(43)!;
     switch (property) {
         case 'isNoble':
@@ -155,369 +189,378 @@ import type Card from '@/model/Card';
         case 'isMillitaire':
         case 'isFavorite':
         case 'isHommedEtat':
-            card[property] = !card[property] as boolean;
-            break;
+        card[property] = !card[property] as boolean;
+        break;
         default:
-            break;
+        break;
     }
 }
 
-    
-    
-    function switchBonus3() {
-        board.value.bonusMoins7 = false;
-        if(board.value.bonus7) {
-            board.value.bonus7 = false;
-        }
-        if(board.value.bonusMoins3) {
-            board.value.bonusMoins3 = false;
-        }
-        board.value.bonus3 = !board.value.bonus3;
-    }
-    function switchBonus7() {
-        board.value.bonusMoins3 = false;
-        if(board.value.bonus3) {
-            board.value.bonus3 = false;
-        }
-        if(board.value.bonusMoins7) {
-            board.value.bonusMoins7 = false;
-        }
-        board.value.bonus7 = !board.value.bonus7;
-    }
 
-    function switchBonusMoins3() {
+
+function switchBonus3() {
+    board.value.bonusMoins7 = false;
+    if(board.value.bonus7) {
         board.value.bonus7 = false;
-        if(board.value.bonusMoins7) {
-            board.value.bonusMoins7 = false;
-        }
-        if(board.value.bonus3) {
-            board.value.bonus3 = false;
-        }
-        board.value.bonusMoins3 = !board.value.bonusMoins3;
     }
-    function switchBonusMoins7() {
+    if(board.value.bonusMoins3) {
+        board.value.bonusMoins3 = false;
+    }
+    board.value.bonus3 = !board.value.bonus3;
+}
+function switchBonus7() {
+    board.value.bonusMoins3 = false;
+    if(board.value.bonus3) {
         board.value.bonus3 = false;
-        if(board.value.bonusMoins3) {
-            board.value.bonusMoins3 = false;
-        }
-        if(board.value.bonus7) {
-            board.value.bonus7 = false;
-        }
-        board.value.bonusMoins7 = !board.value.bonusMoins7;
     }
+    if(board.value.bonusMoins7) {
+        board.value.bonusMoins7 = false;
+    }
+    board.value.bonus7 = !board.value.bonus7;
+}
 
-    
+function switchBonusMoins3() {
+    board.value.bonus7 = false;
+    if(board.value.bonusMoins7) {
+        board.value.bonusMoins7 = false;
+    }
+    if(board.value.bonus3) {
+        board.value.bonus3 = false;
+    }
+    board.value.bonusMoins3 = !board.value.bonusMoins3;
+}
+function switchBonusMoins7() {
+    board.value.bonus3 = false;
+    if(board.value.bonusMoins3) {
+        board.value.bonusMoins3 = false;
+    }
+    if(board.value.bonus7) {
+        board.value.bonus7 = false;
+    }
+    board.value.bonusMoins7 = !board.value.bonusMoins7;
+}
+
+
 </script>
 
 <style scoped>
-    * {
-        font-family: FogtwoNo5;
-    }
+* {
+    font-family: FogtwoNo5;
+}
 
-    b {
+b {
+    font-weight: bold;
+}
+
+.score-header{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    .score {
+        background: url('../assets/icons/cercle-point-de-victroire.png');
+        background-size: 60px;
+        width: 100%;
+        padding: 0.2em;
+        text-align: center;
+        background-repeat: no-repeat;
+        height: 60px;
+        background-position: center;
+        color: #e1ca98;
+        font-size: 2em;
         font-weight: bold;
     }
-
-    .score-header{
-        position: relative;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        .score {
-            background: url('../assets/icons/cercle-point-de-victroire.png');
-            background-size: 60px;
-            width: 100%;
-            padding: 0.2em;
-            text-align: center;
-            background-repeat: no-repeat;
-            height: 60px;
-            background-position: center;
-            color: #e1ca98;
-            font-size: 2em;
-            font-weight: bold;
-        }
-
-        .reset-button, .info-button{
-            height: 100%;
-            width: 40px;
-            min-height: 40px;
-            background-size: 100%;
-            background-position: center;
-            background-repeat: no-repeat;
-            cursor: pointer;
-        }
-
-        .info-button {
-            background-image: url('../assets/icons/Icon-info.png');
-        }
-
-        .reset-button {
-            background-image: url('../assets/icons/Icon-reset-global.png');
-        }
-
-
+    
+    .cards-list{
+        position: absolute;
+        left: 45px;
+        text-decoration: underline;
+    }   
+    
+    .reset-button, .info-button{
+        height: 100%;
+        width: 40px;
+        min-height: 40px;
+        background-size: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        cursor: pointer;
     }
- 
+    
+    .info-button {
+        background-image: url('../assets/icons/Icon-info.png');
+    }
+    
+    .reset-button {
+        background-image: url('../assets/icons/Icon-reset-global.png');
+        &:hover {
+            box-shadow: 0 2px 5px var(--color-text); /* Ombre douce */
+        }
+    }
+    
+    
+}
 
-    .cour-summary {
+
+.cour-summary {
+    justify-content: center;
+    align-self: center;
+    flex-grow: 1;
+    max-width: 500px;
+}
+
+.board {
+    display: flex;
+    border-radius: 5px;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    
+    @media screen and (min-width: 1200px) {
+        width: 1200px;
+    }
+    
+    .main-board {
         justify-content: center;
-        align-self: center;
-        flex-grow: 1;
+        width: 100%;
         max-width: 500px;
     }
-
-    .board {
-        display: flex;
-        border-radius: 5px;
-        text-align: center;
-        flex-wrap: wrap;
-        justify-content: space-around;
-
-        @media screen and (min-width: 1200px) {
-            width: 1200px;
-        }
-
-        .main-board {
-            justify-content: center;
-            width: 100%;
-            max-width: 500px;
-        }
-
-        .row {
-            display: grid;
-            position: relative;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 4px;
-            width: 100%;
-            max-width: 500px;
-            margin: 3px auto;
-        }
-
-        .summary {
-            transition: all 0.3s ease-in-out;
-            max-height: 0;
-            overflow: hidden;
-        }
-
-        .summary.opened {
-            max-height: 255px;
-        }
-
-        .types {
-            display: flex;
-             justify-content: center;
-
-             &.fenelon {
-                margin: 5px 0;
-                background-color: #e1ca98;
-                border-radius: 8px;
-                .type{
-                background-position: center;
-                    cursor: pointer;
-                    height: 45px;
-                    width: 12%;
-                    &.inactive {
-                        filter: grayscale(1);
-                    }
-                }
-             }
-
-            .type {
-                height: 82px;
-                width: 15%;
-                max-width: 65px;
-                background-repeat: no-repeat;
-                background-position: bottom;
-                background-size: 80%;
-                font-family: FogtwoNo5;
-                font-size: 2em;
-            }
-
-            .erudits-count {
-                background-image: url('../assets/icons/icon-erudit.png');
-
-            }
-
-            .nobles-count {
-                background-image: url('../assets/icons/icon-noble.png');
-            }
-
-            .favorite-count {
-                background-image: url('../assets/icons/icon-favorite.png');
-            }
-
-            .millitaire-count {
-                background-image: url('../assets/icons/icon-militaire.png');
-            }
-
-            .poison-count {
-                background-image: url('../assets/icons/icon-poison.png');
-            }
-
-            .hommes-detat-count {
-                background-image: url('../assets/icons/icon-homme-detat.png');
-            }
-
-            .clerge-count {
-                background-image: url('../assets/icons/icon-clerge.png');
-            }
-        }
-
-
-        .metiers, .other {
-            display: flex;
-            justify-content: center;
-
-            .metier {
-                height: 85px;
-                width: 15%;
-                max-width: 65px;
-                background-repeat: no-repeat;
-                background-position: bottom;
-                background-size: 80%;
-                font-family: FogtwoNo5;
-                font-size: 2em;
-            }
-
-            .jardiniers-count {
-                background-image: url('../assets/icons/jardinier.png');
-
-            }
-
-            .peintres-count {
-                background-image: url('../assets/icons/peintre.png');
-            }
-
-            .architectes-count {
-                background-image: url('../assets/icons/architecte.png');
-            }
-
-            .ecrivains-count {
-                background-image: url('../assets/icons/ecrivains.png');
-            }
-
-            .musiciens-count {
-                background-image: url('../assets/icons/compositeur.png');
-            }
-
-            .sculpteurs-count {
-                background-image: url('../assets/icons/sculpteur.png');
-            }
-
-            .hommes-count {
-                background-image: url('../assets/icons/genre-homme.png');
-            }
-
-            .femmes-count {
-                background-image: url('../assets/icons/genre-femme.png');
-            }
-
-            .eclairs-count {
-                background-image: url('../assets/icons/eclair.png');
-            }
-
-        }
-
-        .other {
-            margin-bottom: 0.5em;
-        }
-    }
-
-    .boards-mod {
-       
-        &:first-child {
-            margin-top: 10px;
-        }
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-        -webkit-tap-highlight-color: transparent;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        .mod {
-            width: 60px;
-            height: 30px;
-            background-size: 100%;
-            background-repeat: no-repeat;
-            cursor: pointer;
-            border-radius: 5px;
-            padding: 5px;
-            margin: 5px;
-            outline:none;
-            --webkit-tap-highlight-color: transparent;
-            background-position: center;
-
-            &.millitaire {
-                width: 25% ;
-            }
-
-            &.reynie{
-                background-image: url('../assets/icons/reynie.png');
-                width: 180px;
-                &.desactivated {
-                     filter: grayscale(1);
-                }
-            }
-
-            &.louis{
-                background-image: url('../assets/icons/louis-II.png');
-                width: 180px;
-                &.desactivated {
-                     filter: grayscale(1);
-                }
-            }
-
-            &.jeton-3-pts{
-                background-image: url('../assets/icons/jeton-3-points.png');
-                &.desactivated {
-                     filter: grayscale(1);
-                }
-            }
-            
-            &.jeton-7-pts{
-                background-image: url('../assets/icons/jeton-7-points.png');
-                &.desactivated {
-                     filter: grayscale(1);
-                }
-            }
-            &.jeton-moins-3{
-                background-image: url('../assets/icons/jeton-moins-3.png');
-                &.desactivated {
-                     filter: grayscale(1);
-                }
-            }
-            
-            &.jeton-moins-7{
-                background-image: url('../assets/icons/jeton-moins-7.png');
-                &.desactivated {
-                     filter: grayscale(1);
-                }
-            }
-        }
-    }
-
-    .title {
-        cursor: pointer;
-        width: 100%;
-        position: relative;
-        img{
-            width: 100%;
-        }
-
-        .accordion-icon {
-            position: absolute;
-            bottom: 30px;
-            width: 30px;
-            right: 10px;
-        }
-    }
-
-
     
+    .row {
+        display: grid;
+        position: relative;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 4px;
+        width: 100%;
+        max-width: 500px;
+        margin: 3px auto;
+    }
+    
+    .summary {
+        transition: all 0.3s ease-in-out;
+        max-height: 0;
+        overflow: hidden;
+    }
+    
+    .summary.opened {
+        max-height: 255px;
+    }
+    
+    .types {
+        display: flex;
+        justify-content: center;
+        
+        &.fenelon {
+            margin: 5px 0;
+            background-color: #e1ca98;
+            border-radius: 8px;
+            .type{
+                background-position: center;
+                cursor: pointer;
+                height: 45px;
+                width: 12%;
+                &.inactive {
+                    filter: grayscale(1);
+                }
+            }
+        }
+        
+        .type {
+            height: 82px;
+            width: 15%;
+            max-width: 65px;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: 80%;
+            font-family: FogtwoNo5;
+            font-size: 2em;
+        }
+        
+        .erudits-count {
+            background-image: url('../assets/icons/icon-erudit.png');
+            
+        }
+        
+        .nobles-count {
+            background-image: url('../assets/icons/icon-noble.png');
+        }
+        
+        .favorite-count {
+            background-image: url('../assets/icons/icon-favorite.png');
+        }
+        
+        .millitaire-count {
+            background-image: url('../assets/icons/icon-militaire.png');
+        }
+        
+        .poison-count {
+            background-image: url('../assets/icons/icon-poison.png');
+        }
+        
+        .hommes-detat-count {
+            background-image: url('../assets/icons/icon-homme-detat.png');
+        }
+        
+        .clerge-count {
+            background-image: url('../assets/icons/icon-clerge.png');
+        }
+    }
+    
+    
+    .metiers, .other {
+        display: flex;
+        justify-content: center;
+        
+        .metier {
+            height: 85px;
+            width: 15%;
+            max-width: 65px;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: 80%;
+            font-family: FogtwoNo5;
+            font-size: 2em;
+        }
+        
+        .jardiniers-count {
+            background-image: url('../assets/icons/jardinier.png');
+            
+        }
+        
+        .peintres-count {
+            background-image: url('../assets/icons/peintre.png');
+        }
+        
+        .architectes-count {
+            background-image: url('../assets/icons/architecte.png');
+        }
+        
+        .ecrivains-count {
+            background-image: url('../assets/icons/ecrivains.png');
+        }
+        
+        .musiciens-count {
+            background-image: url('../assets/icons/compositeur.png');
+        }
+        
+        .sculpteurs-count {
+            background-image: url('../assets/icons/sculpteur.png');
+        }
+        
+        .hommes-count {
+            background-image: url('../assets/icons/genre-homme.png');
+        }
+        
+        .femmes-count {
+            background-image: url('../assets/icons/genre-femme.png');
+        }
+        
+        .eclairs-count {
+            background-image: url('../assets/icons/eclair.png');
+        }
+        
+    }
+    
+    .other {
+        margin-bottom: 0.5em;
+    }
+}
+
+.boards-mod {
+    
+    &:first-child {
+        margin-top: 10px;
+    }
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    .mod {
+        width: 60px;
+        height: 30px;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        cursor: pointer;
+        border-radius: 5px;
+        padding: 5px;
+        margin: 5px;
+        outline:none;
+        --webkit-tap-highlight-color: transparent;
+        background-position: center;
+        
+        &.millitaire {
+            width: 25% ;
+        }
+        
+        &.reynie{
+            background-image: url('../assets/icons/reynie.png');
+            width: 180px;
+            &.desactivated {
+                filter: grayscale(1);
+            }
+        }
+        
+        &.louis{
+            background-image: url('../assets/icons/louis-II.png');
+            width: 180px;
+            &.desactivated {
+                filter: grayscale(1);
+            }
+        }
+        
+        &.jeton-3-pts{
+            background-image: url('../assets/icons/jeton-3-points.png');
+            &.desactivated {
+                filter: grayscale(1);
+            }
+        }
+        
+        &.jeton-7-pts{
+            background-image: url('../assets/icons/jeton-7-points.png');
+            &.desactivated {
+                filter: grayscale(1);
+            }
+        }
+        &.jeton-moins-3{
+            background-image: url('../assets/icons/jeton-moins-3.png');
+            &.desactivated {
+                filter: grayscale(1);
+            }
+        }
+        
+        &.jeton-moins-7{
+            background-image: url('../assets/icons/jeton-moins-7.png');
+            &.desactivated {
+                filter: grayscale(1);
+            }
+        }
+    }
+}
+
+.title {
+    cursor: pointer;
+    width: 100%;
+    position: relative;
+    img{
+        width: 100%;
+    }
+    
+    .accordion-icon {
+        position: absolute;
+        bottom: 30px;
+        width: 30px;
+        right: 10px;
+    }
+}
+
+
+
 </style>

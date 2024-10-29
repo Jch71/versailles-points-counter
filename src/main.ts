@@ -1,19 +1,26 @@
-import './assets/main.css'
+import './assets/main.css';
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import './registerServiceWorker'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router'; // Importez le routeur
+import './registerServiceWorker';
+import VueGtag from 'vue-gtag';
 
 let installPromptEvent;
 
 const app = createApp(App);
 
 window.addEventListener('beforeinstallprompt', (event) => {
-  // Empêche l'événement par défaut pour éviter qu'il ne soit automatiquement affiché
   event.preventDefault();
-  // Stocke l'événement pour l'utiliser ultérieurement
   installPromptEvent = event;
 });
 
+app.use(VueGtag, {
+  appName: 'Ma Cour',
+  pageTrackerScreenviewEnabled: true,
+  config: { id: 'G-JZ9N94LZYM' },
+});
+
+app.use(router); // Utilisez le routeur
 
 app.mount('#app');

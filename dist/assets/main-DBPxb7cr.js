@@ -1,0 +1,1 @@
+import{c as r,i as p,r as t,_ as n}from"./vue-gtag.esm-CXd1qApA.js";const e=r(n);window.addEventListener("beforeinstallprompt",a=>{a.preventDefault()});e.use(p,{appName:"Ma Cour",pageTrackerScreenviewEnabled:!0,config:{id:"G-JZ9N94LZYM"}});e.use(t);e.mount("#app");

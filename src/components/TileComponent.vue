@@ -18,12 +18,12 @@
 
 <script setup lang="ts">
 import Tile from '@/model/Tile';
-import {  ref, toRef } from 'vue';
+import {  onMounted, ref, toRef } from 'vue';
 import CardComponent from './CardComponent.vue';
 import Card from '@/model/Card';
 import cardsList from '@/assets/cardsList.json';
 import Board from '@/model/Board';
-    import ModalComponent from './ModalComponent.vue';
+import ModalComponent from './ModalComponent.vue';
 
 
 const props = defineProps({
@@ -36,6 +36,7 @@ const board= toRef(props.board);
 const inputCard = ref<HTMLInputElement>();
 const modalOpened = ref<boolean>(false);
 const modalContent= ref<string>();
+
 
 function focusInput(){
   if(inputCard.value) {

@@ -277,7 +277,6 @@
         "name": "Marie-Anne de Bavière",
         "value": 4,
         "isNoble" : true,
-        "isEcrivain" : true,
         "ifExtValue" : 1
     },
     {
@@ -483,7 +482,7 @@
     },
     {
         "id": 41,
-        "isHomme" : true,
+        "isFemme" : true,
         "name": "Marie-Madeleine de Rochechouart",
         "value": 0,
         "isClerge": true,
@@ -659,6 +658,7 @@
     {
         "id":61, 
         "isHomme": true,
+        "name": "Antoine Coysevox",
         "value": 0,
         "isErudit": true,
         "isSculpteur": true,
@@ -666,6 +666,7 @@
     },
     {
         "id":62,
+        "name": "Mauresse de Mauret",
         "isFemme": true,
         "value": -3,
         "hasEffect": true,
@@ -679,6 +680,7 @@
     },
     {
         "id":63,
+        "name": "Louise de la Vallière",
         "isFemme": true,
         "value": 0,
         "isClerge": true,
@@ -687,6 +689,7 @@
     },
     {
         "id":64, 
+        "name": "Léopold Ier",
         "isHomme": true,
         "value": 8,
         "hasEffect": true,
@@ -694,6 +697,7 @@
     },
     {
         "id":65, 
+        "name": "Nicolas de Catinat",
         "isHomme": true,
         "value": 0,
         "isNoble" : true,
@@ -701,6 +705,7 @@
     },
     {
         "id":66, 
+        "name": "Jean-Baptiste Antoine Colbert",
         "isHomme": true,
         "value": 3,
         "isNoble" : true,
@@ -708,6 +713,7 @@
     },
     {
         "id":67, 
+        "name": "Le Montespan",
         "isHomme": true,
         "value": 3,
         "isNoble" : true,
@@ -720,6 +726,7 @@
     },
     {
         "id":68,
+        "name": "Isabelle de Ludres",
         "isFemme": true,
         "value": 1,
         "isNoble" : true,
@@ -745,6 +752,7 @@
     },
     {
         "id":69,
+        "name": "Marquise de Brinvilliers",
         "isFemme": true,
         "value": -2,
         "hasEffect": true,
@@ -753,18 +761,21 @@
     },
     {
         "id":70, 
+        "name": "Guillaume III",
         "isHomme": true,
         "value": 25,
         "isNoble" : true
     },
     {
         "id":71, 
+        "name": "Molière",
         "isHomme": true,
-        "value": 0,
+        "value": 3,
         "isErudit" : true
     },
     {
         "id":72, 
+        "name": "Henri de Turenne",
         "isHomme": true,
         "value": -5,
         "isNoble" : true,
@@ -772,6 +783,7 @@
     },
     {
         "id":73, 
+        "name": "Innocent XI",
         "isHomme": true,
         "value": 0,
         "pointsByClerge": 3,
@@ -785,6 +797,7 @@
     },
     {
         "id":74, 
+        "name": "Anne de Conty D'argencourt",
         "isFemme": true,
         "value": 0,
         "isFavorite" : true,
@@ -834,5 +847,11 @@
         "value": 0,
         "isPoison": true,
         "isMillitaire": true
+    },
+    {
+        "id": -1337,
+        "isHomme": true,
+        "name": "JC BONNARD",
+        "value": 0
     }
 ]

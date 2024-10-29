@@ -44,6 +44,9 @@ export default class Board {
         this.bonus7 = false;
         this.bonusMoins3 = false;
         this.bonusMoins7 = false;
+        this.fenelonResource = {};
+        this.brinvilliersClerge = false;
+        this.brinvilliersPoison = false;
 
         let count = 0;
         this.tableau.forEach(row => {
@@ -119,6 +122,9 @@ export default class Board {
         let sumEcrivain = this.countCardsByType("isEcrivain") ;
 
         if(this.isPresent(20) && this.isPresent(21)) {
+            sumEcrivain+=2;
+        }
+        if(this.isPresent(20) && this.isPresent(22)) {
             sumEcrivain+=2;
         }
         if(this.isPresent(33) && this.isPresent(5)) {
@@ -275,8 +281,19 @@ export default class Board {
                 sumAdjacentErudits+=tile.card.ifAdjacentEruditBonus;}
             if(!this.getElementLeft(rowIndex, colIndex)?.card?.hidden && this.getElementLeft(rowIndex, colIndex)?.card?.isErudit) {
                 sumAdjacentErudits+=tile.card.ifAdjacentEruditBonus;}
-            if(!this.getElementRight(rowIndex, colIndex)?.card?.hidden && this.getElementRight(rowIndex, colIndex)?.card?.isErudit) 
-                sumAdjacentErudits+=tile.card.ifAdjacentEruditBonus;
+            if(!this.getElementRight(rowIndex, colIndex)?.card?.hidden && this.getElementRight(rowIndex, colIndex)?.card?.isErudit) {
+                sumAdjacentErudits+=tile.card.ifAdjacentEruditBonus;}
+
+            // Fénélon
+            if(!this.getElementAbove(rowIndex, colIndex)?.card?.hidden && this.getElementAbove(rowIndex, colIndex)?.card?.id == 43 && this.fenelonResource['erudit']) {
+                sumAdjacentErudits+=tile.card.ifAdjacentEruditBonus;}
+            if(!this.getElementBelow(rowIndex, colIndex)?.card?.hidden && this.getElementBelow(rowIndex, colIndex)?.card?.id == 43 && this.fenelonResource['erudit']) {
+                sumAdjacentErudits+=tile.card.ifAdjacentEruditBonus;}
+            if(!this.getElementLeft(rowIndex, colIndex)?.card?.hidden && this.getElementLeft(rowIndex, colIndex)?.card?.id == 43 && this.fenelonResource['erudit']) {
+                sumAdjacentErudits+=tile.card.ifAdjacentEruditBonus;}
+            if(!this.getElementRight(rowIndex, colIndex)?.card?.hidden && this.getElementRight(rowIndex, colIndex)?.card?.id == 43 && this.fenelonResource['erudit']) {
+                sumAdjacentErudits+=tile.card.ifAdjacentEruditBonus;}
+
         } if(tile.card && !tile.card.hidden && tile.card.id == 38) {
             if((!this.getElementAbove(rowIndex, colIndex)?.card?.hidden && this.getElementAbove(rowIndex, colIndex)?.card?.isErudit) || 
                 (!this.getElementBelow(rowIndex, colIndex)?.card?.hidden && this.getElementBelow(rowIndex, colIndex)?.card?.isErudit) || 
@@ -297,6 +314,19 @@ export default class Board {
        this.switchPoison();
        this.switchNegative();
 
+       if(this.isPresent(-1337)) {
+        
+        this.tableau.forEach((row, rowIndex) => {
+            row.forEach((tile, colIndex) => { 
+                if(tile.card && !tile.card.hidden){
+                    let cardSum =  Math.floor(Math.random() * (10 - (-3) + 1)) + (-3);
+                    tile.card.cardValue =cardSum
+
+                    cardsValue+=cardSum;
+                }
+            })
+        })
+       } else {
 
         this.tableau.forEach((row, rowIndex) => {
             row.forEach((tile, colIndex) => { 
@@ -337,6 +367,8 @@ export default class Board {
                 }
             })
         })
+       }
+
 
         cardsValue += this.computeBonusMilitaire();
 
@@ -488,7 +520,7 @@ export default class Board {
     
     computeLaFayette(tile:Tile): number {
         if(tile.card!.id === 40) {
-            return this.getEcrivains() >= 5 ? 9 : 0;
+            return this.getEcrivains() >= 5 ? 7 : 0;
         } 
         return 0;
     }
