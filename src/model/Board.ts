@@ -110,7 +110,12 @@ export default class Board {
     }
 
     getEclairs(): number {
-        return this.countCardsByType("hasEffect");
+        let sumHasEffect = this.countCardsByType("hasEffect") ;
+        if(this.isPresent(222)) {
+            sumHasEffect+=4;
+        }
+
+        return sumHasEffect;
     }
 
 
@@ -131,6 +136,9 @@ export default class Board {
             sumEcrivain+=1;
         }
         if(this.isPresent(71)) {
+            sumEcrivain +=4;
+        }
+        if(this.isPresent(777)) {
             sumEcrivain +=4;
         }
 
@@ -219,6 +227,9 @@ export default class Board {
         if(this.isPresent(72)) {
             sumMillitaire +=4;
         }
+        if(this.isPresent(111)) {
+            sumMillitaire +=4;
+        }
         if(this.louisActivated) {
             sumMillitaire += 1;
         }
@@ -227,7 +238,12 @@ export default class Board {
     }
     
     getHommedEtat(): number {
-        return this.countCardsByType("isHommedEtat");
+        let sumHommedEtat = this.countCardsByType("isHommedEtat") ;
+        if(this.isPresent(444)) {
+            sumHommedEtat+=4;
+        }
+
+        return sumHommedEtat;
     }    
     
     getClerge(): number {
@@ -314,7 +330,7 @@ export default class Board {
        this.switchPoison();
        this.switchNegative();
 
-       if(this.isPresent(-1337)) {
+       if(this.isPresent(666)) {
         
         this.tableau.forEach((row, rowIndex) => {
             row.forEach((tile, colIndex) => { 
@@ -628,19 +644,7 @@ export default class Board {
 
 
     computeCardsSum(tile: Tile) : number {
-        let leoSum= 0;
         let kingSum = 0;
-        if(tile.card?.id == -89) {
-            leoSum = tile.card.value!;
-            this.tableau.forEach(row => {
-                row.forEach(element => {
-                    if(element.card && !element.card.hidden && element.card.id != -89) {
-                        leoSum -= Math.abs(element.card.value || 0)
-                    }
-                });
-            });
-            return leoSum
-        }
 
         if(tile.card?.id == 70) {
             kingSum = tile.card.value!;

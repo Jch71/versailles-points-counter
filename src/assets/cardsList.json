@@ -804,54 +804,77 @@
         "isPoison": true
     },
     {
-        "id": -75,
+        "id": 111,
         "isFemme": true,
         "name": "Mounia Faure",
-        "value": 0,
-        "isNoble": true
+        "value": 0
     },
     {
-        "id": -76,
+        "id": 222,
         "isHomme": true,
         "name": "Stéphane Nouet",
-        "value": 9,
-        "isHommedEtat": true,
-        "isMillitaire": true,
-        "hasEffect" : true
+        "value": 2
     },
     {
-        "id": -89,
+        "id": 333,
         "isHomme": true,
         "name": "Léo Blandin",
-        "value": 33,
-        "isErudit": true,
-        "isNoble": true
+        "value": 3,
+        "isMusicien": true,
+        "isPeintre": true,
+        "isEcrivain": true,
+        "isArchitecte": true,
+        "isSculpteur": true
     },
     {
-        "id": -94,
-        "isHomme": true,
-        "name": "Maxime Blandin",
-        "value": 0,
-        "isHommedEtat": true,
-        "otherCardsRules" : [
-            {
-                "ifOtherCards": [3, 1],
-                "ifOtherCardsValue" : 10
-            }
-        ]
-    },
-    {
-        "id": -99,
+        "id": 444,
         "isHomme": true,
         "name": "Alexandre Cauchois",
-        "value": 0,
-        "isPoison": true,
-        "isMillitaire": true
+        "value": 4
     },
     {
-        "id": -1337,
+        "id": 555,
+        "isHomme": true,
+        "name": "César Beysang",
+        "value": 4,
+        "isArchitecte": true,
+        "isJardinier": true, 
+        "isSculpteur": true,
+        "isPeintre": true
+    },
+    {
+        "id": 666,
         "isHomme": true,
         "name": "JC BONNARD",
-        "value": 0
-    }
+        "value": 0,
+        "isArchitecte": true,
+        "isMusicien": true
+        },
+        
+    {
+        "id": 777,
+        "isFemme": true,
+        "name": "Virginie Veniger",
+        "value": 4
+        },
+        {
+            "id": 888,
+            "isHomme": true,
+            "name": "Aristophanis-Galanapoulos",
+            "value": 7,
+            "isPoison": true
+        },
+        {
+            "id": 999,
+            "isHomme": true,
+            "name": "Maxime Blandin",
+            "value": 0,
+            "otherCardsRules" : [
+                {
+                    "ifOtherCards": [333],
+                    "ifOtherCardsValue" : 10
+                }
+            ]
+        }
+
 ]

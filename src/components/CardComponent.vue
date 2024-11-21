@@ -1,7 +1,7 @@
 <template>
   <div v-if="card" :class="card && !card.hidden ? 'card-container': 'hidden-card-container'">
     <img v-show="shouldRenderOnce" :src="fullscreen ? `images/saviez-vous/saviez-vous-${card.id}.png` : `images/${card.id}.png`" alt="" class="card-image"
-         :class="[fullscreen ? 'fullscreen' : '']"
+         :class="[fullscreen ? 'fullscreen' : '', inList ? 'in-list' : '']"
          v-if="!card.hidden" @mousedown="startLongPress()" @mouseup="endLongPress()"
          @touchstart="startLongPress()" @touchend="endLongPress()" @contextmenu.prevent @load="imageLoaded">
   </div>
@@ -110,6 +110,10 @@ function enableScroll() {
     position: absolute;
     border-radius: 5px;
     transition: all 0.3s;
+    cursor: pointer;
+    &.in-list{
+      width: auto;
+    }
     &.fullscreen {
         max-height: 100%;
         width: auto;

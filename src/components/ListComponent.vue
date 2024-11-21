@@ -86,7 +86,7 @@ const goBack = () => {
     
     const filteredCards = computed(() => {
   return cards.value.filter((card: Card) => {
-    const matchesSearch = (card.name?.toLowerCase().includes(searchQuery.value.toLowerCase()) && card.id > 0) || card.id == searchQuery.value || false;
+    const matchesSearch = (card.name?.toLowerCase().includes(searchQuery.value.toLowerCase()) && card.id < 100) || card.id == searchQuery.value || false;
 
     // Vérifie que la carte correspond à tous les types sélectionnés
     const matchesType = selectedType.value.length === 0 || selectedType.value.every(type => card[type as keyof Card]);
