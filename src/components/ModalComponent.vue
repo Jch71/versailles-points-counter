@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import { ref, toRef } from 'vue';
 
-const MODAL_EXPLAIN = "Contenu de la modale <br> Là on peut mettre des infos <br> Et comment on se sert du calculateur"
+const MODAL_EXPLAIN = "<img src='images/tuto/0.png'><img src='images/tuto/1.png'><img src='images/tuto/2.png'><img src='images/tuto/3.png'><img src='images/tuto/4.png'><img src='images/tuto/5.png'>"
 
 const opened = defineModel('opened')
 const props = defineProps({
@@ -55,6 +55,9 @@ function hideModal() {
     text-align: center;
     padding: 1em;
 
+    img {
+        width: 100%;
+    }
 
     .modal-content {
         height: 100%;

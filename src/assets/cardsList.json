@@ -531,6 +531,7 @@
         "value": -2,
         "isFemme": true,
         "isErudit": true,
+        "isEcrivain": true,
         "pointsByFemme": 2
     },
     {

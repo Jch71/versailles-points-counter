@@ -325,6 +325,7 @@ b {
         justify-content: center;
         width: 100%;
         max-width: 500px;
+        margin-top : 5px;
     }
     
     .row {
@@ -367,7 +368,7 @@ b {
         }
         
         .type {
-            height: 82px;
+            height: 90px;
             width: 15%;
             max-width: 65px;
             background-repeat: no-repeat;
@@ -485,13 +486,13 @@ b {
     user-select: none;
     .mod {
         width: 60px;
-        height: 30px;
+        height: 75px;
         background-size: 100%;
         background-repeat: no-repeat;
         cursor: pointer;
         border-radius: 5px;
         padding: 5px;
-        margin: 5px;
+        margin: 0 5px;
         outline:none;
         --webkit-tap-highlight-color: transparent;
         background-position: center;

@@ -93,9 +93,10 @@ body {
 footer  {
   font-size: smaller;
   text-align: center;
-  position: sticky;
+  position: relative;
   bottom: 0;
   left: 0;
   width: 100%;
   text-align: center;
+  margin-top: 10px;
 }
