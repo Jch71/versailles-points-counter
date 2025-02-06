@@ -356,6 +356,7 @@ b {
             margin: 5px 0;
             background-color: #e1ca98;
             border-radius: 8px;
+            padding: 2px;
             .type{
                 background-position: center;
                 cursor: pointer;

@@ -11,7 +11,7 @@
 <script setup lang="ts">
 import { ref, toRef } from 'vue';
 
-const MODAL_EXPLAIN = "<img src='images/tuto/0.png'><img src='images/tuto/1.png'><img src='images/tuto/2.png'><img src='images/tuto/3.png'><img src='images/tuto/4.png'><img src='images/tuto/5.png'>"
+const MODAL_EXPLAIN = "<img src='images/tuto/0.png'><img src='images/tuto/1.png'><img src='images/tuto/2.png'><img src='images/tuto/3.png'><img src='images/tuto/4.png'><img src='images/tuto/5.png'><a href='mailto:help@macour.fr'><img src='images/tuto/6.png'></a>"
 
 const opened = defineModel('opened')
 const props = defineProps({
