@@ -56,8 +56,9 @@
     header {
         border-radius: 8px;
         background-color: #e1ca98;
-        height: 50px;
-        border: solid 1px grey;
+        /* height: 50px; */
+        padding: 5px;
+        border: solid 3px black;
         color: var(--vt-c-text-light-1);
         margin: 5px;
         margin-top: 10px;
@@ -65,6 +66,7 @@
         position: relative;
         display: flex;
         align-items: center;
+        text-align: center;
         justify-content: center;
         vertical-align: middle;
 
