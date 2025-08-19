@@ -822,7 +822,7 @@
     {
         "id":71, 
         "name": "L'homme au masque de fer",
-        "isFemme": true,
+        "isHomme": true,
         "value": 0,
         "isMasqueFer" : true,
         "pointsByMasqueFer" : 3,
@@ -868,7 +868,8 @@
         "isNoble" : true,
         "isClerge" : true,
         "isHommedEtat" : true,
-        "fromExtension" : true
+        "fromExtension" : true,
+        "pointsByClerge": 2
     },   
     {
         "id":75, 

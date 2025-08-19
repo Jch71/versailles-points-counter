@@ -13,7 +13,7 @@ export default class Board {
     public fenelonResource : any = {};
     public brinvilliersClerge: boolean = false;
     public brinvilliersPoison: boolean = false;
-    public withExtension: boolean = true;
+    public withExtension: boolean = false;
   
     constructor() {
 
@@ -203,7 +203,7 @@ export default class Board {
             });
         });
 
-        if(this.isPresent(74) && !this.getCardById(74)?.poisonHidden) {
+        if(this.isPresent(974) && !this.getCardById(974)?.poisonHidden) {
             sumPoison += 1;
         }
 
@@ -216,7 +216,7 @@ export default class Board {
         let sumFavorites = 0;
         sumFavorites = this.countCardsByType("isFavorite");
 
-        if(this.isPresent(74)) {
+        if(this.isPresent(974)) {
             sumFavorites += 2;
         }
         return sumFavorites
