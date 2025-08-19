@@ -13,6 +13,7 @@ export default class Board {
     public fenelonResource : any = {};
     public brinvilliersClerge: boolean = false;
     public brinvilliersPoison: boolean = false;
+    public withExtension: boolean = true;
   
     constructor() {
 
@@ -68,7 +69,7 @@ export default class Board {
         let count = 0;
         this.tableau.forEach(row => {
             row.forEach(element => {
-                if (element.card && !element.card.hidden && element.card[cardType  as keyof Card]) {
+                if (element.card && !element.card.hidden && !(!this.withExtension && element.card.fromExtension) && element.card[cardType  as keyof Card]) {
                     count++;
                 }
             });
@@ -118,6 +119,11 @@ export default class Board {
         return sumHasEffect;
     }
 
+    getMasqueFer(): number {
+        let sumHasEffect = this.countCardsByType("isMasqueFer") ;
+        return sumHasEffect;
+    }
+
 
     getPaintedByHyacinthe(): number {
         return this.countCardsByType("paintedByHyacinthe");
@@ -135,7 +141,7 @@ export default class Board {
         if(this.isPresent(33) && this.isPresent(5)) {
             sumEcrivain+=1;
         }
-        if(this.isPresent(71)) {
+        if(this.isPresent(76)) {
             sumEcrivain +=4;
         }
         if(this.isPresent(777)) {
@@ -224,7 +230,10 @@ export default class Board {
         if(this.isPresent(37)) {
             sumMillitaire += 1;
         } 
-        if(this.isPresent(72)) {
+        if(this.isPresent(73)) {
+            sumMillitaire -= 1;
+        } 
+        if(this.isPresent(972)) {
             sumMillitaire +=4;
         }
         if(this.isPresent(111)) {
@@ -346,7 +355,7 @@ export default class Board {
 
         this.tableau.forEach((row, rowIndex) => {
             row.forEach((tile, colIndex) => { 
-                if(tile.card && !tile.card.hidden){
+                if(tile.card && !tile.card.hidden && !(!this.withExtension && tile.card.fromExtension)){
                     let cardSum = 0;
                     cardSum += this.computeCardsSum(tile);
                     cardSum += this.computeCardsIfTop(tile);
@@ -365,6 +374,7 @@ export default class Board {
                     cardSum += this.computeCardsByZero(tile);
                     cardSum += this.computeAdjacentCards(tile, rowIndex, colIndex);
                     cardSum += this.computeCardsByClerge(tile);
+                    cardSum += this.computeCardsByMasqueDeFer(tile)
                     cardSum += this.computeCardsByEcrivain(tile);
                     cardSum += this.computeCardsByPaintedByHyacinthe(tile);
                     cardSum += this.computeCardsByPoison(tile);
@@ -569,6 +579,10 @@ export default class Board {
     computeCardsByClerge(tile: Tile): number {
         return this.computeCardsByCriterion(tile, 'pointsByClerge', () => this.getClerge());
     }
+   
+    computeCardsByMasqueDeFer(tile: Tile): number {
+        return this.computeCardsByCriterion(tile, 'pointsByMasqueFer', () => this.getMasqueFer());
+    }
 
     computeCardsByFemme(tile: Tile): number {
         return this.computeCardsByCriterion(tile, 'pointsByFemme', () => this.getFemmes() - 1);
@@ -668,7 +682,7 @@ export default class Board {
                 sumReynie = -9;
             } else if(tile.card?.id === 69 && this.brinvilliersPoison) {
                 sumReynie = -9;
-            } else if(tile.card?.id === 74) {
+            } else if(tile.card?.id === 974) {
                 sumReynie = -6;
             }
             else {
@@ -833,7 +847,7 @@ export default class Board {
     isPresent(id: number) {
         return this.tableau.some(row => 
             row.some(tile => 
-                tile.card?.id === id && !tile.card?.hidden));
+                tile.card?.id === id && !tile.card?.hidden && !(!this.withExtension && tile.card.fromExtension)));
     }
 
     getCardById(id: number) {

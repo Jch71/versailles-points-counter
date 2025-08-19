@@ -1,7 +1,7 @@
 <template>
   <div v-if="card" :class="card && !card.hidden ? 'card-container': 'hidden-card-container'">
     <img v-show="shouldRenderOnce" :src="fullscreen ? `images/saviez-vous/saviez-vous-${card.id}.png` : `images/${card.id}.png`" alt="" class="card-image"
-         :class="[fullscreen ? 'fullscreen' : '', inList ? 'in-list' : '']"
+         :class="[fullscreen ? 'fullscreen' : '', inList ? 'in-list' : '', disabled ? 'disabled' : '']"
          v-if="!card.hidden" @mousedown="startLongPress()" @mouseup="endLongPress()"
          @touchstart="startLongPress()" @touchend="endLongPress()" @contextmenu.prevent @load="imageLoaded">
   </div>
@@ -13,7 +13,8 @@ import { ref } from 'vue';
 
 const props = defineProps({
   card: Card,
-  inList: { type: Boolean, default: false }
+  inList: { type: Boolean, default: false },
+  disabled: { type: Boolean, default: false },
 });
 let pressTimer: any;
 let fullscreen = ref<boolean>(false);
@@ -82,6 +83,8 @@ function enableScroll() {
     -webkit-touch-callout: none;
     outline:none;
     --webkit-tap-highlight-color: transparent;
+
+
     
 }
 
@@ -111,6 +114,9 @@ function enableScroll() {
     border-radius: 5px;
     transition: all 0.3s;
     cursor: pointer;
+    &.disabled {
+      filter: grayscale(1);
+    }
     &.in-list{
       width: auto;
     }

@@ -8,7 +8,7 @@
         <div @click="addEmptyCard($event)" class="hide-button show empty-card" v-if="!(tile?.card && tile?.card.id)">
         </div>
 
-      <card-component :card="tile?.card"/>
+      <card-component :card="tile?.card" :disabled="tile?.card?.fromExtension && !board?.withExtension"/>
       <div class="card-score" v-if="tile?.card && tile?.card.id && !tile?.card.hidden ">
           {{ tile?.card?.cardValue }}
          </div>
@@ -47,6 +47,10 @@ function updateTileCard($event: any) {
   let idExists: boolean=false;
   board.value?.getTableau().forEach(row => {
     row.forEach(element => {
+      if(tile.value?.inputValue && element.card?.id == tile.value?.inputValue + 'e'){
+        tile.value.inputValue= undefined;
+        idExists = true;
+      }
       if(tile.value?.inputValue && element.card?.id == tile.value?.inputValue){
         tile.value.inputValue= undefined;
         idExists = true;
@@ -59,9 +63,20 @@ function updateTileCard($event: any) {
     modalContent.value = "<img src='images/deja-dans-la-cour.png'>";
     return;
   }
-  tile.value!.card =  cardsList.find((elem: any) => elem.id == tile.value?.inputValue) ? 
+  if(board.value?.withExtension) {
+    tile.value!.card =  cardsList.find((elem: any) => elem.id == tile.value?.inputValue + 'e') ? 
+                new Card(cardsList.find((elem: any) => elem.id ==tile.value?.inputValue + 'e')) : 
+                cardsList.find((elem: any) => elem.id == tile.value?.inputValue) ? 
+                new Card(cardsList.find((elem: any) => elem.id ==tile.value?.inputValue)) :
+                undefined ;
+
+    
+  } else {
+    tile.value!.card =  cardsList.find((elem: any) => elem.id == tile.value?.inputValue) ? 
                 new Card(cardsList.find((elem: any) => elem.id ==tile.value?.inputValue)) : 
                 undefined ;
+  }
+ 
                 
     inputCard.value?.blur();
   $event.preventDefault();

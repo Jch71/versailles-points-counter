@@ -32,6 +32,7 @@
                     <span class="metier hommes-count">{{ board.getHommes() }} </span>
                     <span class="metier femmes-count">{{ board.getFemmes() }} </span>
                     <span class="metier eclairs-count">{{ board.getEclairs() }} </span>
+                    <span class="metier masque-fer-count" v-if="board.withExtension"> {{ board.getMasqueFer() }}</span>
                 </div>
                 
                 
@@ -50,6 +51,12 @@
                 <div class="score">
                     {{ board.getScore() }}
                 </div>
+
+                <div class="extension">
+                    <input type="checkbox" name="extension" id="extension" v-model="board.withExtension" @change="onExtensionSwitch" > 
+                    <label for="extension">Masque de fer</label>
+                </div>
+
                 <div class="reset-button" @click="resetAll()"></div>
             </div> 
             
@@ -107,8 +114,9 @@ import {
 import Board from '../model/Board';
 import TileComponent from './TileComponent.vue';
 import ModalComponent from './ModalComponent.vue';
-import type Card from '@/model/Card';
+import Card from '@/model/Card';
 import type Tile from '@/model/Tile';
+import cardsList from '@/assets/cardsList.json';
 
 const board = ref<Board>(new Board());
 const modalOpened = ref<boolean> (false);
@@ -144,6 +152,36 @@ onMounted(() => {
 watch(board.value, () => {
     saveBoardState();
 });
+
+function onExtensionSwitch(event: Event) {
+  console.log("Nouvel état :", board.value.withExtension)
+  board.value.getTableau().forEach(row => {
+    row.forEach(tile => {
+        if(tile.card?.id==47 || tile.card?.id == "47e"){
+            if(board.value.withExtension) {
+                tile.card = cardsList.find((elem: any) => elem.id == "47e") ? 
+                new Card(cardsList.find((elem: any) => elem.id  == "47e")) : 
+                undefined ;
+            } else {
+                tile.card = cardsList.find((elem: any) => elem.id == "47") ? 
+                new Card(cardsList.find((elem: any) => elem.id  == "47")) : 
+                undefined ;
+            }
+        }
+        if(tile.card?.id==56 || tile.card?.id == "56e"){
+            if(board.value.withExtension) {
+                tile.card = cardsList.find((elem: any) => elem.id == "56e") ? 
+                new Card(cardsList.find((elem: any) => elem.id  == "56e")) : 
+                undefined ;
+            } else {
+                tile.card = cardsList.find((elem: any) => elem.id == "56") ? 
+                new Card(cardsList.find((elem: any) => elem.id  == "56")) : 
+                undefined ;
+            }
+        }
+    });
+  });
+}
 
 
 function switchReynie() {
@@ -261,20 +299,35 @@ b {
     .score {
         background: url('../assets/icons/cercle-point-de-victroire.png');
         background-size: 60px;
-        width: 100%;
+        width: 20%;
+        display: flex;
         padding: 0.2em;
         text-align: center;
         background-repeat: no-repeat;
         height: 60px;
         background-position: center;
+        justify-content: center;
         color: #e1ca98;
         font-size: 2em;
         font-weight: bold;
     }
+
+    
+    .extension {
+        display: flex;
+
+        label {
+            
+        text-decoration: underline;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+    }
     
     .cards-list{
-        position: absolute;
-        left: 45px;
+        display: flex;
         text-decoration: underline;
     }   
     
@@ -461,6 +514,12 @@ b {
         .eclairs-count {
             background-image: url('../assets/icons/eclair.png');
         }
+
+        .masque-fer-count {
+            background-image: url('../assets/icons/masque-de-fer.png');
+            background-size: 47%;
+            background-position: 50% 84%;
+        }
         
     }
     
@@ -562,6 +621,7 @@ b {
         right: 10px;
     }
 }
+
 
 
 

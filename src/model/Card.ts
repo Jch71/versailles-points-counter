@@ -37,6 +37,7 @@ export default class Card {
     public paintedByHyacinthe: boolean = false;
     public countByAllTypes: number= 0;
     public isHommedEtat: boolean = false;
+    public isMasqueFer: boolean = false;
     public isClerge: boolean = false;
     public pointsByFavorite: number = 0;
     public pointsByClerge: number = 0;
@@ -47,6 +48,8 @@ export default class Card {
     public pointsByFemme: number = 0;
     public pointsByZero: number = 0;
     public cardValue: number = 0;
+    public fromExtension: boolean = false;
+    public pointsByMasqueFer: number = 0;
 
 
     constructor(cardObject: any) {
@@ -80,6 +83,7 @@ export default class Card {
             this.isMusicien =cardObject.isMusicien;
             this.countByMetiers =cardObject.countByMetiers;
             this.isHommedEtat =cardObject.isHommedEtat;
+            this.isMasqueFer =cardObject.isMasqueFer;
             this.isClerge =cardObject.isClerge;
             this.ifMiddleValue =cardObject.ifMiddleValue;
             this.pointsByFavorite =cardObject.pointsByFavorite;
@@ -95,7 +99,9 @@ export default class Card {
             this.isHomme =cardObject.isHomme;
             this.countByAllTypes =cardObject.countByAllTypes;
             this.paintedByHyacinthe =cardObject.paintedByHyacinthe;
+            this.pointsByMasqueFer =cardObject.pointsByMasqueFer;
             this.pointsByPaintedByHyacinthe =cardObject.pointsByPaintedByHyacinthe;
+            this.fromExtension =cardObject.fromExtension;
 
         }    
     } 

@@ -545,6 +545,17 @@
         "pointsByPaintedByHyacinthe" : 2
     },
     {
+        "id": "47e",
+        "isHomme" : true,
+        "name": "Hyacinthe Rigaud",
+        "value": 0,
+        "isErudit": true,
+        "isPeintre": true,
+        "paintedByHyacinthe" : true,
+        "pointsByPaintedByHyacinthe" : 2,
+        "fromExtension" : true
+    },
+    {
         "id": 48,
         "isHomme" : true,
         "name": "Sieur de Sacy",
@@ -621,6 +632,17 @@
         "isNoble": true,
         "isHommedEtat": true,
         "pointsByHidden" : 8
+    },    
+    {
+        "id": "56e",
+        "isHomme" : true,
+        "name": "Nicolas Fouquet",
+        "value": -5,
+        "isNoble": true,
+        "isHommedEtat": true,
+        "isMasqueFer": true,
+        "pointsByHidden" : 8,
+        "fromExtension" : true
     },
     {
         "id": 57,
@@ -768,14 +790,7 @@
         "isNoble" : true
     },
     {
-        "id":71, 
-        "name": "Molière",
-        "isHomme": true,
-        "value": 3,
-        "isErudit" : true
-    },
-    {
-        "id":72, 
+        "id":972, 
         "name": "Henri de Turenne",
         "isHomme": true,
         "value": -5,
@@ -783,7 +798,7 @@
         "isMillitaire": true
     },
     {
-        "id":73, 
+        "id":973, 
         "name": "Innocent XI",
         "isHomme": true,
         "value": 0,
@@ -797,12 +812,125 @@
         "isClerge" : true
     },
     {
-        "id":74, 
+        "id":974, 
         "name": "Anne de Conty D'argencourt",
         "isFemme": true,
         "value": 0,
         "isFavorite" : true,
         "isPoison": true
+    },
+    {
+        "id":71, 
+        "name": "L'homme au masque de fer",
+        "isFemme": true,
+        "value": 0,
+        "isMasqueFer" : true,
+        "pointsByMasqueFer" : 3,
+        "fromExtension" : true
+    },
+    {
+        "id":72, 
+        "name": "Louis de bourbon",
+        "isHomme": true,
+        "value": 5,
+        "isMasqueFer" : true,
+        "otherCardsRules" : [
+            {
+                "ifOtherCards": [10],
+                "ifOtherCardsValue" : -3
+            },{
+                "ifOtherCards": [12],
+                "ifOtherCardsValue" : -3
+            }
+        ],
+        "fromExtension" : true
+    },
+    {
+        "id":73, 
+        "name": "François de Vendôme",
+        "isHomme": true,
+        "value": 4,
+        "isMasqueFer" : true,
+        "otherCardsRules" : [
+            {
+                "ifOtherCards": [71],
+                "ifOtherCardsValue" : 3
+            }
+        ],
+        "fromExtension" : true
+    },
+    {
+        "id":74, 
+        "name": "Henri II de Guise",
+        "isHomme": true,
+        "value": 0,
+        "isMasqueFer" : true,
+        "isNoble" : true,
+        "isClerge" : true,
+        "isHommedEtat" : true,
+        "fromExtension" : true
+    },   
+    {
+        "id":75, 
+        "name": "Charles de Batz",
+        "isHomme": true,
+        "value": 2,
+        "isMasqueFer" : true,
+        "isMillitaire" : true,
+        "hasEffect" : true,
+        "fromExtension" : true
+    },
+    {
+        "id":76, 
+        "name": "Molière",
+        "isHomme": true,
+        "value": 3,
+        "isMasqueFer" : true,
+        "isErudit" : true,
+        "fromExtension" : true
+    },
+    {
+        "id":77, 
+        "name": "Richard Cromwell",
+        "isHomme": true,
+        "value": 0,
+        "isMasqueFer" : true,
+        "isHommedEtat" : true,
+        "isNoble" : true,
+        "fromExtension" : true
+    },
+    {
+        "id":78, 
+        "name": "Nabo",
+        "isHomme": true,
+        "value": -1,
+        "isMasqueFer" : true,
+        "otherCardsRules" :
+        [
+            {
+                "ifOtherCards": [2],
+                "ifOtherCardsValue" : 10
+            }
+        ],
+        "fromExtension" : true,
+        "paintedByHyacinthe": true
+    },
+    {
+        "id":79, 
+        "name": "Bénigne D'Auvergne",
+        "isHomme": true,
+        "value": 0,
+        "fromExtension" : true,
+        "hasEffect":true
+    },
+    {
+        "id":80, 
+        "name": "Louis XIII",
+        "isHomme": true,
+        "value": -13,
+        "fromExtension" : true,
+        "isMasqueFer":true,
+        "isNoble": true
     },
     {
         "id": 111,
